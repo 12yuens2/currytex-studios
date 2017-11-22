@@ -28,8 +28,8 @@ public class DevStudios extends PApplet {
 		boxes.add(new Box(100, 300, 50));
 		boxes.add(new Box(100, 500, 50));
 		
-		locations.add(new Location(700, 150, 100));
-		locations.add(new Location(700, 450, 100));
+		locations.add(new Location(700, 150, 100, 200));
+		locations.add(new Location(700, 450, 100, 300));
 		
 	}
 
@@ -56,13 +56,14 @@ public class DevStudios extends PApplet {
 	    }
 	    
 	    for (Box b : boxes) {
+	    	b.integrate();
 	    	b.display(drawEngine);
 	    }
 	}
 
 	public void mousePressed() {
 		for (Box b : boxes) {
-			if (b.mouseOver) b.mouseLocked = true;
+			if (b.mouseOver && !b.disabled) b.mouseLocked = true;
 			else b.mouseLocked = false;
 			
 			b.mouseXOffset = mouseX - b.position.x;
@@ -85,7 +86,7 @@ public class DevStudios extends PApplet {
 				b.mouseLocked = false;
 				for (Location l : locations) {
 					if (b.overlapsWith(l)) {
-						System.out.println("overlap " + l);
+						b.enterLocation(l.timeNeeded);
 					}
 				}
 				b.position = b.originalPosition.copy();

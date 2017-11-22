@@ -2,8 +2,12 @@
 
 public class Location extends GameObject {
 
-	public Location(float xPos, float yPos, int size) {
+	public int timeNeeded;
+	
+	public Location(float xPos, float yPos, int size, int timeNeeded) {
 		super(xPos, yPos, size);
+		this.timeNeeded = timeNeeded;
+		
 	}
 
 	public void display(DrawEngine drawEngine) {
