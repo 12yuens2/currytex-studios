@@ -1,4 +1,7 @@
+import java.util.ArrayList;
+
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class DevStudios extends PApplet {
 
@@ -12,62 +15,102 @@ public class DevStudios extends PApplet {
 		size(SCREEN_X, SCREEN_Y);
 	}
 	
-	float bx;
-	float by;
-	int boxSize = 75;
-	boolean overBox = false;
-	boolean locked = false;
-	float xOffset = 0f; 
-	float yOffset = 0f; 
+//	int boxSize = 75;
+//	boolean overBox = false;
+//	boolean locked = false;
+//	float xOffset = 0f; 
+//	float yOffset = 0f; 
+	
+	ArrayList<Box> boxes;
+	Box draggingBox;
 
 	public void setup() {
-	  bx = (float) (SCREEN_X/2.0);
-	  by = (float) (SCREEN_Y/2.0);
-	  rectMode(RADIUS);  
+		boxes = new ArrayList<Box>();
+		boxes.add(new Box(100, 100, 50));
+		boxes.add(new Box(100, 300, 50));
+		boxes.add(new Box(100, 500, 50));
+		rectMode(RADIUS);  
 	}
 
 	public void draw() { 
-	  background(0);
+		background(0);
 	  
-	  // Test if the cursor is over the box 
-	  if (mouseX > bx-boxSize && mouseX < bx+boxSize && 
-	      mouseY > by-boxSize && mouseY < by+boxSize) {
-	    overBox = true;  
-	    if(!locked) { 
-	      stroke(255); 
-	      fill(153);
-	    } 
-	  } else {
-	    stroke(153);
-	    fill(153);
-	    overBox = false;
-	  }
+  // Test if the cursor is over the box
+
+		for (Box b : boxes) {
+			if (mouseX > b.position.x - b.size && mouseX < b.position.x + b.size &&
+				mouseY > b.position.y - b.size && mouseY < b.position.y + b.size) {
+				
+				b.mouseOver = true;
+			} else {
+				b.mouseOver = false;
+			}
+		}
+		
+	//	  if (mouseX > bx-boxSize && mouseX < bx+boxSize && 
+	//	      mouseY > by-boxSize && mouseY < by+boxSize) {
+	//	    overBox = true;  
+	////	    if(!locked) { 
+	////	      stroke(255); 
+	////	      fill(153);
+	////	    } 
+	//	  } else {
+	////	    stroke(153);
+	////	    fill(153);
+//	    overBox = false;
+//	  }
+	  
+		stroke(153);
+		fill(153);
 	  
 	  // Draw the box
-	  rect(bx, by, boxSize, boxSize);
+	    for (Box b : boxes) {
+	    	rect(b.position.x, b.position.y, b.size, b.size);
+	    }
 	}
 
 	public void mousePressed() {
-	  if(overBox) { 
-	    locked = true; 
-	    fill(255, 255, 255);
-	  } else {
-	    locked = false;
-	  }
-	  xOffset = mouseX-bx; 
-	  yOffset = mouseY-by; 
+		for (Box b : boxes) {
+			if (b.mouseOver) b.mouseLocked = true;
+			else b.mouseLocked = false;
+			
+			b.mouseXOffset = mouseX - b.position.x;
+			b.mouseYOffset = mouseY - b.position.y;
+		}
+		
+//		if(overBox) { 
+//	    locked = true; 
+//	    fill(255, 255, 255);
+//	  } else {
+//	    locked = false;
+//	  }
+//		xOffset = mouseX-bx; 
+//		yOffset = mouseY-by; 
 
 	}
 
 	public void mouseDragged() {
-	  if(locked) {
-	    bx = mouseX-xOffset; 
-	    by = mouseY-yOffset; 
-	  }
+		for (Box b : boxes) {
+			if (b.mouseLocked) {
+				b.position = new PVector(mouseX - b.mouseXOffset, mouseY - b.mouseYOffset);
+			}
+		}
+//	  if(locked) {
+//	    bx = mouseX-xOffset; 
+//	    by = mouseY-yOffset; 
+//	  }
 	}
 
 	public void mouseReleased() {
-	  locked = false;
+		for (Box b : boxes) {
+			if (b.mouseLocked) {
+				b.mouseLocked = false;
+				b.position = b.absolutePosition.copy();
+			}
+		}
+//	  locked = false;
+//	  bx = boxX;
+//	  by = boxY;
 	}
 	
 	
