@@ -90,14 +90,14 @@ public class DrawEngine {
 	 * @param width - width of the rectangle
 	 * @param height - height of the rectangle
 	 */
-	public void drawRectangle(int col, float xPos, float yPos, float width, float height) {
-		parent.rectMode(PConstants.RADIUS);
+	public void drawRectangle(int rectMode, int col, float xPos, float yPos, float width, float height) {
+		parent.rectMode(rectMode);
 		parent.fill(col);
 		parent.rect(xPos, yPos, width, height);
 	}
 	
-	public void drawRectangle(int col, PVector position, float size) {
-		drawRectangle(col, position.x, position.y, size, size);
+	public void drawRectangle(int rectMode, int col, PVector position, float size) {
+		drawRectangle(rectMode, col, position.x, position.y, size, size);
 	}
 	
 //	/**

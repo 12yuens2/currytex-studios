@@ -1,4 +1,4 @@
-
+import processing.core.PConstants;
 
 public class Location extends GameObject {
 
@@ -11,7 +11,7 @@ public class Location extends GameObject {
 	}
 
 	public void display(DrawEngine drawEngine) {
-		drawEngine.drawRectangle(drawEngine.parent.color(255,0,0), position, size);
+		drawEngine.drawRectangle(PConstants.RADIUS, drawEngine.parent.color(255,0,0), position, size);
 	}
 
 }
