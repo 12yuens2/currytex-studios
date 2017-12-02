@@ -3,17 +3,20 @@ package ui;
 import java.util.ArrayList;
 
 import game.DrawEngine;
+import game.GameInput;
+import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
 
 public class Menu {
 
 	public PVector position;
+	public float mouseX, mouseY;
 	public int width, height;
 	
-	ArrayList<Button> buttons;
+	public ArrayList<Button> buttons;
 	
-	public Menu(float xPos, float yPos, int size) {
+	public Menu(float xPos, float yPos, int size, PApplet parent) {
 		this.position = new PVector(xPos, yPos);
 		this.width = size;
 		this.height = size;
@@ -21,10 +24,11 @@ public class Menu {
 		this.buttons = new ArrayList<>();
 	}
 	
-	public Menu(float xPos, float yPos, int width, int height) {
-		this(xPos, yPos, width);
+	public Menu(float xPos, float yPos, int width, int height, PApplet parent) {
+		this(xPos, yPos, width, parent);
 		this.width = width;
 		this.height = height;
+		
 	}
 	
 	public void display(DrawEngine drawEngine) {
@@ -33,5 +37,19 @@ public class Menu {
 		for (Button b : buttons) {
 			b.display(drawEngine);
 		}
+	}
+
+	public void update(float mouseX, float mouseY) {
+		this.mouseX = mouseX;
+		this.mouseY = mouseY;
+	}
+
+	public void clicked(GameInput input) {
+		for (Button b : buttons) {
+			if (b.contains(input.mouseX, input.mouseY)) {
+				b.activate();
+			}
+		}
+		
 	}
 }

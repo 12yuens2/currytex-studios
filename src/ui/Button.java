@@ -8,16 +8,25 @@ public class Button {
 
 	public PVector position;
 	
-	public int width, height;
+	public int width, height, col;
 	
-	public Button(float xPos, float yPos, int width, int height) {
+	public Button(float xPos, float yPos, int width, int height, int col) {
 		this.position = new PVector(xPos, yPos);
+		this.col = col;
 		this.width = width;
 		this.height = height;
 	}
 	
 	public void display(DrawEngine drawEngine) {
-		int col = drawEngine.parent.color(200, 0, 0);
 		drawEngine.drawRectangle(PConstants.RADIUS, col, position.x, position.y, width, height);
+	}
+	
+	public boolean contains(float x, float y) {
+		return (x > position.x - width && x < position.x + width &&
+				y > position.y - height && y < position.y + height);
+	}
+
+	public void activate() {
+		System.out.println(this + " was pressed.");
 	}
 }

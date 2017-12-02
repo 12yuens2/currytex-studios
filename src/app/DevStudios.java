@@ -41,7 +41,7 @@ public class DevStudios extends PApplet {
 	}
 	
 	private GameInput newMouseInput(MouseAction mouseAction) {
-		return new GameInput(mouseY, mouseY, mouseButton, -1, mouseAction);
+		return new GameInput(mouseX, mouseY, mouseButton, -1, mouseAction);
 	}
 	
 	
