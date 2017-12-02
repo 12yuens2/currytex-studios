@@ -5,3 +5,12 @@
 ** Design patterns
 *** Scene graph for displaying game
 Render the game with the graph one way down the tree, then handle input the opposite way so that objects rendered later (in front) are handled before objects behind
+
+** AI
+*** AI opponent companies for competition
+- have different AIs
+- stupid easy ones and smarter ones
+- have 'things' to make and these things increase/decrease in value based on simple supply/demand
+
+*** Way to distrupt opponent AIs
+- eg send employees to mess up other companies

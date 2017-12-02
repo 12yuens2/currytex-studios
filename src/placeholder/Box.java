@@ -1,3 +1,5 @@
+package placeholder;
+import game.DrawEngine;
 import processing.core.PConstants;
 import processing.core.PVector;
 
@@ -37,7 +39,7 @@ public class Box extends GameObject {
 	
 	public void display(DrawEngine drawEngine) {
 		int col = disabled ? drawEngine.parent.color(0, 155, 0) : drawEngine.parent.color(0, 255, 0);
-		drawEngine.drawRectangle(PConstants.RADIUS, col, position, size);
+		drawEngine.drawSquare(PConstants.RADIUS, col, position, size);
 		drawEngine.drawRectangle(PConstants.CORNER, drawEngine.parent.color(0,0,180), position.x, position.y + 30, timer, 20);		
 	}
 }

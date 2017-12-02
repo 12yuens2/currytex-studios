@@ -1,5 +1,7 @@
+package game;
 import java.util.ArrayList;
 
+import placeholder.GameObject;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PFont;
@@ -96,7 +98,7 @@ public class DrawEngine {
 		parent.rect(xPos, yPos, width, height);
 	}
 	
-	public void drawRectangle(int rectMode, int col, PVector position, float size) {
+	public void drawSquare(int rectMode, int col, PVector position, float size) {
 		drawRectangle(rectMode, col, position.x, position.y, size, size);
 	}
 	
