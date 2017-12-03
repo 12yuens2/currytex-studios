@@ -25,7 +25,8 @@ public class StartState extends GameState {
 
 	@Override
 	public GameState update(float mouseX, float mouseY) {
-		// TODO Auto-generated method stub
+		context.updateGameTime();
+		System.out.println(context.gameTime);
 		return this;
 	}
 

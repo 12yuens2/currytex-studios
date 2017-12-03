@@ -37,6 +37,7 @@ public class InMenuState extends GameState {
 
 	@Override
 	public GameState update(float mouseX, float mouseY) {
+		System.out.println(context.gameTime);
 		menu.update(mouseX, mouseY);
 		return this;
 	}

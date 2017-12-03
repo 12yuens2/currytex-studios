@@ -1,12 +1,10 @@
 package app;
-import java.util.ArrayList;
 
-import game.DrawEngine;
 import game.GameController;
 import game.GameInput;
+import game.GameTime;
 import game.GameInput.MouseAction;
 import processing.core.PApplet;
-import processing.core.PVector;
 
 public class DevStudios extends PApplet {
 
@@ -14,17 +12,20 @@ public class DevStudios extends PApplet {
 	public static final int SCREEN_Y = 900;
 	
 	GameController controller;
+
 	
 	public void settings() {
 		size(SCREEN_X, SCREEN_Y);
 	}
 
 	public void setup() {
+		frameRate(60);
 		controller = new GameController(this);	
 	}
 
 	public void draw() { 
 		background(0);
+		
 		controller.step(mouseX, mouseY);
 	}
 	

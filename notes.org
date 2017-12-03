@@ -2,6 +2,22 @@
 
 ** TODOS
 
+*** Menu
+**** TODO Individual worker menu
+**** TODO All workers menu
+**** TODO Hire new worker menu
+
+**** TODO Individual project menu
+**** TODO Get new project menu
+
+**** TODO Upgrades/invest menu
+**** TODO promo menu
+
+
+
+*** Mechanics
+
+
 ** Design patterns
 *** Scene graph for displaying game
 Render the game with the graph one way down the tree, then handle input the opposite way so that objects rendered later (in front) are handled before objects behind
