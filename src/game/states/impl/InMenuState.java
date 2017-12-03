@@ -37,24 +37,46 @@ public class InMenuState extends GameState {
 
 	@Override
 	public GameState update(float mouseX, float mouseY) {
-		System.out.println(context.gameTime);
+		super.update(mouseX, mouseY);
 		menu.update(mouseX, mouseY);
+		
+		
+		System.out.println(context.gameTime);
+		return this;
+	}
+
+//	@Override
+//	public GameState handleInput(GameInput input) {
+//		switch (input.mouseAction) {
+//			case NONE:
+//				
+//				break;
+//				
+//			case MOUSE_RELEASE:
+//				if (exitMenuButton.contains(input.mouseX, input.mouseY)) {
+//					return previousState;
+//				}
+//				menu.clicked(input);
+//				break;			
+//		}
+//		return this;
+//	}
+
+	@Override
+	public GameState handleMouseDrag(GameInput input) {
 		return this;
 	}
 
 	@Override
-	public GameState handleInput(GameInput input) {
-		switch (input.mouseAction) {
-			case NONE:
-				
-				break;
-				
-			case MOUSE_RELEASE:
-				if (exitMenuButton.contains(input.mouseX, input.mouseY)) {
-					return previousState;
-				}
-				menu.clicked(input);
-				break;			
+	public GameState handleMousePress(GameInput input) {
+		return this;
+	}
+
+	@Override
+	public GameState handleMouseRelease(GameInput input) {
+		menu.clicked(input);
+		if (exitMenuButton.contains(input.mouseX, input.mouseY)) {
+			return previousState;
 		}
 		return this;
 	}
