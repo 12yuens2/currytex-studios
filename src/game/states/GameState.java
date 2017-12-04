@@ -24,7 +24,7 @@ public abstract class GameState {
 	public GameState update(float mouseX, float mouseY) {
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;
-		System.out.println(context.gameTime);
+//		System.out.println(context.gameTime);
 		return this;
 	}
 

@@ -1,4 +1,4 @@
-package ui;
+package ui.menus;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,7 @@ import game.GameInput;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
+import ui.Button;
 
 public class Menu {
 
@@ -16,7 +17,7 @@ public class Menu {
 	
 	public ArrayList<Button> buttons;
 	
-	public Menu(float xPos, float yPos, int size, PApplet parent) {
+	public Menu(float xPos, float yPos, int size) {
 		this.position = new PVector(xPos, yPos);
 		this.width = size;
 		this.height = size;
@@ -24,8 +25,8 @@ public class Menu {
 		this.buttons = new ArrayList<>();
 	}
 	
-	public Menu(float xPos, float yPos, int width, int height, PApplet parent) {
-		this(xPos, yPos, width, parent);
+	public Menu(float xPos, float yPos, int width, int height) {
+		this(xPos, yPos, width);
 		this.width = width;
 		this.height = height;
 		

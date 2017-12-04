@@ -8,15 +8,16 @@ import game.GameContext;
 import game.GameInput;
 import game.states.GameState;
 import javafx.scene.shape.Arc;
-import objs.Project;
-import objs.Project.Difficulty;
+import objs.activities.impl.Project;
+import objs.activities.impl.Project.Difficulty;
 import placeholder.Box;
 import placeholder.Location;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PVector;
 import ui.Button;
-import ui.Menu;
 import ui.MenuButton;
+import ui.menus.Menu;
 
 public class StartState extends GameState {
 
@@ -36,9 +37,7 @@ public class StartState extends GameState {
 		super.update(mouseX, mouseY);
 		context.updateGameTime();
 		context.updateBoxes(mouseX, mouseY);
-		
-		
-//		System.out.println(context.gameTime);
+	
 		return this;
 	}
 
@@ -69,22 +68,11 @@ public class StartState extends GameState {
 
 	@Override
 	public GameState handleMousePress(GameInput input) {
-		for (Box b : context.boxes) {
-			if (b.mouseOver && !b.disabled) {
-				b.mouseLocked = true;
-			}
-			else {
-				b.mouseLocked =  false;
-			}
-			
-			b.mouseXOffset = mouseX - b.position.x;
-			b.mouseYOffset = mouseY - b.position.y;
+		if (input.mouseButton == PConstants.RIGHT) {
+			return handleRightClick();
 		}
-		
-		for (Location l : context.locations) {
-			if (l.project == null) {
-				l.project = Project.randomProject();
-			}
+		if (input.mouseButton == PConstants.LEFT) {
+			handleLeftClick();
 		}
 		return this;
 	}
@@ -103,6 +91,34 @@ public class StartState extends GameState {
 		return this;
 	}
 	
+	private void handleLeftClick() {
+		for (Box b : context.boxes) {
+			if (b.mouseOver && !b.disabled) {
+				b.mouseLocked = true;
+			}
+			else {
+				b.mouseLocked =  false;
+			}
+			
+			b.mouseXOffset = mouseX - b.position.x;
+			b.mouseYOffset = mouseY - b.position.y;
+		}
+		
+		for (Location l : context.locations) {
+			if (l.project == null) {
+				l.project = Project.randomProject();
+			}
+		}
+	}
+	
+	private GameState handleRightClick() {
+		for (Box b : context.boxes) {
+			if (b.mouseOver) {
+				return new InMenuState(parent, context, b.workerDetailsMenu(), this);
+			}
+		}
+		return this;
+	}
 	
 
 }

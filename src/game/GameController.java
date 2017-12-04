@@ -6,8 +6,8 @@ import game.states.impl.BoxTestState;
 import game.states.impl.InMenuState;
 import game.states.impl.StartState;
 import processing.core.PApplet;
-import ui.Menu;
-import ui.MenuButton;;
+import ui.MenuButton;
+import ui.menus.Menu;;
 
 public class GameController {
 

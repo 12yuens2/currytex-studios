@@ -1,10 +1,15 @@
-package objs;
+package objs.activities.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
-public class Project {
+import objs.Skill;
+import objs.Worker;
+import objs.activities.Activity;
+
+public class Project extends Activity {
 	
 	public enum Difficulty {VERY_EASY, EASY, NORMAL, HARD, VERY_HARD};
 	
@@ -22,16 +27,27 @@ public class Project {
 	public int workRequired;
 	public int revenue;
 	public int timePerWork;
+
+	public int expGain;
 	
 	public final Difficulty difficulty;
+	
+	public ArrayList<Skill> skillsRequired;
+
+	
 	
 	public Project(String name, int workRequired, int revenue, Difficulty difficulty) {
 		this.name = name;
 		this.difficulty = difficulty;
+		this.skillsRequired = new ArrayList<>();
+		
+		//TODO create projects with skills based on type of project
+		skillsRequired.add(Skill.JAVA);
 		
 		this.workRequired = getModifiedWorkRequired(workRequired);
 		this.revenue = getModifiedRevenue(revenue);
 		this.timePerWork = getModifiedTime();
+		this.expGain = 20; //TODO
 	}
 	
 	private int getModifiedWorkRequired(int workRequired) {
@@ -109,5 +125,17 @@ public class Project {
 		Difficulty difficulty = Arrays.asList(Difficulty.values()).get(random.nextInt(Difficulty.values().length));
 		
 		return new Project("Java 1", random.nextInt(10) + 1, random.nextInt(100) + 15, difficulty);
+	}
+
+	@Override
+	public void start(Worker worker) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void finish(Worker worker) {
+		// TODO Auto-generated method stub
+		
 	}
 }

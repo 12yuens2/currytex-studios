@@ -4,6 +4,11 @@
 
 *** Menu
 **** TODO Individual worker menu
+***** DONE Basic worker menu
+***** TODO Worker skills
+***** TODO Worker picture/icon
+***** TODO Worker stats
+
 **** TODO All workers menu
 **** TODO Hire new worker menu
 
@@ -13,9 +18,25 @@
 **** TODO Upgrades/invest menu
 **** TODO promo menu
 
-
+*** UI
+**** TODO UI for money in company and all buttons for menus
 
 *** Mechanics
+**** TODO Decouple UI update with engine updates
+UI and graphics should update on every frame but engine updates are every time frame
+
+**** DONE Skills for workers affecting time taken to work on project
+**** TODO Add learnability and creativeness for workers
+**** DONE Skills increase when working on projects
+**** TODO Wages for workers being deducted at midnight
+
+**** TODO Caffine mechanic
+**** TODO Ability to scrap projects
+
+
+*** Design
+**** TODO Need to think about metric to measure goal (eg fans in huniecam)
+**** TODO Move logic for integrating worker timers outside of Box
 
 
 ** Design patterns

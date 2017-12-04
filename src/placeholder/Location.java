@@ -1,7 +1,10 @@
 package placeholder;
+import java.util.ArrayList;
+
 import game.DrawEngine;
-import objs.Project;
-import objs.Project.Difficulty;
+import objs.Skill;
+import objs.activities.impl.Project;
+import objs.activities.impl.Project.Difficulty;
 import processing.core.PConstants;
 
 public class Location extends GameObject {
@@ -14,6 +17,7 @@ public class Location extends GameObject {
 		
 		this.numWorkers = 0;
 		this.project = Project.randomProject();
+		
 		
 	}
 

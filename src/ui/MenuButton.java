@@ -1,5 +1,7 @@
 package ui;
 
+import ui.menus.Menu;
+
 public class MenuButton extends Button{
 
 	public Menu menu;
