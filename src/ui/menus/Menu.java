@@ -8,32 +8,29 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
 import ui.Button;
+import ui.UIObject;
 
-public class Menu {
+public class Menu extends UIObject {
 
-	public PVector position;
 	public float mouseX, mouseY;
-	public int width, height;
 	
 	public ArrayList<Button> buttons;
 	
-	public Menu(float xPos, float yPos, int size) {
-		this.position = new PVector(xPos, yPos);
-		this.width = size;
-		this.height = size;
-		
-		this.buttons = new ArrayList<>();
-	}
-	
 	public Menu(float xPos, float yPos, int width, int height) {
-		this(xPos, yPos, width);
-		this.width = width;
-		this.height = height;
+		super(xPos, yPos, width, height, DrawEngine.parent.color(150));
+		this.buttons = new ArrayList<>();
 		
 	}
+	public Menu(float xPos, float yPos, int size) {
+		this(xPos, yPos, size, size);
+	}
+
 	
+	/**
+	 * Draw menu box and buttons.
+	 */
 	public void display(DrawEngine drawEngine) {
-		drawEngine.drawRectangle(PConstants.RADIUS, drawEngine.parent.color(150), position.x, position.y, width, height);
+		drawEngine.drawRectangle(PConstants.RADIUS, col, position.x, position.y, width, height);
 		
 		for (Button b : buttons) {
 			b.display(drawEngine);

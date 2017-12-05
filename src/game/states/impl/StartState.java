@@ -10,20 +10,20 @@ import game.states.GameState;
 import javafx.scene.shape.Arc;
 import objs.activities.impl.Project;
 import objs.activities.impl.Project.Difficulty;
-import placeholder.Box;
-import placeholder.Location;
+import placeholder.WorkerBox;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
 import ui.Button;
 import ui.MenuButton;
+import ui.locations.Location;
 import ui.menus.Menu;
 
 public class StartState extends GameState {
 
 	
-	public StartState(PApplet parent, GameContext context) {
-		super(parent, context);
+	public StartState(GameContext context) {
+		super(context);
 
 	}
 	
@@ -35,8 +35,8 @@ public class StartState extends GameState {
 	@Override
 	public GameState update(float mouseX, float mouseY) {
 		super.update(mouseX, mouseY);
-		context.updateGameTime();
-		context.updateBoxes(mouseX, mouseY);
+		context.timeStep();
+//		context.updateBoxes(mouseX, mouseY);
 	
 		return this;
 	}
@@ -58,11 +58,7 @@ public class StartState extends GameState {
 
 	@Override
 	public GameState handleMouseDrag(GameInput input) {
-		for (Box b : context.boxes) {
-			if (b.mouseLocked) {
-				b.position = new PVector(mouseX - b.mouseXOffset, mouseY - b.mouseYOffset);
-			}
-		}
+		ui.handleMouseDrag();
 		return this;
 	}
 
@@ -71,50 +67,42 @@ public class StartState extends GameState {
 		if (input.mouseButton == PConstants.RIGHT) {
 			return handleRightClick();
 		}
-		if (input.mouseButton == PConstants.LEFT) {
-			handleLeftClick();
+		else if (input.mouseButton == PConstants.LEFT) {
+			return handleLeftClick();
 		}
 		return this;
 	}
 
 	@Override
 	public GameState handleMouseRelease(GameInput input) {
-		for (MenuButton b : context.openMenuButtons) {
+		for (MenuButton b : ui.openMenuButtons) {
 			if (b.contains(input.mouseX, input.mouseY)) {
-				return new InMenuState(parent, context, b.menu, this);
+				return new InMenuState(context, b.menu, this);
 			}
 		}
 		
-		for (Box b : context.boxes) {
-			b.enterIfPossible(context.locations);
+		for (WorkerBox b : ui.boxes) {
+			b.enterIfPossible(ui.locations);
 		}
 		return this;
 	}
 	
-	private void handleLeftClick() {
-		for (Box b : context.boxes) {
-			if (b.mouseOver && !b.disabled) {
-				b.mouseLocked = true;
-			}
-			else {
-				b.mouseLocked =  false;
-			}
-			
-			b.mouseXOffset = mouseX - b.position.x;
-			b.mouseYOffset = mouseY - b.position.y;
-		}
+	private GameState handleLeftClick() {
+		GameState nextState = ui.handleLeftLick(this);
 		
-		for (Location l : context.locations) {
-			if (l.project == null) {
-				l.project = Project.randomProject();
-			}
-		}
+		return nextState;
+		
+//		for (Location location : ui.locations) {
+//			if (location.project == null) {
+//				location.project = Project.randomProject();
+//			}
+//		}
 	}
 	
 	private GameState handleRightClick() {
-		for (Box b : context.boxes) {
-			if (b.mouseOver) {
-				return new InMenuState(parent, context, b.workerDetailsMenu(), this);
+		for (WorkerBox b : ui.boxes) {
+			if (b.mouseOver && b.hasWorker()) {
+				return new InMenuState(context, b.workerDetailsMenu(), this);
 			}
 		}
 		return this;

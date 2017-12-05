@@ -3,27 +3,27 @@ package game.states;
 import game.DrawEngine;
 import game.GameContext;
 import game.GameInput;
+import game.GameUI;
 import processing.core.PApplet;
 
 public abstract class GameState {
 
-	public PApplet parent;
 	public GameContext context;
+	public GameUI ui;
 	
-	public float mouseX, mouseY;
-	
-	public GameState(PApplet parent, GameContext context) {
-		this.parent = parent;
+	public GameState(GameContext context) {
 		this.context = context;
+		
+		this.ui = new GameUI(context);
 	}
 	
 	public void display(DrawEngine drawEngine) {
-		context.display(drawEngine);
+		ui.display(drawEngine);
 	}
 	
 	public GameState update(float mouseX, float mouseY) {
-		this.mouseX = mouseX;
-		this.mouseY = mouseY;
+		ui.updateMouse(mouseX, mouseY);
+		
 //		System.out.println(context.gameTime);
 		return this;
 	}

@@ -5,24 +5,24 @@ import java.util.ArrayList;
 import game.DrawEngine;
 import game.GameInput;
 import game.states.GameState;
-import placeholder.Box;
-import placeholder.Location;
+import placeholder.WorkerBox;
 import processing.core.PVector;
+import ui.locations.Location;
 
 public class BoxTestState extends GameState {
 
-	public ArrayList<Box> boxes;
+	public ArrayList<WorkerBox> boxes;
 	public ArrayList<Location> locations;
 	
 	float mouseX, mouseY;
 	
 	public BoxTestState() {
-		boxes = new ArrayList<Box>();
+		boxes = new ArrayList<WorkerBox>();
 		locations = new ArrayList<Location>();
 		
-		boxes.add(new Box(100, 100, 50));
-		boxes.add(new Box(100, 300, 50));
-		boxes.add(new Box(100, 500, 50));
+		boxes.add(new WorkerBox(100, 100, 50));
+		boxes.add(new WorkerBox(100, 300, 50));
+		boxes.add(new WorkerBox(100, 500, 50));
 		
 		locations.add(new Location(700, 150, 100, 200));
 		locations.add(new Location(700, 450, 100, 300));
@@ -31,7 +31,7 @@ public class BoxTestState extends GameState {
 	@Override
 	public void display(DrawEngine drawEngine) {
 		for (Location l : locations) l.display(drawEngine);
-		for (Box b : boxes) b.display(drawEngine);
+		for (WorkerBox b : boxes) b.display(drawEngine);
 		
 	}
 
@@ -39,7 +39,7 @@ public class BoxTestState extends GameState {
 	public GameState update(float mouseX, float mouseY) {
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;
-		for (Box b : boxes) {
+		for (WorkerBox b : boxes) {
 			if (mouseX > b.position.x - b.size && mouseY < b.position.x + b.size &&
 				mouseY > b.position.y - b.size && mouseY < b.position.y + b.size) {
 				
@@ -78,7 +78,7 @@ public class BoxTestState extends GameState {
 
 	
 	private void handleMousePress() {
-		for (Box b : boxes) {
+		for (WorkerBox b : boxes) {
 			if (b.mouseOver && !b.disabled) {
 				b.mouseLocked = true;
 			}
@@ -92,7 +92,7 @@ public class BoxTestState extends GameState {
 	}
 	
 	private void handleMouseDrag() {
-		for (Box b : boxes) {
+		for (WorkerBox b : boxes) {
 			if (b.mouseLocked) {
 				b.position = new PVector(mouseX - b.mouseXOffset, mouseY - b.mouseYOffset);
 			}
@@ -100,7 +100,7 @@ public class BoxTestState extends GameState {
 	}
 	
 	private void handleMouseRelease() {
-		for (Box b : boxes) {
+		for (WorkerBox b : boxes) {
 			if (b.mouseLocked) {
 				b.mouseLocked = false;
 				for (Location l : locations) {

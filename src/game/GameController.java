@@ -25,7 +25,7 @@ public class GameController {
 
 		GameContext context = new GameContext(parent);
 		
-		this.state = new StartState(parent, context);
+		this.state = new StartState(context);
 //		this.state = new InMenuState(new Menu(600, 400, 700, 300, parent), parent);
 		
 		this.timeAccumulator = 0;

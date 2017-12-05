@@ -5,11 +5,22 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
+import objs.Level;
 import objs.Skill;
 import objs.Worker;
 import objs.activities.Activity;
 
 public class Project extends Activity {
+	
+	/**
+	 *  Create a random project 
+	 */
+	public static Project randomProject() {
+		Random random = new Random();
+		Difficulty difficulty = Arrays.asList(Difficulty.values()).get(random.nextInt(Difficulty.values().length));
+		
+		return new Project("Java 1", random.nextInt(10) + 1, random.nextInt(100) + 15, difficulty);
+	}
 	
 	public enum Difficulty {VERY_EASY, EASY, NORMAL, HARD, VERY_HARD};
 	
@@ -120,22 +131,31 @@ public class Project extends Activity {
 	
 	
 
-	public static Project randomProject() {
-		Random random = new Random();
-		Difficulty difficulty = Arrays.asList(Difficulty.values()).get(random.nextInt(Difficulty.values().length));
-		
-		return new Project("Java 1", random.nextInt(10) + 1, random.nextInt(100) + 15, difficulty);
-	}
-
 	@Override
 	public void start(Worker worker) {
-		// TODO Auto-generated method stub
+		double timeNeeded = timePerWork;
+		for (Skill s : worker.skills.keySet()) {
+			if (skillsRequired.contains(s)) {
+				//TODO better formula on reducing time needed based on worker skill level
+				timeNeeded *= (1.0 / worker.skills.get(s).level);
+			}
+		}
+		
+		worker.workTimer = 1 + (int) timeNeeded;
 		
 	}
 
 	@Override
 	public void finish(Worker worker) {
-		// TODO Auto-generated method stub
+		/* Add skills to workers after they finish a workload of this project */
+		for (Skill s : skillsRequired) {
+			if (worker.skills.containsKey(s)) {
+				worker.skills.get(s).exp += expGain;
+			} 
+			else {
+				worker.skills.put(s, new Level());						
+			}
+		}
 		
 	}
 }

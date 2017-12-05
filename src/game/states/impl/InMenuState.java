@@ -14,12 +14,12 @@ public class InMenuState extends GameState {
 	public Button exitMenuButton;
 	public GameState previousState;
 	
-	public InMenuState(PApplet parent, GameContext context, Menu menu, GameState previousState) {
-		super(parent, context);
+	public InMenuState(GameContext context, Menu menu, GameState previousState) {
+		super(context);
 		this.menu = menu;
 		this.previousState = previousState;
 		this.exitMenuButton = new Button(menu.position.x + menu.width, menu.position.y - menu.height, 
-										 20, 20, parent.color(250, 0, 0));
+										 20, 20, DrawEngine.parent.color(250, 0, 0));
 		
 	}
 	

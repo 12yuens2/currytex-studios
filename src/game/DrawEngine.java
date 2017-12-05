@@ -1,29 +1,29 @@
 package game;
 import java.util.ArrayList;
 
-import placeholder.GameObject;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PFont;
 import processing.core.PVector;
+import ui.UIObject;
 
 public class DrawEngine {
     
-	public PApplet parent;
+	public static PApplet parent;
 	
     public DrawEngine(PApplet parent) {
-    	this.parent = parent;
+    	DrawEngine.parent = parent;
     }
     
     /**
      * Display all drawable objects.
      * @param drawables - List of drawable objects.
      */
-    public void displayDrawables(ArrayList<? extends GameObject>... drawables) {  	
-        for (ArrayList<? extends GameObject> drawList : drawables) {
-	        	ArrayList<? extends GameObject> drawListCopy = new ArrayList<>(drawList);
+    public void displayDrawables(ArrayList<? extends UIObject>... drawables) {  	
+        for (ArrayList<? extends UIObject> drawList : drawables) {
+	        	ArrayList<? extends UIObject> drawListCopy = new ArrayList<>(drawList);
 	        	
-	        	for (GameObject drawable : drawListCopy) {
+	        	for (UIObject drawable : drawListCopy) {
 	        		drawable.display(this);
 	        	}
         }

@@ -22,11 +22,11 @@ public class WorkerMenu extends Menu {
 	@Override
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
-		drawEngine.drawText(12, "Worker name: " + worker.name, position.x, position.y, drawEngine.parent.color(0));
+		drawEngine.drawText(12, "Worker name: " + worker.name, position.x, position.y, DrawEngine.parent.color(0));
 		
 		float pos = position.y + 20;
 		for (Entry<Skill, Level> entry : worker.skills.entrySet()) {
-			drawEngine.drawText(12, entry.getKey().toString() + ": " + entry.getValue().level, position.x, pos, drawEngine.parent.color(0));
+			drawEngine.drawText(12, entry.getKey().toString() + ": " + entry.getValue().level, position.x, pos, DrawEngine.parent.color(0));
 			pos += 20;
 		}
 	}
