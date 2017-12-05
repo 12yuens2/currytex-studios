@@ -1,6 +1,8 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import app.DevStudios;
 import game.states.GameState;
@@ -10,6 +12,7 @@ import objs.Worker;
 import placeholder.WorkerBox;
 import processing.core.PVector;
 import ui.MenuButton;
+import ui.UIObject;
 import ui.locations.Location;
 import ui.locations.impl.ProjectLocation;
 import ui.menus.Menu;
@@ -41,7 +44,7 @@ public class GameUI {
 		Level java = new Level();
 		java.level = 2;
 		a.skills.put(Skill.JAVA, java);
-		context.workers.add(a);
+		if (context != null ) context.workers.add(a);
 		
 		/* Draw developer boxes */
 		int yCoord = 75;
@@ -109,10 +112,18 @@ public class GameUI {
 		
 	}
 
-	public GameState handleLeftLick(GameState currentState) {
+	public GameState handleLeftClick(GameState currentState) {
 		for (WorkerBox b : boxes) {
 			b.handleLeftClick(mouseX, mouseY);
 		}
+		
+		Optional<GameState> result = boxes.stream()
+			.filter(b -> b.contains(mouseX, mouseY))
+			.map(b -> b.handleLeftClick(mouseX, mouseY))
+			.flatMap(o -> o.isPresent() ? Stream.of(o.get()) : Stream.empty())
+			.findFirst();
+		
+		System.out.println(result);
 		
 		for (Location location : locations) {
 			if (location.contains(mouseX, mouseY)) {

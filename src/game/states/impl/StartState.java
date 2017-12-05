@@ -88,7 +88,7 @@ public class StartState extends GameState {
 	}
 	
 	private GameState handleLeftClick() {
-		GameState nextState = ui.handleLeftLick(this);
+		GameState nextState = ui.handleLeftClick(this);
 		
 		return nextState;
 		

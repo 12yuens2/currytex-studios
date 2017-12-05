@@ -1,11 +1,14 @@
 package placeholder;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import game.DrawEngine;
 import game.GameTime;
 import game.states.GameState;
 import game.states.impl.InMenuState;
+import game.states.impl.StartState;
+import game.states.impl.TestState;
 import objs.Level;
 import objs.Skill;
 import objs.Worker;
@@ -96,7 +99,7 @@ public class WorkerBox extends UIObject {
 	}
 	
 	
-	public void handleLeftClick(float mouseX, float mouseY) {
+	public Optional<GameState> handleLeftClick(float mouseX, float mouseY) {
 		if (worker != null) {
 			if (mouseOver && !isDisabled()) {
 				mouseLocked = true;
@@ -107,9 +110,10 @@ public class WorkerBox extends UIObject {
 			
 			mouseXOffset = mouseX - position.x;
 			mouseYOffset = mouseY - position.y;
-			
 		}
-		
-		
+		else {
+			return Optional.of(new TestState(null));
+		}
+		return Optional.empty();
 	}
 }
