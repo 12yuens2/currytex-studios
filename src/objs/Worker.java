@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import game.GameTime;
 import objs.activities.Activity;
+import ui.menus.Menu;
+import ui.menus.impl.WorkerMenu;
 
 public class Worker {
 
@@ -45,5 +47,9 @@ public class Worker {
 		else {
 			skills.put(skill, new Level());						
 		}
+	}
+
+	public WorkerMenu getMenu() {
+		return new WorkerMenu(this);
 	}
 }

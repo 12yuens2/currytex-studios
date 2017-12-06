@@ -2,13 +2,17 @@ package ui.locations.impl;
 
 import java.util.Optional;
 
+import app.DevStudios;
 import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
+import game.states.impl.InMenuState;
 import objs.activities.Activity;
 import objs.activities.impl.Project;
 import processing.core.PConstants;
 import ui.locations.Location;
+import ui.menus.impl.ChooseNewProjectMenu;
+import ui.menus.impl.ProjectMenu;
 
 public class ProjectLocation extends Location {
 	
@@ -51,15 +55,27 @@ public class ProjectLocation extends Location {
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
 		//TODO create menu to allow player to choose project
 		if (project == null) {
-			project = Project.randomProject();
-			context.activeProjects.add(project);
+			return Optional.of(new InMenuState(new ChooseNewProjectMenu(this, currentState), currentState));
+//			project = Project.randomProject();
+//			context.activeProjects.add(project);
 		}
 		else {
 			project.manualDecrement(1);
+			
 		}
 		
 		return Optional.empty();
 		
+	}
+
+	@Override
+	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
+			GameState currentState) {
+
+		if (project != null) {
+			return Optional.of(new InMenuState(project.getMenu(), currentState));
+		}
+		return Optional.empty();
 	}
 
 }

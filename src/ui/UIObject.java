@@ -69,6 +69,8 @@ public abstract class UIObject {
 	 */
 	public abstract Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState);
 	
+	public abstract Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context, GameState currentState);
+	
 	
 	public float left() {
 		return position.x - width;
@@ -85,4 +87,6 @@ public abstract class UIObject {
 	public float down() {
 		return position.y + height;
 	}
+
+
 }

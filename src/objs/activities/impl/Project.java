@@ -9,6 +9,7 @@ import objs.Level;
 import objs.Skill;
 import objs.Worker;
 import objs.activities.Activity;
+import ui.menus.impl.ProjectMenu;
 
 public class Project extends Activity {
 	
@@ -153,6 +154,21 @@ public class Project extends Activity {
 		for (Worker worker : activeWorkers) {
 			worker.workTimer -= amount;
 		}
+	}
+	
+	public ProjectMenu getMenu() {
+		return new ProjectMenu(this);
+	}
+	
+	public ArrayList<String> getProperties() {
+		ArrayList<String> projectProperties = new ArrayList<String>();
+		projectProperties.add("Project name: " + name);
+		projectProperties.add("Skills required:" + skillsRequired.toString());
+		projectProperties.add("Number of features: " + workRequired);
+		projectProperties.add("Money: " + revenue);
+		projectProperties.add("Difficulty: " + difficulty);
+		
+		return projectProperties;
 	}
 	
 	

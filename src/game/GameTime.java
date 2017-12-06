@@ -32,6 +32,10 @@ public class GameTime {
 	}
 	
 	public String toString() {
-		return minutes + " minutes, " + hours + " hours, " + days + " days";
+		return /*minutes + " minutes, " + */hours + " hours, " + days + " days";
+	}
+
+	public void display(DrawEngine drawEngine) {
+		drawEngine.drawText(16, toString(), 100, 25, DrawEngine.parent.color(0));
 	}
 }

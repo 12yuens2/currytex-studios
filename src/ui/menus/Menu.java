@@ -69,6 +69,13 @@ public class Menu extends UIObject {
 		
 //		return Optional.empty('');
 	}
+	
+	@Override
+	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
+			GameState currentState) {
+
+		return Optional.empty();
+	}
 
 	public void clicked(GameInput input) {
 		for (Button b : buttons) {
@@ -78,4 +85,5 @@ public class Menu extends UIObject {
 		}
 		
 	}
+
 }

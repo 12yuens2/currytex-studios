@@ -52,18 +52,7 @@ public class WorkerBox extends UIObject {
 		this(xPos, yPos, size, null);
 	}
 	
-	public void enterIfPossible(ArrayList<? extends Location> locations) {
-		if (mouseLocked) {
-			mouseLocked = false;
-			for (Location location : locations) {
-				if (overlapsWith(location) && location.addWorker()) {
-					worker.startNewActivity(location.getActivity());
-				}
-			}
-			position = originalPosition.copy();
-		}
-	}
-	
+	@Override
 	public void display(DrawEngine drawEngine) {
 		if (worker != null) {
 			int col = worker.currentActivity == null ? DrawEngine.parent.color(0, 255, 0) : DrawEngine.parent.color(0, 105, 0);
@@ -80,25 +69,7 @@ public class WorkerBox extends UIObject {
 		}
 	}
 	
-	public boolean isDisabled() {
-		return (!hasWorker() || 
-				(worker != null && worker.currentActivity != null));
-	}
-	
-	public boolean hasWorker() {
-		return worker != null;
-	}
-
-
-	/**
-	 * Create menu with information on this worker.
-	 * @return WorkerMenu for this worker.
-	 */
-	public WorkerMenu workerDetailsMenu() {
-		return new WorkerMenu(worker);
-	}
-	
-	
+	@Override
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
 		if (worker != null) {
@@ -117,6 +88,38 @@ public class WorkerBox extends UIObject {
 //			return Optional.of(new TestState(null));
 //		}
 		return Optional.empty();
+	}
+
+	@Override
+	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
+			GameState currentState) {
+
+		if (worker != null) {
+			return Optional.of(new InMenuState(worker.getMenu(), currentState));
+		}
+		return Optional.empty();
+	}
+	
+	
+	public void enterIfPossible(ArrayList<? extends Location> locations) {
+		if (mouseLocked) {
+			mouseLocked = false;
+			for (Location location : locations) {
+				if (overlapsWith(location) && location.addWorker()) {
+					worker.startNewActivity(location.getActivity());
+				}
+			}
+			position = originalPosition.copy();
+		}
+	}
+	
+	public boolean isDisabled() {
+		return (!hasWorker() || 
+				(worker != null && worker.currentActivity != null));
+	}
+	
+	public boolean hasWorker() {
+		return worker != null;
 	}
 
 }

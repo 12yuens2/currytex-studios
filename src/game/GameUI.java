@@ -96,6 +96,9 @@ public class GameUI {
 		/* Draw top UI for information */
 		context.studio.display(drawEngine);
 		
+		/* Display game time */
+		context.gameTime.display(drawEngine);
+		
 		for (MenuButton b : openMenuButtons) {
 			b.display(drawEngine);
 		}
@@ -137,7 +140,19 @@ public class GameUI {
 				.findFirst();
 		
 		return result.isPresent() ? result.get() : currentState;
+	}
+	
+	public GameState handleRightClick(GameState currentState) {
+		Optional<GameState> result = Stream.of(boxes.stream(), locations.stream())
+				.flatMap(Function.identity())
+				.filter(o -> o.contains(mouseX, mouseY))
+				.map(o -> o.handleRightClick(mouseX, mouseY, context, currentState))
+				.flatMap(o -> o.isPresent() ? Stream.of(o.get()) : Stream.empty())
+				.findFirst();
 		
+		return result.isPresent() ? result.get() : currentState;
+	}
+	
 //		for (WorkerBox b : boxes) {
 //			b.handleLeftClick(mouseX, mouseY);
 //		}
@@ -157,7 +172,7 @@ public class GameUI {
 //		}
 //		return currentState;
 		
-	}
+//	}
 
 
 	public void handleMouseDrag() {

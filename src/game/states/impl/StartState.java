@@ -101,12 +101,13 @@ public class StartState extends GameState {
 	}
 	
 	private GameState handleRightClick() {
-		for (WorkerBox b : ui.boxes) {
-			if (b.mouseOver && b.hasWorker()) {
-				return new InMenuState(b.workerDetailsMenu(), this);
-			}
-		}
-		return this;
+		return ui.handleRightClick(this);
+//		for (WorkerBox b : ui.boxes) {
+//			if (b.mouseOver && b.hasWorker()) {
+//				return new InMenuState(b.workerDetailsMenu(), this);
+//			}
+//		}
+//		return this;
 	}
 	
 
