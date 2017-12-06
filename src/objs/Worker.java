@@ -37,4 +37,13 @@ public class Worker {
 			}
 		}
 	}
+	
+	public void updateSkills(Skill skill, int expGain) {
+		if (skills.containsKey(skill)) {
+			skills.get(skill).gainExp(expGain);
+		} 
+		else {
+			skills.put(skill, new Level());						
+		}
+	}
 }

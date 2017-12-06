@@ -1,6 +1,10 @@
 package ui.locations.impl;
 
+import java.util.Optional;
+
 import game.DrawEngine;
+import game.GameContext;
+import game.states.GameState;
 import objs.activities.Activity;
 import objs.activities.impl.Project;
 import processing.core.PConstants;
@@ -44,11 +48,17 @@ public class ProjectLocation extends Location {
 	}
 
 	@Override
-	public void handleLeftClick(float mouseX, float mouseY) {
+	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
 		//TODO create menu to allow player to choose project
 		if (project == null) {
 			project = Project.randomProject();
+			context.activeProjects.add(project);
 		}
+		else {
+			project.manualDecrement(1);
+		}
+		
+		return Optional.empty();
 		
 	}
 

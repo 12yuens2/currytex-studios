@@ -1,10 +1,14 @@
-package ui;
+package ui.buttons;
+
+import java.util.Optional;
 
 import game.DrawEngine;
+import game.states.GameState;
 import processing.core.PConstants;
 import processing.core.PVector;
+import ui.UIObject;
 
-public class Button extends UIObject {
+public abstract class Button extends UIObject {
 	
 	
 	public Button(float xPos, float yPos, int width, int height, int col) {
@@ -19,4 +23,5 @@ public class Button extends UIObject {
 	public void activate() {
 		System.out.println(this + " was pressed.");
 	}
+
 }

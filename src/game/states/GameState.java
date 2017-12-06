@@ -11,10 +11,9 @@ public abstract class GameState {
 	public GameContext context;
 	public GameUI ui;
 	
-	public GameState(GameContext context) {
+	public GameState(GameContext context, GameUI ui) {
 		this.context = context;
-		
-		this.ui = new GameUI(context);
+		this.ui = ui;
 	}
 	
 	public void display(DrawEngine drawEngine) {

@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 import app.DevStudios;
@@ -11,8 +12,8 @@ import objs.Skill;
 import objs.Worker;
 import placeholder.WorkerBox;
 import processing.core.PVector;
-import ui.MenuButton;
 import ui.UIObject;
+import ui.buttons.impl.MenuButton;
 import ui.locations.Location;
 import ui.locations.impl.ProjectLocation;
 import ui.menus.Menu;
@@ -24,7 +25,7 @@ public class GameUI {
 	public GameContext context;
 	
 	public ArrayList<MenuButton> openMenuButtons;
-	public ArrayList<Location> locations; /* Represents projects */
+	public ArrayList<ProjectLocation> locations; /* Represents projects */
 	public ArrayList<WorkerBox> boxes; /* Represents workers */
 	
 	public GameUI(GameContext context) {
@@ -44,7 +45,13 @@ public class GameUI {
 		Level java = new Level();
 		java.level = 2;
 		a.skills.put(Skill.JAVA, java);
-		if (context != null ) context.workers.add(a);
+		
+		Worker b = new Worker("b");
+		
+		if (context != null ) {
+			context.workers.add(a);
+			context.workers.add(b);
+		}
 		
 		/* Draw developer boxes */
 		int yCoord = 75;
@@ -53,6 +60,7 @@ public class GameUI {
 			boxes.add(new WorkerBox(DevStudios.SCREEN_X - 275, yCoord + (((DevStudios.SCREEN_Y - 50)/numWorkers) * i), 45));
 		}
 		boxes.get(0).worker = a;
+		boxes.get(1).worker = b;
 		
 		/* Draw project locations */
 		int xCoord = 200;
@@ -84,12 +92,19 @@ public class GameUI {
 	
 	
 	public void display(DrawEngine drawEngine) {
+		
+		/* Draw top UI for information */
+		context.studio.display(drawEngine);
+		
 		for (MenuButton b : openMenuButtons) {
 			b.display(drawEngine);
 		}
 		
-		for (Location l : locations) {
+		for (ProjectLocation l : locations) {
 			l.display(drawEngine);
+			if (l.project != null && l.project.finished) {
+				l.project = null;
+			}
 		}
 		
 		for (WorkerBox b : boxes) {
@@ -113,24 +128,34 @@ public class GameUI {
 	}
 
 	public GameState handleLeftClick(GameState currentState) {
-		for (WorkerBox b : boxes) {
-			b.handleLeftClick(mouseX, mouseY);
-		}
 		
-		Optional<GameState> result = boxes.stream()
-			.filter(b -> b.contains(mouseX, mouseY))
-			.map(b -> b.handleLeftClick(mouseX, mouseY))
-			.flatMap(o -> o.isPresent() ? Stream.of(o.get()) : Stream.empty())
-			.findFirst();
+		Optional<GameState> result = Stream.of(boxes.stream(), locations.stream(), openMenuButtons.stream())
+				.flatMap(Function.identity())
+				.filter(o -> o.contains(mouseX, mouseY))
+				.map(o -> o.handleLeftClick(mouseX, mouseY, context, currentState))
+				.flatMap(o -> o.isPresent() ? Stream.of(o.get()) : Stream.empty())
+				.findFirst();
 		
-		System.out.println(result);
+		return result.isPresent() ? result.get() : currentState;
 		
-		for (Location location : locations) {
-			if (location.contains(mouseX, mouseY)) {
-				location.handleLeftClick(mouseX, mouseY);
-			}
-		}
-		return currentState;
+//		for (WorkerBox b : boxes) {
+//			b.handleLeftClick(mouseX, mouseY);
+//		}
+//		
+//		Optional<GameState> result = boxes.stream()
+//			.filter(b -> b.contains(mouseX, mouseY))
+//			.map(b -> b.handleLeftClick(mouseX, mouseY))
+//			.flatMap(o -> o.isPresent() ? Stream.of(o.get()) : Stream.empty())
+//			.findFirst();
+//		
+//		System.out.println(result);
+//		
+//		for (Location location : locations) {
+//			if (location.contains(mouseX, mouseY)) {
+//				location.handleLeftClick(mouseX, mouseY);
+//			}
+//		}
+//		return currentState;
 		
 	}
 

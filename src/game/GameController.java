@@ -6,7 +6,7 @@ import game.states.impl.BoxTestState;
 import game.states.impl.InMenuState;
 import game.states.impl.StartState;
 import processing.core.PApplet;
-import ui.MenuButton;
+import ui.buttons.impl.MenuButton;
 import ui.menus.Menu;;
 
 public class GameController {
@@ -25,7 +25,7 @@ public class GameController {
 
 		GameContext context = new GameContext(parent);
 		
-		this.state = new StartState(context);
+		this.state = new StartState(context, new GameUI(context));
 //		this.state = new InMenuState(new Menu(600, 400, 700, 300, parent), parent);
 		
 		this.timeAccumulator = 0;

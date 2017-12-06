@@ -1,25 +1,28 @@
 package game.states.impl;
 
+import java.util.Optional;
+
 import game.DrawEngine;
 import game.GameContext;
 import game.GameInput;
+import game.GameUI;
 import game.states.GameState;
 import processing.core.PApplet;
-import ui.Button;
+import ui.buttons.Button;
+import ui.buttons.impl.ExitButton;
 import ui.menus.Menu;
 
 public class InMenuState extends GameState {
 
 	public Menu menu;
-	public Button exitMenuButton;
-	public GameState previousState;
 	
-	public InMenuState(GameContext context, Menu menu, GameState previousState) {
-		super(context);
+	public InMenuState(Menu menu, GameState previousState) {
+		super(previousState.context, previousState.ui);
 		this.menu = menu;
-		this.previousState = previousState;
-		this.exitMenuButton = new Button(menu.position.x + menu.width, menu.position.y - menu.height, 
-										 20, 20, DrawEngine.parent.color(250, 0, 0));
+		this.menu.initExit(previousState);
+//		this.previousState = previousState;
+//		this.exitMenuButton = new ExitButton(menu.position.x + menu.width, menu.position.y - menu.height, 
+//										 20, 20, DrawEngine.parent.color(250, 0, 0));
 		
 	}
 	
@@ -27,7 +30,6 @@ public class InMenuState extends GameState {
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
 		menu.display(drawEngine);
-		exitMenuButton.display(drawEngine);
 	}
 
 	@Override
@@ -67,11 +69,14 @@ public class InMenuState extends GameState {
 
 	@Override
 	public GameState handleMouseRelease(GameInput input) {
-		menu.clicked(input);
-		if (exitMenuButton.contains(input.mouseX, input.mouseY)) {
-			return previousState;
-		}
-		return this;
+		Optional<GameState> result = menu.handleLeftClick(input.mouseX, input.mouseY, context, this);
+		
+		return result.isPresent() ? result.get() : this;
+//		menu.clicked(input);
+//		if (exitMenuButton.contains(input.mouseX, input.mouseY)) {
+//			return previousState;
+//		}
+//		return this;
 	}
 
 }

@@ -6,6 +6,7 @@ import app.DevStudios;
 import game.DrawEngine;
 import game.GameContext;
 import game.GameInput;
+import game.GameUI;
 import game.states.GameState;
 import javafx.scene.shape.Arc;
 import objs.activities.impl.Project;
@@ -14,16 +15,16 @@ import placeholder.WorkerBox;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
-import ui.Button;
-import ui.MenuButton;
+import ui.buttons.Button;
+import ui.buttons.impl.MenuButton;
 import ui.locations.Location;
 import ui.menus.Menu;
 
 public class StartState extends GameState {
 
 	
-	public StartState(GameContext context) {
-		super(context);
+	public StartState(GameContext context, GameUI ui) {
+		super(context, ui);
 
 	}
 	
@@ -75,11 +76,11 @@ public class StartState extends GameState {
 
 	@Override
 	public GameState handleMouseRelease(GameInput input) {
-		for (MenuButton b : ui.openMenuButtons) {
-			if (b.contains(input.mouseX, input.mouseY)) {
-				return new InMenuState(context, b.menu, this);
-			}
-		}
+//		for (MenuButton b : ui.openMenuButtons) {
+//			if (b.contains(input.mouseX, input.mouseY)) {
+//				return new InMenuState(context, b.menu, this);
+//			}
+//		}
 		
 		for (WorkerBox b : ui.boxes) {
 			b.enterIfPossible(ui.locations);
@@ -102,7 +103,7 @@ public class StartState extends GameState {
 	private GameState handleRightClick() {
 		for (WorkerBox b : ui.boxes) {
 			if (b.mouseOver && b.hasWorker()) {
-				return new InMenuState(context, b.workerDetailsMenu(), this);
+				return new InMenuState(b.workerDetailsMenu(), this);
 			}
 		}
 		return this;

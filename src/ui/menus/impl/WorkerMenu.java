@@ -1,9 +1,12 @@
 package ui.menus.impl;
 
 import java.util.Map.Entry;
+import java.util.Optional;
 
 import app.DevStudios;
 import game.DrawEngine;
+import game.GameContext;
+import game.states.GameState;
 import objs.Level;
 import objs.Skill;
 import objs.Worker;
@@ -26,9 +29,19 @@ public class WorkerMenu extends Menu {
 		
 		float pos = position.y + 20;
 		for (Entry<Skill, Level> entry : worker.skills.entrySet()) {
-			drawEngine.drawText(12, entry.getKey().toString() + ": " + entry.getValue().level, position.x, pos, DrawEngine.parent.color(0));
+			Level level = entry.getValue();
+			String skillDisplay = entry.getKey().toString() + ": " + level.level + ", " + level.exp + "/" + level.expToLevel;
+			
+			drawEngine.drawText(12, skillDisplay, position.x, pos, DrawEngine.parent.color(0));
 			pos += 20;
 		}
 	}
+	
+//
+//	@Override
+//	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
+//		
+//		return Optional.empty();
+//	}
 
 }

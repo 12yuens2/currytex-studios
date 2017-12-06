@@ -40,10 +40,6 @@ public abstract class Location extends UIObject {
 	
 	
 	
-	public abstract void handleLeftClick(float mouseX, float mouseY);
-	
-	
-	
 
 //	public void display(DrawEngine drawEngine) {
 //		drawEngine.drawSquare(PConstants.RADIUS, drawEngine.parent.color(255,0,0), position, size);

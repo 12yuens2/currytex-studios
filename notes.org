@@ -23,7 +23,8 @@
 
 *** Mechanics
 **** TODO Decouple UI update with engine updates
-UI and graphics should update on every frame but engine updates are every time frame
+- UI and graphics should update on every frame but engine updates are every time frame
+- Issue with ui not looking smooth if engine updates are slow
 
 **** DONE Skills for workers affecting time taken to work on project
 **** TODO Add learnability and creativeness for workers
@@ -33,6 +34,7 @@ UI and graphics should update on every frame but engine updates are every time f
 **** TODO Caffine mechanic
 **** TODO Ability to scrap projects
 
+**** TODO Time stop when dragging -> new state
 
 *** Design
 **** TODO Need to think about metric to measure goal (eg fans in huniecam)

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import game.DrawEngine;
+import game.GameContext;
 import game.GameTime;
 import game.states.GameState;
 import game.states.impl.InMenuState;
 import game.states.impl.StartState;
-import game.states.impl.TestState;
 import objs.Level;
 import objs.Skill;
 import objs.Worker;
@@ -52,7 +52,7 @@ public class WorkerBox extends UIObject {
 		this(xPos, yPos, size, null);
 	}
 	
-	public void enterIfPossible(ArrayList<Location> locations) {
+	public void enterIfPossible(ArrayList<? extends Location> locations) {
 		if (mouseLocked) {
 			mouseLocked = false;
 			for (Location location : locations) {
@@ -99,8 +99,10 @@ public class WorkerBox extends UIObject {
 	}
 	
 	
-	public Optional<GameState> handleLeftClick(float mouseX, float mouseY) {
+	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
+			GameState currentState) {
 		if (worker != null) {
+			//TODO game state for dragging
 			if (mouseOver && !isDisabled()) {
 				mouseLocked = true;
 			}
@@ -111,9 +113,10 @@ public class WorkerBox extends UIObject {
 			mouseXOffset = mouseX - position.x;
 			mouseYOffset = mouseY - position.y;
 		}
-		else {
-			return Optional.of(new TestState(null));
-		}
+//		else {
+//			return Optional.of(new TestState(null));
+//		}
 		return Optional.empty();
 	}
+
 }

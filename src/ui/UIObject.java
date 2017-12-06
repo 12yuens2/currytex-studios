@@ -1,5 +1,11 @@
 package ui;
+
+import game.states.GameState;
+
+import java.util.Optional;
+
 import game.DrawEngine;
+import game.GameContext;
 import processing.core.PVector;
 
 /**
@@ -51,6 +57,17 @@ public abstract class UIObject {
 		return (x > position.x - width && x < position.x + width &&
 				y > position.y - height && y < position.y + height);
 	}
+	
+	
+	/**
+	 * Left click handler for this UI object.
+	 * @param mouseX
+	 * @param mouseY
+	 * @param currentState 
+	 * @param context 
+	 * @return - Optional.empty() if the gamestate does change, Optional.of(gamestate) if changes to new state.
+	 */
+	public abstract Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState);
 	
 	
 	public float left() {

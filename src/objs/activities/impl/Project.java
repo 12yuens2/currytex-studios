@@ -12,19 +12,6 @@ import objs.activities.Activity;
 
 public class Project extends Activity {
 	
-	/**
-	 *  Create a random project 
-	 */
-	public static Project randomProject() {
-		Random random = new Random();
-		Difficulty difficulty = Arrays.asList(Difficulty.values()).get(random.nextInt(Difficulty.values().length));
-		
-		return new Project("Java 1", random.nextInt(10) + 1, random.nextInt(100) + 15, difficulty);
-	}
-	
-	public enum Difficulty {VERY_EASY, EASY, NORMAL, HARD, VERY_HARD};
-	
-	
 	/* 
 	 * Default time needed per work load.
 	 * Increases with difficulty and as game progresses.
@@ -33,28 +20,31 @@ public class Project extends Activity {
 	
 	public static Random random = new Random();
 	
-	public String name;
 	
-	public int workRequired;
-	public int revenue;
-	public int timePerWork;
+	
+	public enum Difficulty {VERY_EASY, EASY, NORMAL, HARD, VERY_HARD};
+	
+	public String name;
+	public int workRequired, revenue, timePerWork, expGain;
+	public boolean finished;
 
-	public int expGain;
+	public ArrayList<Skill> skillsRequired;
+	public ArrayList<Worker> activeWorkers;
 	
 	public final Difficulty difficulty;
-	
-	public ArrayList<Skill> skillsRequired;
-
 	
 	
 	public Project(String name, int workRequired, int revenue, Difficulty difficulty) {
 		this.name = name;
 		this.difficulty = difficulty;
+		this.activeWorkers = new ArrayList<>();
 		this.skillsRequired = new ArrayList<>();
+		
+		this.finished = false;
 		
 		//TODO create projects with skills based on type of project
 		skillsRequired.add(Skill.JAVA);
-		
+
 		this.workRequired = getModifiedWorkRequired(workRequired);
 		this.revenue = getModifiedRevenue(revenue);
 		this.timePerWork = getModifiedTime();
@@ -142,20 +132,39 @@ public class Project extends Activity {
 		}
 		
 		worker.workTimer = 1 + (int) timeNeeded;
-		
+		activeWorkers.add(worker);
 	}
 
 	@Override
 	public void finish(Worker worker) {
+		activeWorkers.remove(worker);
+		
+		if (workRequired <= 0 && activeWorkers.isEmpty()) {
+			finished = true;
+		}
 		/* Add skills to workers after they finish a workload of this project */
 		for (Skill s : skillsRequired) {
-			if (worker.skills.containsKey(s)) {
-				worker.skills.get(s).exp += expGain;
-			} 
-			else {
-				worker.skills.put(s, new Level());						
-			}
+			worker.updateSkills(s, expGain);
 		}
+	}
+	
+	
+	public void manualDecrement(int amount) {
+		for (Worker worker : activeWorkers) {
+			worker.workTimer -= amount;
+		}
+	}
+	
+	
+	
+	
+	/**
+	 *  Create a random project 
+	 */
+	public static Project randomProject() {
+		Random random = new Random();
+		Difficulty difficulty = Arrays.asList(Difficulty.values()).get(random.nextInt(Difficulty.values().length));
 		
+		return new Project("Java 1", random.nextInt(10) + 1, random.nextInt(100) + 15, difficulty);
 	}
 }
