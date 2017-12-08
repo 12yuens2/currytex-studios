@@ -45,6 +45,7 @@ public class GameContext {
 		while (projectIt.hasNext()) {
 			Project project = projectIt.next();
 			if (project.finished) {
+				System.out.println("prokect");
 				studio.currency += project.revenue;
 				projectIt.remove();
 				//TODO reputation

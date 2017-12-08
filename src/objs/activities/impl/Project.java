@@ -7,6 +7,7 @@ import java.util.Random;
 
 import objs.Level;
 import objs.Skill;
+import objs.Studio;
 import objs.Worker;
 import objs.activities.Activity;
 import ui.menus.impl.ProjectMenu;
@@ -150,6 +151,10 @@ public class Project extends Activity {
 	}
 	
 	
+	/**
+	 * Mouseclick to manual decrement project time
+	 * @param amount
+	 */
 	public void manualDecrement(int amount) {
 		for (Worker worker : activeWorkers) {
 			worker.workTimer -= amount;

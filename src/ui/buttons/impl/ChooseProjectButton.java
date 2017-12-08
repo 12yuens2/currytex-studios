@@ -27,6 +27,7 @@ public class ChooseProjectButton extends Button {
 			GameState currentState) {
 
 		location.project = project;
+		context.activeProjects.add(project);
 		
 		return Optional.of(previousState);
 	
