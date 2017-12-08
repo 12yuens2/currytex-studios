@@ -5,17 +5,17 @@ import java.util.Optional;
 import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
-import objs.activities.impl.Project;
+import objs.activities.impl.ProjectActivity;
 import ui.buttons.Button;
 import ui.locations.impl.ProjectLocation;
 
 public class ChooseProjectButton extends Button {
 
-	public Project project;
+	public ProjectActivity project;
 	public ProjectLocation location;
 	public GameState previousState;
 	
-	public ChooseProjectButton(float xPos, float yPos, Project project, ProjectLocation location, GameState previousState) {
+	public ChooseProjectButton(float xPos, float yPos, ProjectActivity project, ProjectLocation location, GameState previousState) {
 		super(xPos, yPos, 100, 30, DrawEngine.parent.color(0,250,0));
 		this.project = project;
 		this.location = location;

@@ -8,7 +8,7 @@ import objs.Level;
 import objs.Skill;
 import objs.Studio;
 import objs.Worker;
-import objs.activities.impl.Project;
+import objs.activities.impl.ProjectActivity;
 import placeholder.WorkerBox;
 import processing.core.PApplet;
 import ui.buttons.Button;
@@ -22,7 +22,7 @@ public class GameContext {
 	public Studio studio;
 	
 	public ArrayList<Worker> workers;
-	public ArrayList<Project> activeProjects;
+	public ArrayList<ProjectActivity> activeProjects;
 	
 	public GameContext(PApplet parent) {
 		this.gameTime = new GameTime();
@@ -33,31 +33,42 @@ public class GameContext {
 	}
 	
 	public void timeStep() {
-		gameTime.incrementTimestep();
+		gameTime.incrementTimestep(this);
 		
 		for (Worker worker : workers) {
+
 			worker.integrate();
 		}
 		
 		
 		
-		Iterator<Project> projectIt = activeProjects.iterator();
+		Iterator<ProjectActivity> projectIt = activeProjects.iterator();
 		while (projectIt.hasNext()) {
-			Project project = projectIt.next();
+			ProjectActivity project = projectIt.next();
 			if (project.finished) {
-				System.out.println("prokect");
-				studio.currency += project.revenue;
+				project.finish(studio);
 				projectIt.remove();
 				//TODO reputation
 			}
 		}
-//		for (Project project : activeProjects) {
-//			if (project.finished) {
-//				studio.currency += project.revenue;
-//				//TODO reputation;
-//			}
-//		}
 		
+	}
+
+	public void newHour() {
+		for (Worker worker : workers) {
+			worker.updateSalary();
+		}
+		
+	}
+	
+	public void newDay() {
+		for (Worker worker : workers) {
+			worker.paySalary(studio);
+		}
+		
+		if (studio.currency < 0) {
+			//TODO game over? or debt
+		}
 	}
 
 }

@@ -1,11 +1,14 @@
 package ui.locations;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import game.DrawEngine;
+import game.GameContext;
+import game.states.GameState;
 import objs.Skill;
 import objs.activities.Activity;
-import objs.activities.impl.Project;
-import objs.activities.impl.Project.Difficulty;
+import objs.activities.impl.ProjectActivity;
+import objs.activities.impl.ProjectActivity.Difficulty;
 import processing.core.PConstants;
 import ui.UIObject;
 
@@ -30,15 +33,19 @@ public abstract class Location extends UIObject {
 	 */
 	public abstract Activity getActivity();
 	
-	
 	/**
-	 * Add a worker to this location if possible.
+	 * Check if it is possible to add a new worker to this location.
 	 * @return - If the worker can be added to this location.
 	 */
-	public abstract boolean addWorker();
+	public abstract boolean canAddWorker();
+	
+	/**
+	 * Add a worker to this location.
+	 */
+	public abstract void addWorker();
 
 	
-	
+	//TODO make all locations have default handle left click to decrease worker timer
 	
 
 //	public void display(DrawEngine drawEngine) {

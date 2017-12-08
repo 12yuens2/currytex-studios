@@ -12,11 +12,11 @@ import objs.Worker;
 import objs.activities.Activity;
 import ui.menus.impl.ProjectMenu;
 
-public class Project extends Activity {
+public class ProjectActivity extends Activity {
 	
 	/* 
 	 * Default time needed per work load.
-	 * Increases with difficulty and as game progresses.
+	 * Increases with difficulty and as game progresses?
 	 */
 	public static int MINUTES_PER_WORK = 120;
 	
@@ -27,7 +27,7 @@ public class Project extends Activity {
 	public enum Difficulty {VERY_EASY, EASY, NORMAL, HARD, VERY_HARD};
 	
 	public String name;
-	public int workRequired, revenue, timePerWork, expGain;
+	public int workRequired, revenue, timePerWork, expGain, reputation;
 	public boolean finished;
 
 	public ArrayList<Skill> skillsRequired;
@@ -36,7 +36,7 @@ public class Project extends Activity {
 	public final Difficulty difficulty;
 	
 	
-	public Project(String name, int workRequired, int revenue, Difficulty difficulty) {
+	public ProjectActivity(String name, int workRequired, int revenue, Difficulty difficulty) {
 		this.name = name;
 		this.difficulty = difficulty;
 		this.activeWorkers = new ArrayList<>();
@@ -124,7 +124,7 @@ public class Project extends Activity {
 	
 
 	@Override
-	public void start(Worker worker) {
+	public Activity start(Worker worker) {
 		double timeNeeded = timePerWork;
 		for (Skill s : worker.skills.keySet()) {
 			if (skillsRequired.contains(s)) {
@@ -135,6 +135,8 @@ public class Project extends Activity {
 		
 		worker.workTimer = 1 + (int) timeNeeded;
 		activeWorkers.add(worker);
+		
+		return this;
 	}
 
 	@Override
@@ -144,12 +146,23 @@ public class Project extends Activity {
 		if (workRequired <= 0 && activeWorkers.isEmpty()) {
 			finished = true;
 		}
+		
 		/* Add skills to workers after they finish a workload of this project */
 		for (Skill s : skillsRequired) {
 			worker.updateSkills(s, expGain);
 		}
+		
+		/* Add stress to worker */
+		worker.stressPercent = Math.min(100, worker.stressPercent + 10);
 	}
-	
+
+	/**
+	 * Finish project for the studio
+	 * @param studio
+	 */
+	public void finish(Studio studio) {
+		studio.currency += revenue;
+	}
 	
 	/**
 	 * Mouseclick to manual decrement project time
@@ -182,10 +195,10 @@ public class Project extends Activity {
 	/**
 	 *  Create a random project 
 	 */
-	public static Project randomProject() {
+	public static ProjectActivity randomProject() {
 		Random random = new Random();
 		Difficulty difficulty = Arrays.asList(Difficulty.values()).get(random.nextInt(Difficulty.values().length));
 		
-		return new Project("Java 1", random.nextInt(10) + 1, random.nextInt(100) + 15, difficulty);
+		return new ProjectActivity("Java 1", random.nextInt(10) + 1, random.nextInt(100) + 15, difficulty);
 	}
 }

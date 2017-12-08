@@ -68,7 +68,15 @@ public abstract class UIObject {
 	 * @return - Optional.empty() if the gamestate does change, Optional.of(gamestate) if changes to new state.
 	 */
 	public abstract Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState);
-	
+	//TODO make not abstract for default return Optional.empty();
+	/**
+	 * 
+	 * @param mouseX
+	 * @param mouseY
+	 * @param context
+	 * @param currentState
+	 * @return
+	 */
 	public abstract Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context, GameState currentState);
 	
 	

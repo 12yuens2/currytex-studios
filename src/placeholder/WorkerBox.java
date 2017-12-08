@@ -12,8 +12,8 @@ import game.states.impl.StartState;
 import objs.Level;
 import objs.Skill;
 import objs.Worker;
-import objs.activities.impl.Project;
-import objs.activities.impl.Project.Difficulty;
+import objs.activities.impl.ProjectActivity;
+import objs.activities.impl.ProjectActivity.Difficulty;
 import processing.core.PConstants;
 import processing.core.PVector;
 import ui.UIObject;
@@ -105,8 +105,8 @@ public class WorkerBox extends UIObject {
 		if (mouseLocked) {
 			mouseLocked = false;
 			for (Location location : locations) {
-				if (overlapsWith(location) && location.addWorker()) {
-					worker.startNewActivity(location.getActivity());
+				if (overlapsWith(location) && location.canAddWorker()) {
+					worker.startNewActivity(location);
 				}
 			}
 			position = originalPosition.copy();

@@ -35,6 +35,8 @@ public class WorkerMenu extends Menu {
 			drawEngine.drawText(12, skillDisplay, position.x, pos, DrawEngine.parent.color(0));
 			pos += 20;
 		}
+		
+		drawEngine.drawText(12, "Stress: " + worker.stressPercent, position.x, pos, DrawEngine.parent.color(0));
 	}
 	
 //

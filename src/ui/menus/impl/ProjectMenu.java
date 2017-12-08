@@ -2,14 +2,14 @@ package ui.menus.impl;
 
 import app.DevStudios;
 import game.DrawEngine;
-import objs.activities.impl.Project;
+import objs.activities.impl.ProjectActivity;
 import ui.menus.Menu;
 
 public class ProjectMenu extends Menu {
 
-	public Project project;
+	public ProjectActivity project;
 	
-	public ProjectMenu(Project project) {
+	public ProjectMenu(ProjectActivity project) {
 		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 600, 300);
 		this.project = project;
 	}

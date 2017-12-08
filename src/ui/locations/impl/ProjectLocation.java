@@ -8,7 +8,7 @@ import game.GameContext;
 import game.states.GameState;
 import game.states.impl.InMenuState;
 import objs.activities.Activity;
-import objs.activities.impl.Project;
+import objs.activities.impl.ProjectActivity;
 import processing.core.PConstants;
 import ui.locations.Location;
 import ui.menus.impl.ChooseNewProjectMenu;
@@ -16,7 +16,7 @@ import ui.menus.impl.ProjectMenu;
 
 public class ProjectLocation extends Location {
 	
-	public Project project;
+	public ProjectActivity project;
 	
 	public ProjectLocation(float xPos, float yPos, int size) {
 		super(xPos, yPos, size, 0);
@@ -27,20 +27,26 @@ public class ProjectLocation extends Location {
 	public Activity getActivity() {
 		return project;		
 	}
+	
+	@Override
+	public boolean canAddWorker() {
+		return project != null && project.workRequired > 0;
+	}
 
 	@Override
-	public boolean addWorker() {
-		if (project != null && project.workRequired > 0) {
+	public void addWorker() {
+		if (canAddWorker()) {
 			project.workRequired--;
 			numWorkers++;
-			return true;
 		}
-
-		return false;
 	}
 
 	@Override
 	public void display(DrawEngine drawEngine) {
+		if (project != null && project.finished) {
+			project = null;
+		}
+		
 		int col = project != null ? DrawEngine.parent.color(255, 0, 0) : DrawEngine.parent.color(150, 0, 50);
 		drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
 		

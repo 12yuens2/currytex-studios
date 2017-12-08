@@ -16,6 +16,7 @@ import ui.UIObject;
 import ui.buttons.impl.MenuButton;
 import ui.locations.Location;
 import ui.locations.impl.ProjectLocation;
+import ui.locations.impl.RestLocation;
 import ui.menus.Menu;
 
 public class GameUI {
@@ -25,7 +26,7 @@ public class GameUI {
 	public GameContext context;
 	
 	public ArrayList<MenuButton> openMenuButtons;
-	public ArrayList<ProjectLocation> locations; /* Represents projects */
+	public ArrayList<Location> locations; /* Represents projects */
 	public ArrayList<WorkerBox> boxes; /* Represents workers */
 	
 	public GameUI(GameContext context) {
@@ -69,6 +70,9 @@ public class GameUI {
 			locations.add(new ProjectLocation(xCoord + (((DevStudios.SCREEN_X - 400)/numProjects) * i), DevStudios.SCREEN_Y - 250, 100));
 		}
 		
+		/* Rest location */
+		locations.add(new RestLocation(300, 200, 0, 0));
+		
 		/* Draw bottom menu buttons */
 		drawBottomMenu();
 
@@ -103,11 +107,9 @@ public class GameUI {
 			b.display(drawEngine);
 		}
 		
-		for (ProjectLocation l : locations) {
+		for (Location l : locations) {
 			l.display(drawEngine);
-			if (l.project != null && l.project.finished) {
-				l.project = null;
-			}
+
 		}
 		
 		for (WorkerBox b : boxes) {

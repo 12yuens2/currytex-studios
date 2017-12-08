@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import game.GameTime;
 import objs.activities.Activity;
+import ui.locations.Location;
 import ui.menus.Menu;
 import ui.menus.impl.WorkerMenu;
 
@@ -12,7 +13,10 @@ public class Worker {
 	public String name;
 	public HashMap<Skill, Level> skills;
 	
-	public int wage;
+	public int wage; /* How much this worker gets paid per hour */
+	public int salary; /* How much money this worker is owed */
+	
+	public int stressPercent;
 	
 	public float workTimer;
 	
@@ -20,14 +24,20 @@ public class Worker {
 	
 	public Worker(String name) {
 		this.name = name;
-		this.wage = 0;
+		this.wage = 10;
+		this.salary = 0;
+		this.stressPercent = 0;
 		this.workTimer = 0;
 		this.skills = new HashMap<>();
 	}
 	
-	public void startNewActivity(Activity activity) {
-		currentActivity = activity;
-		activity.start(this);
+	public void startNewActivity(Location location) {
+		Activity activity = location.getActivity();
+		if (activity.canStart(this)) {
+			currentActivity = activity.start(this);
+			location.addWorker();
+		}
+		
 	}
 	
 	public void integrate() {
@@ -47,6 +57,15 @@ public class Worker {
 		else {
 			skills.put(skill, new Level());						
 		}
+	}
+	
+	public void paySalary(Studio studio) {
+		studio.currency -= salary;
+		salary = 0;
+	}
+	
+	public void updateSalary() {
+		this.salary += wage;
 	}
 
 	public WorkerMenu getMenu() {
