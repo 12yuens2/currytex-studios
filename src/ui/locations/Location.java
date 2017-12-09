@@ -8,7 +8,6 @@ import game.states.GameState;
 import objs.Skill;
 import objs.activities.Activity;
 import objs.activities.impl.ProjectActivity;
-import objs.activities.impl.ProjectActivity.Difficulty;
 import processing.core.PConstants;
 import ui.UIObject;
 

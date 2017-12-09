@@ -1,4 +1,4 @@
-package placeholder;
+package ui;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -13,10 +13,8 @@ import objs.Level;
 import objs.Skill;
 import objs.Worker;
 import objs.activities.impl.ProjectActivity;
-import objs.activities.impl.ProjectActivity.Difficulty;
 import processing.core.PConstants;
 import processing.core.PVector;
-import ui.UIObject;
 import ui.locations.Location;
 import ui.menus.Menu;
 import ui.menus.impl.WorkerMenu;

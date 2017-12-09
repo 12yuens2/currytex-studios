@@ -6,6 +6,7 @@ import app.DevStudios;
 import game.DrawEngine;
 import game.states.GameState;
 import objs.activities.impl.ProjectActivity;
+import objs.factories.ProjectFactory;
 import ui.buttons.impl.ChooseProjectButton;
 import ui.locations.impl.ProjectLocation;
 import ui.menus.Menu;
@@ -19,7 +20,7 @@ public class ChooseNewProjectMenu extends Menu {
 
 		newProjects = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
-			ProjectActivity newProject = ProjectActivity.randomProject();
+			ProjectActivity newProject = ProjectFactory.getRandomProject();
 			newProjects.add(newProject);
 			
 			float xPos = (position.x - width + 150) * (i + 1);

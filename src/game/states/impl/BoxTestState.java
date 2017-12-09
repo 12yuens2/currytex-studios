@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import game.DrawEngine;
 import game.GameInput;
 import game.states.GameState;
-import placeholder.WorkerBox;
 import processing.core.PVector;
+import ui.WorkerBox;
 import ui.locations.Location;
 
 public class BoxTestState extends GameState {

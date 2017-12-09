@@ -9,8 +9,8 @@ import objs.Skill;
 import objs.Studio;
 import objs.Worker;
 import objs.activities.impl.ProjectActivity;
-import placeholder.WorkerBox;
 import processing.core.PApplet;
+import ui.WorkerBox;
 import ui.buttons.Button;
 import ui.buttons.impl.MenuButton;
 import ui.locations.Location;
@@ -36,11 +36,8 @@ public class GameContext {
 		gameTime.incrementTimestep(this);
 		
 		for (Worker worker : workers) {
-
 			worker.integrate();
 		}
-		
-		
 		
 		Iterator<ProjectActivity> projectIt = activeProjects.iterator();
 		while (projectIt.hasNext()) {

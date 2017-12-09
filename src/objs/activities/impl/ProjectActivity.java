@@ -10,6 +10,8 @@ import objs.Skill;
 import objs.Studio;
 import objs.Worker;
 import objs.activities.Activity;
+import objs.factories.ProjectFactory.Difficulty;
+import objs.factories.ProjectFactory.ProjectType;
 import ui.menus.impl.ProjectMenu;
 
 public class ProjectActivity extends Activity {
@@ -24,7 +26,7 @@ public class ProjectActivity extends Activity {
 	
 	
 	
-	public enum Difficulty {VERY_EASY, EASY, NORMAL, HARD, VERY_HARD};
+
 	
 	public String name;
 	public int workRequired, revenue, timePerWork, expGain, reputation;
@@ -34,11 +36,14 @@ public class ProjectActivity extends Activity {
 	public ArrayList<Worker> activeWorkers;
 	
 	public final Difficulty difficulty;
+	public final ProjectType type;
 	
 	
-	public ProjectActivity(String name, int workRequired, int revenue, Difficulty difficulty) {
+	public ProjectActivity(String name, int workRequired, int revenue, int reputation, int timePerWork,
+			ProjectType type, Difficulty difficulty) {
 		this.name = name;
 		this.difficulty = difficulty;
+		this.type = type;
 		this.activeWorkers = new ArrayList<>();
 		this.skillsRequired = new ArrayList<>();
 		
@@ -47,80 +52,12 @@ public class ProjectActivity extends Activity {
 		//TODO create projects with skills based on type of project
 		skillsRequired.add(Skill.JAVA);
 
-		this.workRequired = getModifiedWorkRequired(workRequired);
-		this.revenue = getModifiedRevenue(revenue);
-		this.timePerWork = getModifiedTime();
+		this.workRequired = workRequired;
+		this.revenue = revenue;
+		this.reputation = reputation;
+		this.timePerWork = timePerWork;
 		this.expGain = 20; //TODO
-	}
-	
-	private int getModifiedWorkRequired(int workRequired) {
-		switch (difficulty) {
-			case VERY_EASY:
-				return (int) (workRequired * 0.7);
-				
-			case EASY:
-				return (int) (workRequired * 0.85);
-				
-			case NORMAL:
-				return workRequired;
-				
-			case HARD:
-				return (int) (workRequired * 1.5);
-				
-			case VERY_HARD:
-				return (int) (workRequired * 2.5);
-				
-			default:
-				return workRequired;
-		}
-	}
-	
-	private int getModifiedRevenue(int revenue) {
-		switch(difficulty) {
-			case VERY_EASY:
-				return (int) (revenue * 0.8);
-				
-			case EASY:
-				return (int) (revenue * 0.9);
-				
-			case NORMAL:
-				return revenue;
-				
-			case HARD:
-				return (int) (revenue * 2);
-				
-			case VERY_HARD:
-				return (int) (revenue * 3);
-				
-			default:
-				return revenue;
-			
-		}
-	}
-
-	private int getModifiedTime() {
-		switch(difficulty) {
-			case VERY_EASY:
-				return (int) (MINUTES_PER_WORK * 0.5);
-				
-			case EASY:
-				return (int) (MINUTES_PER_WORK * 0.85);
-
-			case NORMAL:
-				return MINUTES_PER_WORK;
-				
-			case HARD:
-				return (int) (MINUTES_PER_WORK * 1.5);
-				
-			case VERY_HARD:
-				return (int) (MINUTES_PER_WORK * 2);
-				
-			default:
-				return MINUTES_PER_WORK;
-		
-		}
-	}
-	
+	}	
 	
 
 	@Override
@@ -162,6 +99,9 @@ public class ProjectActivity extends Activity {
 	 */
 	public void finish(Studio studio) {
 		studio.currency += revenue;
+		for (Skill skill : skillsRequired) {
+			studio.addReputation(skill, reputation);
+		}
 	}
 	
 	/**
@@ -184,7 +124,9 @@ public class ProjectActivity extends Activity {
 		projectProperties.add("Skills required:" + skillsRequired.toString());
 		projectProperties.add("Number of features: " + workRequired);
 		projectProperties.add("Money: " + revenue);
+		projectProperties.add("Reputation: " + reputation);
 		projectProperties.add("Difficulty: " + difficulty);
+		projectProperties.add("Type: " + type); 
 		
 		return projectProperties;
 	}
@@ -192,13 +134,13 @@ public class ProjectActivity extends Activity {
 	
 	
 	
-	/**
-	 *  Create a random project 
-	 */
-	public static ProjectActivity randomProject() {
-		Random random = new Random();
-		Difficulty difficulty = Arrays.asList(Difficulty.values()).get(random.nextInt(Difficulty.values().length));
-		
-		return new ProjectActivity("Java 1", random.nextInt(10) + 1, random.nextInt(100) + 15, difficulty);
-	}
+//	/**
+//	 *  Create a random project 
+//	 */
+//	public static ProjectActivity randomProject() {
+//		Random random = new Random();
+//		Difficulty difficulty = Arrays.asList(Difficulty.values()).get(random.nextInt(Difficulty.values().length));
+//		
+//		return new ProjectActivity("Java 1", random.nextInt(10) + 1, random.nextInt(100) + 15, difficulty);
+//	}
 }
