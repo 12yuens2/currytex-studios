@@ -3,8 +3,10 @@ package objs.activities.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Optional;
 import java.util.Random;
 
+import game.states.GameState;
 import objs.Level;
 import objs.Skill;
 import objs.Studio;
@@ -23,8 +25,6 @@ public class ProjectActivity extends Activity {
 	public static int MINUTES_PER_WORK = 120;
 	
 	public static Random random = new Random();
-	
-	
 	
 
 	
@@ -77,7 +77,7 @@ public class ProjectActivity extends Activity {
 	}
 
 	@Override
-	public void finish(Worker worker) {
+	public Optional<GameState> finish(Worker worker, GameState currentState) {
 		activeWorkers.remove(worker);
 		
 		if (workRequired <= 0 && activeWorkers.isEmpty()) {
@@ -91,6 +91,8 @@ public class ProjectActivity extends Activity {
 		
 		/* Add stress to worker */
 		worker.stressPercent = Math.min(100, worker.stressPercent + 10);
+		
+		return Optional.empty();
 	}
 
 	/**

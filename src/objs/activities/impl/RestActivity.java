@@ -1,5 +1,8 @@
 package objs.activities.impl;
 
+import java.util.Optional;
+
+import game.states.GameState;
 import objs.Worker;
 import objs.activities.Activity;
 
@@ -19,9 +22,9 @@ public class RestActivity extends Activity {
 	}	
 	
 	@Override
-	public void finish(Worker worker) {
+	public Optional<GameState> finish(Worker worker, GameState currentState) {
 		worker.stressPercent = Math.max(0, worker.stressPercent - 40);
-		
+		return Optional.empty();
 	}
 
 

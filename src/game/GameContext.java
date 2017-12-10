@@ -2,8 +2,12 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Optional;
+import java.util.Queue;
 
 import app.DevStudios;
+import game.states.GameState;
 import objs.Level;
 import objs.Skill;
 import objs.Studio;
@@ -22,6 +26,8 @@ public class GameContext {
 	public Studio studio;
 	public GameConstants constants;
 	
+	public LinkedList<GameState> nextStates;
+	
 	public ArrayList<Worker> workers;
 	public ArrayList<ProjectActivity> activeProjects;
 	
@@ -30,15 +36,20 @@ public class GameContext {
 		this.studio = new Studio();
 		this.constants = new GameConstants();
 		
+		this.nextStates = new LinkedList<>();
 		this.workers = new ArrayList<>();
 		this.activeProjects = new ArrayList<>();
 	}
 	
-	public void timeStep() {
+	public void timeStep(GameState currentState) {
 		gameTime.incrementTimestep(this);
 		
 		for (Worker worker : workers) {
-			worker.integrate();
+			Optional<GameState> nextState = worker.integrate(currentState);
+			
+			if (nextState.isPresent()) {
+				nextStates.add(nextState.get());
+			}
 		}
 		
 		Iterator<ProjectActivity> projectIt = activeProjects.iterator();

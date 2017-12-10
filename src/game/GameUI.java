@@ -16,6 +16,7 @@ import ui.WorkerBox;
 import ui.buttons.impl.MenuButton;
 import ui.locations.Location;
 import ui.locations.impl.ProjectLocation;
+import ui.locations.impl.RecruitLocation;
 import ui.locations.impl.RestLocation;
 import ui.menus.Menu;
 import ui.menus.impl.UpgradesMenu;
@@ -73,6 +74,9 @@ public class GameUI {
 		
 		/* Rest location */
 		locations.add(new RestLocation(300, 200, 0, 0));
+		
+		/* Recruit location */
+		locations.add(new RecruitLocation(500, 200, 0, 0));
 		
 		/* Draw bottom menu buttons */
 		drawBottomMenu();

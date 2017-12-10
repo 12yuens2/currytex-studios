@@ -33,22 +33,9 @@ public class RestLocation extends Location {
 
 	@Override
 	public void display(DrawEngine drawEngine) {
-		drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
+		super.display(drawEngine);
 		drawEngine.drawText(16, "Rest location", position.x, position.y, DrawEngine.parent.color(0));		
 	}
 
-	@Override
-	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
-			GameState currentState) {
-		
-		return Optional.empty();
-	}
-
-	@Override
-	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
-			GameState currentState) {
-		
-		return Optional.empty();
-	}
 
 }

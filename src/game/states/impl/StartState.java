@@ -35,7 +35,12 @@ public class StartState extends GameState {
 	@Override
 	public GameState update(float mouseX, float mouseY) {
 		super.update(mouseX, mouseY);
-		context.timeStep();
+		context.timeStep(this);
+		
+		if (!context.nextStates.isEmpty()){
+			return context.nextStates.poll();
+		}
+		
 //		context.updateBoxes(mouseX, mouseY);
 	
 		return this;

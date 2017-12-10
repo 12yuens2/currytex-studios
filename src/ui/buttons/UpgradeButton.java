@@ -26,7 +26,7 @@ public class UpgradeButton extends Button {
 	protected boolean buyUpgrade(Studio studio) {
 		if (studio.currency >= cost) {
 			studio.currency -= cost;
-			cost += COST_INCREASE;
+			cost += cost; //TODO balance formula
 			return true;
 		}
 		return false;

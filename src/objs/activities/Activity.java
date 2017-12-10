@@ -1,5 +1,8 @@
 package objs.activities;
 
+import java.util.Optional;
+
+import game.states.GameState;
 import objs.Worker;
 
 public abstract class Activity {
@@ -17,8 +20,9 @@ public abstract class Activity {
 	/**
 	 * Finish this activity and update worker with appropriate stats.
 	 * @param worker - The worker who finished this activity.
+	 * @param currentState - The current state of the game.
 	 */
-	public abstract void finish(Worker worker);
+	public abstract Optional<GameState> finish(Worker worker, GameState currentState);
 	
 	
 	/**
@@ -29,5 +33,7 @@ public abstract class Activity {
 	public boolean canStart(Worker worker) {
 		return worker.stressPercent < 100;
 	}
+	
+	
 	
 }

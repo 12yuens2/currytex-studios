@@ -1,8 +1,12 @@
 package objs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Optional;
 
 import game.GameTime;
+import game.states.GameState;
 import objs.activities.Activity;
 import ui.locations.Location;
 import ui.menus.Menu;
@@ -40,14 +44,17 @@ public class Worker {
 		
 	}
 	
-	public void integrate() {
+	public Optional<GameState> integrate(GameState currentState) {
 		if (currentActivity != null) {
 			workTimer -= GameTime.MINUTES_PER_TIMESTEP;
 			if (workTimer <= 0) {
-				currentActivity.finish(this);
+				Optional<GameState> nextState = currentActivity.finish(this, currentState);
 				currentActivity = null;
+				return nextState;
 			}
 		}
+		
+		return Optional.empty();
 	}
 	
 	public void updateSkills(Skill skill, int expGain) {
@@ -70,5 +77,16 @@ public class Worker {
 
 	public WorkerMenu getMenu() {
 		return new WorkerMenu(this);
+	}
+
+	public ArrayList<String> getProperties() {
+		ArrayList<String> workerProperties = new ArrayList<String>();
+		workerProperties.add("Name: " + name);
+		for (Entry<Skill, Level> entry : skills.entrySet()) {
+			workerProperties.add(entry.getKey() + ": " + entry.getValue().level);
+		}
+		workerProperties.add("Wage: " + wage);
+		
+		return workerProperties;
 	}
 }

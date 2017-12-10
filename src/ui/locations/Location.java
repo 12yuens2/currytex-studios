@@ -42,6 +42,27 @@ public abstract class Location extends UIObject {
 	 * Add a worker to this location.
 	 */
 	public abstract void addWorker();
+	
+	
+	@Override
+	public void display(DrawEngine drawEngine) {
+		drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
+	}
+	
+
+	@Override
+	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
+			GameState currentState) {
+		
+		return Optional.empty();
+	}
+
+	@Override
+	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
+			GameState currentState) {
+		
+		return Optional.empty();
+	}
 
 	
 	//TODO make all locations have default handle left click to decrease worker timer

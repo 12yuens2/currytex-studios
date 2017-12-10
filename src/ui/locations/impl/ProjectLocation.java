@@ -47,8 +47,8 @@ public class ProjectLocation extends Location {
 			project = null;
 		}
 		
-		int col = project != null ? DrawEngine.parent.color(255, 0, 0) : DrawEngine.parent.color(150, 0, 50);
-		drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
+		col = project != null ? DrawEngine.parent.color(255, 0, 0) : DrawEngine.parent.color(150, 0, 50);
+		super.display(drawEngine);
 		
 		if (project != null) {
 			drawEngine.drawText(12, ""+project.workRequired, position.x, position.y, DrawEngine.parent.color(0));
