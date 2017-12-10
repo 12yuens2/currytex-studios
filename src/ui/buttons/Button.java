@@ -19,9 +19,4 @@ public abstract class Button extends UIObject {
 		drawEngine.drawRectangle(PConstants.RADIUS, col, position.x, position.y, width, height);
 	}
 
-
-	public void activate() {
-		System.out.println(this + " was pressed.");
-	}
-
 }

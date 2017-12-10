@@ -77,13 +77,13 @@ public class Menu extends UIObject {
 		return Optional.empty();
 	}
 
-	public void clicked(GameInput input) {
-		for (Button b : buttons) {
-			if (b.contains(input.mouseX, input.mouseY)) {
-				b.activate();
-			}
-		}
-		
-	}
+//	public void clicked(GameInput input) {
+//		for (Button b : buttons) {
+//			if (b.contains(input.mouseX, input.mouseY)) {
+//				b.activate();
+//			}
+//		}
+//		
+//	}
 
 }

@@ -18,6 +18,7 @@ import ui.locations.Location;
 import ui.locations.impl.ProjectLocation;
 import ui.locations.impl.RestLocation;
 import ui.menus.Menu;
+import ui.menus.impl.UpgradesMenu;
 
 public class GameUI {
 
@@ -89,7 +90,7 @@ public class GameUI {
 		
 		/* Draw upgrades menu */
 		openMenuButtons.add(new MenuButton(400, 825, 100, 30, DrawEngine.parent.color(20, 200, 20),
-				   new Menu(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 300, 300)));
+				   new UpgradesMenu()));
 		
 		/* Draw some other menu */
 	}

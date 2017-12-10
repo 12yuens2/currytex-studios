@@ -20,6 +20,7 @@ public class GameContext {
 	
 	public GameTime gameTime;
 	public Studio studio;
+	public GameConstants constants;
 	
 	public ArrayList<Worker> workers;
 	public ArrayList<ProjectActivity> activeProjects;
@@ -27,6 +28,7 @@ public class GameContext {
 	public GameContext(PApplet parent) {
 		this.gameTime = new GameTime();
 		this.studio = new Studio();
+		this.constants = new GameConstants();
 		
 		this.workers = new ArrayList<>();
 		this.activeProjects = new ArrayList<>();

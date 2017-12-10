@@ -66,7 +66,7 @@ public class ProjectLocation extends Location {
 //			context.activeProjects.add(project);
 		}
 		else {
-			project.manualDecrement(1);
+			project.manualDecrement(context.constants.manualClickPower);
 			
 		}
 		
