@@ -17,7 +17,7 @@ public class RecruitLocation extends Location {
 
 	@Override
 	public Activity getActivity() {
-		return new RecruitActivity();
+		return new RecruitActivity(this);
 	}
 
 	@Override
@@ -26,11 +26,6 @@ public class RecruitLocation extends Location {
 //		return numWorkers == 0; TODO
 	}
 
-	@Override
-	public void addWorker() {
-		// numerWorkers++; //TODO
-		
-	}
 
 	@Override
 	public void display(DrawEngine drawEngine) {

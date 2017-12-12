@@ -1,7 +1,9 @@
 package objs.activities;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
+import ui.locations.Location;
 import game.states.GameState;
 import objs.Worker;
 
@@ -9,6 +11,11 @@ public abstract class Activity {
 
 	public int timeNeeded;
 	
+	public Location location;
+	
+	public Activity(Location location) {
+		this.location = location;
+	}
 	
 	/**
 	 * Start this for activity for the worker and update the worker on time needed, likely based on worker's stats.
@@ -22,7 +29,10 @@ public abstract class Activity {
 	 * @param worker - The worker who finished this activity.
 	 * @param currentState - The current state of the game.
 	 */
-	public abstract Optional<GameState> finish(Worker worker, GameState currentState);
+	public Optional<GameState> finish(Worker worker, GameState currentState) {
+		location.workers.remove(worker);
+		return Optional.empty();
+	}
 	
 	
 	/**
@@ -33,7 +43,7 @@ public abstract class Activity {
 	public boolean canStart(Worker worker) {
 		return worker.stressPercent < 100;
 	}
-	
+
 	
 	
 }

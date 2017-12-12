@@ -7,6 +7,7 @@ import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
 import game.states.impl.InMenuState;
+import objs.Worker;
 import objs.activities.Activity;
 import objs.activities.impl.ProjectActivity;
 import processing.core.PConstants;
@@ -34,11 +35,9 @@ public class ProjectLocation extends Location {
 	}
 
 	@Override
-	public void addWorker() {
-		if (canAddWorker()) {
-			project.workRequired--;
-			numWorkers++;
-		}
+	public void addWorker(Worker worker) {
+		super.addWorker(worker);
+		project.workRequired--;
 	}
 
 	@Override
@@ -66,11 +65,12 @@ public class ProjectLocation extends Location {
 //			context.activeProjects.add(project);
 		}
 		else {
-			project.manualDecrement(context.constants.manualClickPower);
+			return super.handleLeftClick(mouseX, mouseY, context, currentState);
+//			project.manualDecrement(context.constants.manualClickPower);
 			
 		}
 		
-		return Optional.empty();
+//		return Optional.empty();
 		
 	}
 

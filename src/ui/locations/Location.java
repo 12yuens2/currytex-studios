@@ -6,6 +6,7 @@ import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
 import objs.Skill;
+import objs.Worker;
 import objs.activities.Activity;
 import objs.activities.impl.ProjectActivity;
 import processing.core.PConstants;
@@ -13,8 +14,7 @@ import ui.UIObject;
 
 public abstract class Location extends UIObject {
 
-	public int numWorkers;
-	
+	public ArrayList<Worker> workers;
 	//TODO maximum number of workers
 	
 //	public Project project;
@@ -22,7 +22,7 @@ public abstract class Location extends UIObject {
 	public Location(float xPos, float yPos, int size, int col) {
 		super(xPos, yPos, size, col);
 		
-		this.numWorkers = 0;
+		this.workers = new ArrayList<>();
 //		this.project = Project.randomProject();
 	}
 	
@@ -41,7 +41,12 @@ public abstract class Location extends UIObject {
 	/**
 	 * Add a worker to this location.
 	 */
-	public abstract void addWorker();
+	public void addWorker(Worker worker) {
+		if (canAddWorker()) {
+			workers.add(worker);
+		}
+	
+	}
 	
 	
 	@Override
@@ -54,6 +59,8 @@ public abstract class Location extends UIObject {
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
 		
+		manualDecrement(context.constants.manualClickPower);
+		
 		return Optional.empty();
 	}
 
@@ -65,8 +72,11 @@ public abstract class Location extends UIObject {
 	}
 
 	
-	//TODO make all locations have default handle left click to decrease worker timer
-	
+	protected void manualDecrement(int amount) {
+		for (Worker worker : workers) {
+			worker.workTimer = Math.max(0, worker.workTimer - amount);
+		}
+	}
 
 //	public void display(DrawEngine drawEngine) {
 //		drawEngine.drawSquare(PConstants.RADIUS, drawEngine.parent.color(255,0,0), position, size);

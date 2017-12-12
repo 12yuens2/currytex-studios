@@ -39,7 +39,7 @@ public class Worker {
 		Activity activity = location.getActivity();
 		if (activity.canStart(this)) {
 			currentActivity = activity.start(this);
-			location.addWorker();
+			location.addWorker(this);
 		}
 		
 	}

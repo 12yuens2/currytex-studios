@@ -2,7 +2,6 @@ package game;
 
 import app.DevStudios;
 import game.states.GameState;
-import game.states.impl.BoxTestState;
 import game.states.impl.InMenuState;
 import game.states.impl.StartState;
 import processing.core.PApplet;

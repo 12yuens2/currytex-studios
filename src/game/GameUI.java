@@ -15,6 +15,7 @@ import ui.UIObject;
 import ui.WorkerBox;
 import ui.buttons.impl.MenuButton;
 import ui.locations.Location;
+import ui.locations.impl.NewProjectLocation;
 import ui.locations.impl.ProjectLocation;
 import ui.locations.impl.RecruitLocation;
 import ui.locations.impl.RestLocation;
@@ -28,7 +29,8 @@ public class GameUI {
 	public GameContext context;
 	
 	public ArrayList<MenuButton> openMenuButtons;
-	public ArrayList<Location> locations; /* Represents projects */
+	public ArrayList<Location> locations; /* Represents locations */
+	public ArrayList<ProjectLocation> projectLocations; /* Represents project locations */
 	public ArrayList<WorkerBox> boxes; /* Represents workers */
 	
 	public GameUI(GameContext context) {
@@ -36,6 +38,7 @@ public class GameUI {
 		
 		this.openMenuButtons = new ArrayList<>();
 		this.locations = new ArrayList<>();
+		this.projectLocations = new ArrayList<>();
 		this.boxes = new ArrayList<>();
 		
 		testInit();
@@ -69,7 +72,7 @@ public class GameUI {
 		int xCoord = 200;
 		int numProjects = 4;
 		for (int i = 0; i < numProjects; i++) {
-			locations.add(new ProjectLocation(xCoord + (((DevStudios.SCREEN_X - 400)/numProjects) * i), DevStudios.SCREEN_Y - 250, 100));
+			projectLocations.add(new ProjectLocation(xCoord + (((DevStudios.SCREEN_X - 400)/numProjects) * i), DevStudios.SCREEN_Y - 250, 100));
 		}
 		
 		/* Rest location */
@@ -78,6 +81,8 @@ public class GameUI {
 		/* Recruit location */
 		locations.add(new RecruitLocation(500, 200, 0, 0));
 		
+		/* Get new project location */
+		locations.add(new NewProjectLocation(projectLocations));
 		/* Draw bottom menu buttons */
 		drawBottomMenu();
 
@@ -108,13 +113,17 @@ public class GameUI {
 		/* Display game time */
 		context.gameTime.display(drawEngine);
 		
+		
 		for (MenuButton b : openMenuButtons) {
 			b.display(drawEngine);
 		}
 		
+		for (ProjectLocation pl : projectLocations) {
+			pl.display(drawEngine);
+		}
+		
 		for (Location l : locations) {
 			l.display(drawEngine);
-
 		}
 		
 		for (WorkerBox b : boxes) {

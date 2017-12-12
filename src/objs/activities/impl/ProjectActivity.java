@@ -41,6 +41,7 @@ public class ProjectActivity extends Activity {
 	
 	public ProjectActivity(String name, int workRequired, int revenue, int reputation, int timePerWork,
 			ProjectType type, Difficulty difficulty) {
+		super(null);
 		this.name = name;
 		this.difficulty = difficulty;
 		this.type = type;
@@ -92,7 +93,7 @@ public class ProjectActivity extends Activity {
 		/* Add stress to worker */
 		worker.stressPercent = Math.min(100, worker.stressPercent + 10);
 		
-		return Optional.empty();
+		return super.finish(worker, currentState);
 	}
 
 	/**
@@ -106,15 +107,6 @@ public class ProjectActivity extends Activity {
 		}
 	}
 	
-	/**
-	 * Mouseclick to manual decrement project time
-	 * @param amount
-	 */
-	public void manualDecrement(int amount) {
-		for (Worker worker : activeWorkers) {
-			worker.workTimer -= amount;
-		}
-	}
 	
 	public ProjectMenu getMenu() {
 		return new ProjectMenu(this);
@@ -131,6 +123,14 @@ public class ProjectActivity extends Activity {
 		projectProperties.add("Type: " + type); 
 		
 		return projectProperties;
+	}
+	
+	
+
+	public void manualDecrement(int amount) {
+		for (Worker worker : activeWorkers) {
+			worker.workTimer -= amount;
+		}		
 	}
 	
 	
