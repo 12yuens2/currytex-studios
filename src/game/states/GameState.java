@@ -23,7 +23,6 @@ public abstract class GameState {
 	public GameState update(float mouseX, float mouseY) {
 		ui.updateMouse(mouseX, mouseY);
 		
-//		System.out.println(context.gameTime);
 		return this;
 	}
 

@@ -8,6 +8,7 @@ import game.states.GameState;
 import objs.Worker;
 import objs.activities.impl.ProjectActivity;
 import objs.factories.WorkerFactory;
+import ui.WorkerBox;
 import ui.buttons.impl.ChooseWorkerButton;
 import ui.menus.Menu;
 

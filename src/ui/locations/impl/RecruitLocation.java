@@ -1,10 +1,6 @@
 package ui.locations.impl;
 
-import java.util.Optional;
-
 import game.DrawEngine;
-import game.GameContext;
-import game.states.GameState;
 import objs.activities.Activity;
 import objs.activities.impl.RecruitActivity;
 import ui.locations.Location;
@@ -22,6 +18,8 @@ public class RecruitLocation extends Location {
 
 	@Override
 	public boolean canAddWorker() {
+		//TODO cannot get new worked until unlockeds
+		//TODO cannot add worker if no avaiable slots
 		return true;
 //		return numWorkers == 0; TODO
 	}

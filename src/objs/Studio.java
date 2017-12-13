@@ -10,7 +10,8 @@ public class Studio {
 	public HashMap<Skill, Integer> reputation;
 
 	public Studio() {
-		reputation = new HashMap<>();
+		this.currency = 10000;
+		this.reputation = new HashMap<>();
 	}
 	
 	public void addReputation(Skill skill, int reputation) {

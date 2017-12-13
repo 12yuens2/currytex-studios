@@ -19,6 +19,7 @@ public class GettingProjectActivity extends Activity {
 	
 	public GettingProjectActivity(Location location, ProjectLocation projectLocation) {
 		super(location);
+		
 		this.projectLocation = projectLocation;
 	}
 
@@ -32,6 +33,7 @@ public class GettingProjectActivity extends Activity {
 	public Optional<GameState> finish(Worker worker, GameState currentState) {
 		super.finish(worker, currentState);
 		
+		projectLocation.occupied = false;
 		worker.stressPercent = Math.min(100, worker.stressPercent + 10);
 		
 		ChooseNewProjectMenu projectMenu = new ChooseNewProjectMenu(projectLocation, currentState);

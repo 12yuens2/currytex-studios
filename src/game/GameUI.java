@@ -15,7 +15,7 @@ import ui.UIObject;
 import ui.WorkerBox;
 import ui.buttons.impl.MenuButton;
 import ui.locations.Location;
-import ui.locations.impl.NewProjectLocation;
+import ui.locations.impl.GetNewProjectLocation;
 import ui.locations.impl.ProjectLocation;
 import ui.locations.impl.RecruitLocation;
 import ui.locations.impl.RestLocation;
@@ -82,7 +82,7 @@ public class GameUI {
 		locations.add(new RecruitLocation(500, 200, 0, 0));
 		
 		/* Get new project location */
-		locations.add(new NewProjectLocation(projectLocations));
+		locations.add(new GetNewProjectLocation(projectLocations));
 		/* Draw bottom menu buttons */
 		drawBottomMenu();
 
@@ -148,7 +148,7 @@ public class GameUI {
 
 	public GameState handleLeftClick(GameState currentState) {
 		
-		Optional<GameState> result = Stream.of(boxes.stream(), locations.stream(), openMenuButtons.stream())
+		Optional<GameState> result = Stream.of(boxes.stream(), locations.stream(), projectLocations.stream(), openMenuButtons.stream())
 				.flatMap(Function.identity())
 				.filter(o -> o.contains(mouseX, mouseY))
 				.map(o -> o.handleLeftClick(mouseX, mouseY, context, currentState))
@@ -159,7 +159,7 @@ public class GameUI {
 	}
 	
 	public GameState handleRightClick(GameState currentState) {
-		Optional<GameState> result = Stream.of(boxes.stream(), locations.stream())
+		Optional<GameState> result = Stream.of(boxes.stream(), locations.stream(), projectLocations.stream())
 				.flatMap(Function.identity())
 				.filter(o -> o.contains(mouseX, mouseY))
 				.map(o -> o.handleRightClick(mouseX, mouseY, context, currentState))

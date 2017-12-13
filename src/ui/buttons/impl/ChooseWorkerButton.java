@@ -1,11 +1,13 @@
 package ui.buttons.impl;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
 import objs.Worker;
+import ui.WorkerBox;
 import ui.buttons.Button;
 
 public class ChooseWorkerButton extends Button {
@@ -24,8 +26,21 @@ public class ChooseWorkerButton extends Button {
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
 
-		context.workers.add(worker);
+		/* Assign worker from this button to the box location */
+		ArrayList<WorkerBox> workerBoxes = currentState.ui.boxes;
+		for (WorkerBox box : workerBoxes) {
+			if (!box.hasWorker()) {
+				box.worker = worker;
+				
+				context.workers.add(worker);
+				return Optional.of(previousState);
+			}
+		}
+		
+
 		return Optional.of(previousState);
+		
+
 	}
 
 	@Override
