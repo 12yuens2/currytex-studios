@@ -87,7 +87,11 @@ public class StartState extends GameState {
 //		}
 		
 		for (WorkerBox b : ui.boxes) {
-			b.enterIfPossible(ui.locations);
+			ArrayList<Location> locations = new ArrayList<>();
+			locations.addAll(ui.locations);
+			locations.addAll(ui.projectLocations);
+			
+			b.enterIfPossible(locations);
 		}
 		return this;
 	}
