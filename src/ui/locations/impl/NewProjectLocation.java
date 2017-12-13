@@ -2,6 +2,8 @@ package ui.locations.impl;
 
 import java.util.ArrayList;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Occurs;
+
 import game.DrawEngine;
 import objs.activities.Activity;
 import objs.activities.impl.GettingProjectActivity;
@@ -23,7 +25,8 @@ public class NewProjectLocation extends Location {
 	@Override
 	public Activity getActivity() {
 		for (ProjectLocation projectLocation : projectLocations) {
-			if (projectLocation.project == null) {
+			if (!projectLocation.occupied) {
+				projectLocation.occupied = true;
 				return new GettingProjectActivity(this, projectLocation);
 			}
 		}
@@ -33,11 +36,18 @@ public class NewProjectLocation extends Location {
 	@Override
 	public boolean canAddWorker() {
 		for (ProjectLocation projectLocation : projectLocations) {
-			if (projectLocation.project == null) {
+			if (!projectLocation.occupied) {
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public void display(DrawEngine drawEngine) {
+		super.display(drawEngine);
+		
+		drawEngine.drawText(16, "Get new project", position.x, position.y, DrawEngine.parent.color(0));
 	}
 
 }

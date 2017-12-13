@@ -18,10 +18,12 @@ import ui.menus.impl.ProjectMenu;
 public class ProjectLocation extends Location {
 	
 	public ProjectActivity project;
+	public boolean occupied;
 	
 	public ProjectLocation(float xPos, float yPos, int size) {
 		super(xPos, yPos, size, 0);
-
+		
+		this.occupied = false;
 	}
 
 	@Override
@@ -44,6 +46,7 @@ public class ProjectLocation extends Location {
 	public void display(DrawEngine drawEngine) {
 		if (project != null && project.finished) {
 			project = null;
+			occupied = false;
 		}
 		
 		col = project != null ? DrawEngine.parent.color(255, 0, 0) : DrawEngine.parent.color(150, 0, 50);
@@ -58,20 +61,13 @@ public class ProjectLocation extends Location {
 
 	@Override
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
-		//TODO create menu to allow player to choose project
 		if (project == null) {
 			return Optional.of(new InMenuState(new ChooseNewProjectMenu(this, currentState), currentState));
-//			project = Project.randomProject();
-//			context.activeProjects.add(project);
 		}
 		else {
 			return super.handleLeftClick(mouseX, mouseY, context, currentState);
-//			project.manualDecrement(context.constants.manualClickPower);
 			
-		}
-		
-//		return Optional.empty();
-		
+		}		
 	}
 
 	@Override
