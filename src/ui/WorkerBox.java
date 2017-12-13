@@ -120,4 +120,11 @@ public class WorkerBox extends UIObject {
 		return worker != null;
 	}
 
+	public void reset() {
+		mouseLocked = false;
+		mouseOver = false;
+		position = originalPosition.copy();
+		
+	}
+
 }

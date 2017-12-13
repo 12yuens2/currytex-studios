@@ -14,6 +14,7 @@ public abstract class GameState {
 	public GameState(GameContext context, GameUI ui) {
 		this.context = context;
 		this.ui = ui;
+		ui.resetWorkerBoxes();
 	}
 	
 	public void display(DrawEngine drawEngine) {

@@ -10,12 +10,15 @@ import game.states.GameState;
 import objs.Level;
 import objs.Skill;
 import objs.Worker;
+import objs.activities.impl.MoreMoneyStatActivity;
 import processing.core.PVector;
 import ui.UIObject;
 import ui.WorkerBox;
 import ui.buttons.impl.MenuButton;
 import ui.locations.Location;
 import ui.locations.impl.GetNewProjectLocation;
+import ui.locations.impl.MoreMoneyStatLocation;
+import ui.locations.impl.MoreReputationStatLocation;
 import ui.locations.impl.ProjectLocation;
 import ui.locations.impl.RecruitLocation;
 import ui.locations.impl.RestLocation;
@@ -51,6 +54,7 @@ public class GameUI {
 		Level java = new Level();
 		java.level = 2;
 		a.skills.put(Skill.JAVA, java);
+		a.addMoreMoneyLevel();
 		
 		Worker b = new Worker("b");
 		
@@ -83,6 +87,11 @@ public class GameUI {
 		
 		/* Get new project location */
 		locations.add(new GetNewProjectLocation(projectLocations));
+		
+		
+		locations.add(new MoreMoneyStatLocation());
+		locations.add(new MoreReputationStatLocation());
+		
 		/* Draw bottom menu buttons */
 		drawBottomMenu();
 
@@ -114,20 +123,20 @@ public class GameUI {
 		context.gameTime.display(drawEngine);
 		
 		
-		for (MenuButton b : openMenuButtons) {
-			b.display(drawEngine);
-		}
-		
-		for (ProjectLocation pl : projectLocations) {
-			pl.display(drawEngine);
-		}
-		
-		for (Location l : locations) {
-			l.display(drawEngine);
-		}
-		
-		for (WorkerBox b : boxes) {
-			b.display(drawEngine);
+		drawUIObjects(drawEngine,
+				openMenuButtons, projectLocations, locations, boxes);
+	}
+	
+	/**
+	 * Draw all UI objects
+	 * @param drawEngine
+	 * @param uiObjectLists - Vararg of UI object lists
+	 */
+	private void drawUIObjects(DrawEngine drawEngine, ArrayList<? extends UIObject>... uiObjectLists) {
+		for (ArrayList<? extends UIObject> uiObjects : uiObjectLists) {
+			for (UIObject object : uiObjects) {
+				object.display(drawEngine);
+			}
 		}
 	}
 	
@@ -197,6 +206,13 @@ public class GameUI {
 				box.position = new PVector(mouseX - box.mouseXOffset, mouseY - box.mouseYOffset);
 			}
 		}
+	}
+
+	public void resetWorkerBoxes() {
+		for (WorkerBox workerBox : boxes) {
+			workerBox.reset();
+		}
+		
 	}
 	
 }

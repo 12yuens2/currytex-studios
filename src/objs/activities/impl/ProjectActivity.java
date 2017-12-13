@@ -25,9 +25,8 @@ public class ProjectActivity extends Activity {
 	public static int MINUTES_PER_WORK = 120;
 	
 	public static Random random = new Random();
-	
 
-	
+
 	public String name;
 	public int workRequired, revenue, timePerWork, expGain, reputation;
 	public boolean finished;
@@ -73,6 +72,10 @@ public class ProjectActivity extends Activity {
 		
 		worker.workTimer = 1 + (int) timeNeeded;
 		activeWorkers.add(worker);
+		
+		Random random = new Random();
+		revenue += random.nextInt(worker.moreMoney.level) * random.nextInt(worker.moreMoney.level);
+		reputation += random.nextInt(worker.moreReputation.level) * random.nextInt(worker.moreReputation.level);
 		
 		return this;
 	}

@@ -30,7 +30,8 @@ public class RestActivity extends Activity {
 	public Optional<GameState> finish(Worker worker, GameState currentState) {
 		worker.stressPercent = Math.max(0, worker.stressPercent - 40);
 		
-		return super.finish(worker, currentState);
+		location.workers.remove(worker);
+		return Optional.empty();
 	}
 
 

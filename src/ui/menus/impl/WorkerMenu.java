@@ -25,18 +25,15 @@ public class WorkerMenu extends Menu {
 	@Override
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
-		drawEngine.drawText(12, "Worker name: " + worker.name, position.x, position.y, DrawEngine.parent.color(0));
-		
-		float pos = position.y + 20;
-		for (Entry<Skill, Level> entry : worker.skills.entrySet()) {
-			Level level = entry.getValue();
-			String skillDisplay = entry.getKey().toString() + ": " + level.level + ", " + level.exp + "/" + level.expToLevel;
+		int xPos = (int) (position.x - width + 150);
+		int yPos = (int) (position.y - height + 50);
 			
-			drawEngine.drawText(12, skillDisplay, position.x, pos, DrawEngine.parent.color(0));
-			pos += 20;
+		for (String property : worker.getProperties()) {
+			drawEngine.drawText(16, property, xPos, yPos, DrawEngine.parent.color(0));
+			yPos += 30;
 		}
+		xPos += 250;
 		
-		drawEngine.drawText(12, "Stress: " + worker.stressPercent, position.x, pos, DrawEngine.parent.color(0));
 	}
 	
 //

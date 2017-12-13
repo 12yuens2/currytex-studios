@@ -30,6 +30,8 @@ public abstract class Activity {
 	 * @param currentState - The current state of the game.
 	 */
 	public Optional<GameState> finish(Worker worker, GameState currentState) {
+		worker.stressPercent = Math.min(100, worker.stressPercent + 10);
+		
 		location.workers.remove(worker);
 		return Optional.empty();
 	}

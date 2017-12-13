@@ -34,7 +34,6 @@ public class GettingProjectActivity extends Activity {
 		super.finish(worker, currentState);
 		
 		projectLocation.occupied = false;
-		worker.stressPercent = Math.min(100, worker.stressPercent + 10);
 		
 		ChooseNewProjectMenu projectMenu = new ChooseNewProjectMenu(projectLocation, currentState);
 		return Optional.of(new InMenuState(projectMenu, currentState));

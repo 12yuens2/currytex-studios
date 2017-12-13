@@ -59,18 +59,6 @@ public class ProjectLocation extends Location {
 		}
 	}
 
-//	@Override
-//	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
-//		if (project == null) {
-//			System.out.println("retnr ");
-//			return Optional.of(new InMenuState(new ChooseNewProjectMenu(this, currentState), currentState));
-//		}
-//		else {
-//			return super.handleLeftClick(mouseX, mouseY, context, currentState);
-//			
-//		}		
-//	}
-
 	@Override
 	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
