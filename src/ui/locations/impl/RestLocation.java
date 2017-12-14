@@ -13,8 +13,8 @@ import ui.locations.Location;
 public class RestLocation extends Location {
 
 	
-	public RestLocation(float xPos, float yPos, int size, int col) {
-		super(xPos, yPos, 75, DrawEngine.parent.color(200, 200, 100));
+	public RestLocation() {
+		super(100, 200, 75, DrawEngine.parent.color(200, 200, 100));
 	}
 
 	@Override

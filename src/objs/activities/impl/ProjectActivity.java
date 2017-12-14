@@ -94,7 +94,7 @@ public class ProjectActivity extends Activity {
 		}
 		
 		/* Add stress to worker */
-		worker.stressPercent = Math.min(100, worker.stressPercent + 10);
+		worker.addStress(10);
 		
 		return super.finish(worker, currentState);
 	}

@@ -14,7 +14,7 @@ public class GetNewProjectLocation extends Location {
 	ArrayList<ProjectLocation> projectLocations;
 	
 	public GetNewProjectLocation(ArrayList<ProjectLocation> projectLocations) {
-		super(700, 200, 75, DrawEngine.parent.color(200, 100, 150));
+		super(1175, 700, 75, DrawEngine.parent.color(200, 100, 150));
 		this.projectLocations = projectLocations;
 	}
 	

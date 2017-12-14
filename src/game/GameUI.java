@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import app.DevStudios;
 import game.states.GameState;
+import objs.Addiction;
 import objs.Level;
 import objs.Skill;
 import objs.Worker;
@@ -16,6 +17,7 @@ import ui.UIObject;
 import ui.WorkerBox;
 import ui.buttons.impl.MenuButton;
 import ui.locations.Location;
+import ui.locations.impl.GetCoffeeLocation;
 import ui.locations.impl.GetNewProjectLocation;
 import ui.locations.impl.MoreMoneyStatLocation;
 import ui.locations.impl.MoreReputationStatLocation;
@@ -55,6 +57,7 @@ public class GameUI {
 		java.level = 2;
 		a.skills.put(Skill.JAVA, java);
 		a.addMoreMoneyLevel();
+		a.addictionLevel = Addiction.ADDICTED;
 		
 		Worker b = new Worker("b");
 		
@@ -67,26 +70,29 @@ public class GameUI {
 		int yCoord = 75;
 		int numWorkers = 8;
 		for (int i = 0; i < numWorkers; i++) {
-			boxes.add(new WorkerBox(DevStudios.SCREEN_X - 275, yCoord + (((DevStudios.SCREEN_Y - 50)/numWorkers) * i), 45));
+			boxes.add(new WorkerBox(DevStudios.SCREEN_X - 250, yCoord + (((DevStudios.SCREEN_Y - 50)/numWorkers) * i), 45));
 		}
 		boxes.get(0).worker = a;
 		boxes.get(1).worker = b;
 		
 		/* Draw project locations */
-		int xCoord = 200;
+		int xCoord = 100;
 		int numProjects = 4;
 		for (int i = 0; i < numProjects; i++) {
-			projectLocations.add(new ProjectLocation(xCoord + (((DevStudios.SCREEN_X - 400)/numProjects) * i), DevStudios.SCREEN_Y - 250, 100));
+			projectLocations.add(new ProjectLocation(xCoord + (((DevStudios.SCREEN_X - 525)/numProjects) * i), DevStudios.SCREEN_Y - 200, 100));
 		}
 		
 		/* Rest location */
-		locations.add(new RestLocation(300, 200, 0, 0));
+		locations.add(new RestLocation());
 		
 		/* Recruit location */
-		locations.add(new RecruitLocation(500, 200, 0, 0));
+		locations.add(new RecruitLocation());
 		
 		/* Get new project location */
 		locations.add(new GetNewProjectLocation(projectLocations));
+		
+		/* Get coffee location */
+		locations.add(new GetCoffeeLocation());
 		
 		
 		locations.add(new MoreMoneyStatLocation());
@@ -103,11 +109,11 @@ public class GameUI {
 	//TODO make actual menus not the abstract menu class
 	private void drawBottomMenu() {
 		/* Draw all workers menu */
-		openMenuButtons.add(new MenuButton(175, 825, 100, 30, DrawEngine.parent.color(20, 20, 200), 
+		openMenuButtons.add(new MenuButton(175, 850, 100, 30, DrawEngine.parent.color(20, 20, 200), 
 				   new Menu(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 600, 300)));
 		
 		/* Draw upgrades menu */
-		openMenuButtons.add(new MenuButton(400, 825, 100, 30, DrawEngine.parent.color(20, 200, 20),
+		openMenuButtons.add(new MenuButton(400, 850, 100, 30, DrawEngine.parent.color(20, 200, 20),
 				   new UpgradesMenu()));
 		
 		/* Draw some other menu */

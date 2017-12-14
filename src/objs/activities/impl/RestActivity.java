@@ -28,7 +28,7 @@ public class RestActivity extends Activity {
 	
 	@Override
 	public Optional<GameState> finish(Worker worker, GameState currentState) {
-		worker.stressPercent = Math.max(0, worker.stressPercent - 40);
+		worker.loseStress(40);
 		
 		location.workers.remove(worker);
 		return Optional.empty();

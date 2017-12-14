@@ -2,7 +2,6 @@ package ui.locations.impl;
 
 import java.util.Optional;
 
-import app.DevStudios;
 import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
@@ -10,10 +9,7 @@ import game.states.impl.InMenuState;
 import objs.Worker;
 import objs.activities.Activity;
 import objs.activities.impl.ProjectActivity;
-import processing.core.PConstants;
 import ui.locations.Location;
-import ui.menus.impl.ChooseNewProjectMenu;
-import ui.menus.impl.ProjectMenu;
 
 public class ProjectLocation extends Location {
 	
@@ -21,7 +17,7 @@ public class ProjectLocation extends Location {
 	public boolean occupied;
 	
 	public ProjectLocation(float xPos, float yPos, int size) {
-		super(xPos, yPos, size, 0);
+		super(xPos, yPos, 75, 0);
 		
 		this.occupied = false;
 	}

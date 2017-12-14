@@ -7,8 +7,8 @@ import ui.locations.Location;
 
 public class RecruitLocation extends Location {
 
-	public RecruitLocation(float xPos, float yPos, int size, int col) {
-		super(xPos, yPos, 75, DrawEngine.parent.color(100,200,200));
+	public RecruitLocation() {
+		super(400, 200, 75, DrawEngine.parent.color(100,200,200));
 	}
 
 	@Override
