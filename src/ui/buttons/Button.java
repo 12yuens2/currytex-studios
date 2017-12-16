@@ -9,8 +9,7 @@ import processing.core.PVector;
 import ui.UIObject;
 
 public abstract class Button extends UIObject {
-	
-	
+		
 	public Button(float xPos, float yPos, int width, int height, int col) {
 		super(xPos, yPos, width, height, col);
 	}

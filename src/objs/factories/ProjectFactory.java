@@ -1,7 +1,12 @@
 package objs.factories;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
+import objs.Skill;
 import objs.activities.impl.ProjectActivity;
 
 public class ProjectFactory {
@@ -9,14 +14,19 @@ public class ProjectFactory {
 	private static Random random = new Random();
 	
 	public enum ProjectType {FREE, NORMAL, CORPORATE};
+
 	public enum Difficulty {VERY_EASY, EASY, NORMAL, HARD, VERY_HARD};
 	
-	public static ProjectActivity getRandomProject() {
+	public static ProjectActivity getRandomProject(HashMap<Skill, Integer> studioReputation) {
+		
 		ProjectType type = ProjectType.values()[random.nextInt(ProjectType.values().length)];
+		ProjectCategory category = ProjectCategory.values()[random.nextInt(ProjectCategory.values().length)];
 		Difficulty difficulty = Difficulty.values()[random.nextInt(Difficulty.values().length)];
 		
-		int workRequired = getWorkRequired(difficulty);
-		int revenue = getRevenue(difficulty) * workRequired;
+		ArrayList<Skill> skillsRequired = getSkillsRequired(category);
+		
+		int features = getNumFeatures(difficulty);
+		int revenue = getMoneyPerFeature(difficulty) * features;
 		int reputation = getReputation(difficulty);
 		int timePerWork = getTimePerWork(difficulty);
 		
@@ -39,54 +49,67 @@ public class ProjectFactory {
 		
 		}
 		
-		return new ProjectActivity("TODO name", workRequired, revenue, reputation, timePerWork, type, difficulty);
+		return new ProjectActivity("TODO name", features, revenue, reputation, timePerWork, type, difficulty, skillsRequired);
 	}
 	
 	
-	private static int getWorkRequired(Difficulty difficulty) {
-		int workRequired = random.nextInt(10) + 1; //TODO 10 as paramaters
+	private static ArrayList<Skill> getSkillsRequired(ProjectCategory category) {
+		ArrayList<Skill> skillsRequired = new ArrayList<>();
+		List<Skill> skills = category.getSkillsRequired();
+		Collections.shuffle(skills);
+		
+		for (int i = 0; i < 1 + random.nextInt(skills.size()); i++) {
+			skillsRequired.add(skills.get(i));
+		}
+		
+		return skillsRequired;
+		
+	}
+
+
+	private static int getNumFeatures(Difficulty difficulty) {
 		
 		switch (difficulty) {
-			case VERY_EASY:
-				return 1 + (int) (workRequired * 0.7);
+			case VERY_EASY: /* Between 3 and 5 features */
+				return 3 + random.nextInt(2);
 				
-			case EASY:
-				return 1 + (int) (workRequired * 0.85);
+			case EASY: /* Between 3 and 10 features */
+				return 3 + random.nextInt(7);
 				
-			case NORMAL:
-				return workRequired;
+			case NORMAL: /* Between 5 and 15 features */
+				return 5 + random.nextInt(10);
 				
-			case HARD:
-				return (int) (workRequired * 1.5);
+			case HARD: /* Between 10 and 15 features */
+				return 10 + random.nextInt(5);
 				
-			case VERY_HARD:
-				return (int) (workRequired * 2.5);
+			case VERY_HARD: /* Between 15 and 20 features */
+				return 15 + random.nextInt(5);
 				
 			default:
-				return workRequired;
+				throw new IllegalArgumentException();
 		}
 	}
 	
-	private static int getRevenue(Difficulty difficulty) {
-		int revenue = random.nextInt(100) + 1; //TODO scale with reputation
+	private static int getMoneyPerFeature(Difficulty difficulty) {
+		
 		switch(difficulty) {
-			case VERY_EASY:
-				return (int) (revenue * 0.8);
+			case VERY_EASY: /* Between 5 to 10 */ 
+				return 5 + random.nextInt(5);
 				
-			case EASY:
-				return (int) (revenue * 0.9);
+			case EASY: /* Between 10 to 15 */
+				return 10 + random.nextInt(5);
 				
-			case NORMAL:
-				return revenue;
+			case NORMAL: /* 10 to 20 */
+				return 10 + random.nextInt(10);
 				
-			case HARD:
-				return (int) (revenue * 2);
+			case HARD: /* 15 to 20 */
+				return 15 + random.nextInt(5);
 				
-			case VERY_HARD:
-				return (int) (revenue * 3);
+			case VERY_HARD: /* 20 to 25 */
+				return 20 + random.nextInt(5);
 				
 			default:
-				return revenue;
+				throw new IllegalArgumentException();
 			
 		}
 	}

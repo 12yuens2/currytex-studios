@@ -8,7 +8,7 @@ import game.GameContext;
 import game.GameTime;
 import game.states.GameState;
 import game.states.impl.InMenuState;
-import game.states.impl.StartState;
+import game.states.impl.PlayingState;
 import objs.Level;
 import objs.Skill;
 import objs.Worker;

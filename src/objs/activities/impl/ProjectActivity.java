@@ -39,18 +39,18 @@ public class ProjectActivity extends Activity {
 	
 	
 	public ProjectActivity(String name, int workRequired, int revenue, int reputation, int timePerWork,
-			ProjectType type, Difficulty difficulty) {
+			ProjectType type, Difficulty difficulty, ArrayList<Skill> skillsRequried) {
 		super(null);
 		this.name = name;
 		this.difficulty = difficulty;
 		this.type = type;
 		this.activeWorkers = new ArrayList<>();
-		this.skillsRequired = new ArrayList<>();
+		this.skillsRequired = skillsRequried;
 		
 		this.finished = false;
 		
 		//TODO create projects with skills based on type of project
-		skillsRequired.add(Skill.JAVA);
+//		skillsRequired.add(Skill.C);
 
 		this.workRequired = workRequired;
 		this.revenue = revenue;
