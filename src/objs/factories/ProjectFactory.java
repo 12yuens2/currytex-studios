@@ -27,14 +27,14 @@ public class ProjectFactory {
 		
 		int features = getNumFeatures(difficulty);
 		int revenue = getMoneyPerFeature(difficulty) * features;
-		int reputation = getReputation(difficulty);
+		int reputation = getReputationPerFeature(difficulty) * features;
 		int timePerWork = getTimePerWork(difficulty);
 		
 		switch (type) {
 			case CORPORATE:
-				double ratio = 2 + random.nextDouble();
+				double ratio = 1 + random.nextDouble();
 				revenue *= 1 + ratio;
-				reputation -= reputation * ratio;
+				reputation -= (reputation * ratio);
 				break;
 				
 			case FREE:
@@ -114,26 +114,25 @@ public class ProjectFactory {
 		}
 	}
 	
-	private static int getReputation(Difficulty difficulty) {
-		int reputation = 1 + random.nextInt(20);
+	private static int getReputationPerFeature(Difficulty difficulty) {
 		switch(difficulty) {
-			case VERY_EASY:
-				return (int) (reputation * 0.75);
+			case VERY_EASY: /* Between 1 to 3 */
+				return 1 + random.nextInt(2);
 				
-			case EASY:
-				return (int) (reputation * 0.9);
+			case EASY: /* Between 2 to 4 */
+				return 2 + random.nextInt(2);
 				
-			case NORMAL:
-				return reputation;
+			case NORMAL: /* Between 3 to 7 */
+				return 3 + random.nextInt(4);
 				
-			case HARD:
-				return (int) (reputation * 1.5);
+			case HARD: /* Between 6 to 8 */
+				return 6 + random.nextInt(2);
 				
-			case VERY_HARD:
-				return (int) (reputation * 2.5);
+			case VERY_HARD: /* Between 8 to 10 */
+				return 8 + random.nextInt(2);
 				
 			default:
-				return reputation;
+				throw new IllegalArgumentException();
 		
 		}
 	}

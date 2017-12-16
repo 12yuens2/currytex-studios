@@ -48,11 +48,15 @@ public class Worker {
 		calculateWage();
 	}
 	
-	public Worker(String name, int moreMoneyLevel, int moreReputationLevel, Addiction addictionLevel) {
+	public Worker(String name, int moreMoneyLevel, int moreReputationLevel, Addiction addictionLevel, HashMap<Skill, Level> skills) {
 		this(name);
 		this.addictionLevel = addictionLevel;
-		this.moreMoney.gainExp(moreMoneyLevel);
-		this.moreReputation.gainExp(moreReputationLevel);
+		this.moreMoney.level = moreMoneyLevel;
+		this.moreReputation.level = moreReputationLevel;
+		
+		this.skills = skills;
+		
+		calculateWage();
 	}
 	
 	
@@ -145,6 +149,10 @@ public class Worker {
 	private void calculateWage() {
 		wage = BASE_WAGE + (moreMoney.level * 3)
 						 + (moreReputation.level * 2);
+		
+		for (Entry<Skill, Level> entry : skills.entrySet()) {
+			wage += entry.getValue().level;
+		}
 	}
 	
 	public void paySalary(Studio studio) {

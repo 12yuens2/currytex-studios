@@ -6,12 +6,13 @@ import game.DrawEngine;
 
 public class Studio {
 
-	public int currency, coffee;
+	public int currency, coffee, totalReputation;
 	public HashMap<Skill, Integer> reputation;
 
 	public Studio() {
 		this.currency = 10000;
 		this.coffee = 5;
+		this.totalReputation = 0;
 		this.reputation = new HashMap<>();
 	}
 	
@@ -25,7 +26,7 @@ public class Studio {
 	
 	public void display(DrawEngine drawEngine) {
 		drawEngine.drawText(16, "$: " + currency, 800, 25, DrawEngine.parent.color(0));
-		drawEngine.drawText(16, "R: " + reputation, 1000, 25, DrawEngine.parent.color(0));
+		drawEngine.drawText(16, "R: " + totalReputation, 1000, 25, DrawEngine.parent.color(0));
 		drawEngine.drawText(16, "C: " + coffee, 1200, 25, DrawEngine.parent.color(0));
 	}
 }

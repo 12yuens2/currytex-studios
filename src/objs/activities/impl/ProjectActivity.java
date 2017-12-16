@@ -105,6 +105,7 @@ public class ProjectActivity extends Activity {
 	 */
 	public void finish(Studio studio) {
 		studio.currency += revenue;
+		studio.totalReputation += reputation;
 		for (Skill skill : skillsRequired) {
 			studio.addReputation(skill, reputation);
 		}
