@@ -20,7 +20,7 @@ public class RestActivity extends Activity {
 	
 	@Override
 	public Activity start(Worker worker) {
-		worker.workTimer = REST_TIME;
+		worker.setWorkTimer(REST_TIME);
 		return this;		
 	}	
 	

@@ -70,7 +70,7 @@ public class ProjectActivity extends Activity {
 			}
 		}
 		
-		worker.workTimer = 1 + (int) timeNeeded;
+		worker.setWorkTimer(1 + (int) timeNeeded);
 		activeWorkers.add(worker);
 		
 		Random random = new Random();

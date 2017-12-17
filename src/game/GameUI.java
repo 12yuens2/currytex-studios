@@ -15,6 +15,7 @@ import objs.activities.impl.MoreMoneyStatActivity;
 import processing.core.PVector;
 import ui.UIObject;
 import ui.WorkerBox;
+import ui.WorkerInfo;
 import ui.buttons.impl.MenuButton;
 import ui.locations.Location;
 import ui.locations.impl.GetCoffeeLocation;
@@ -37,6 +38,7 @@ public class GameUI {
 	public ArrayList<Location> locations; /* Represents locations */
 	public ArrayList<ProjectLocation> projectLocations; /* Represents project locations */
 	public ArrayList<WorkerBox> boxes; /* Represents workers */
+	public ArrayList<WorkerInfo> workerInfos; /* Represents workers */
 	
 	public GameUI(GameContext context) {
 		this.context = context;
@@ -45,6 +47,7 @@ public class GameUI {
 		this.locations = new ArrayList<>();
 		this.projectLocations = new ArrayList<>();
 		this.boxes = new ArrayList<>();
+		this.workerInfos = new ArrayList<>();
 		
 		testInit();
 	}
@@ -73,6 +76,10 @@ public class GameUI {
 			boxes.add(new WorkerBox(DevStudios.SCREEN_X - 250, yCoord + (((DevStudios.SCREEN_Y - 50)/numWorkers) * i), 45));
 		}
 		boxes.get(0).worker = a;
+		
+		for (WorkerBox box : boxes) {
+			workerInfos.add(new WorkerInfo(box));
+		}
 //		boxes.get(1).worker = b;
 		
 		/* Draw project locations */
@@ -130,7 +137,11 @@ public class GameUI {
 		
 		
 		drawUIObjects(drawEngine,
-				openMenuButtons, projectLocations, locations, boxes);
+				openMenuButtons, projectLocations, locations, workerInfos);
+		
+		for (WorkerInfo info : workerInfos) {
+			if (info.workerBox.mouseLocked) info.workerBox.display(drawEngine);
+		}
 	}
 	
 	/**

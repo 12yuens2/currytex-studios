@@ -23,6 +23,8 @@ public class WorkerBox extends UIObject {
 
 	public final PVector originalPosition;
 	public float mouseXOffset, mouseYOffset;
+	
+	/* mouseOver for hover, mouseLocked for dragging */
 	public boolean mouseOver, mouseLocked;
 	
 	/* Developer associated with this box */
@@ -56,7 +58,6 @@ public class WorkerBox extends UIObject {
 			int col = worker.currentActivity == null ? DrawEngine.parent.color(0, 255, 0) : DrawEngine.parent.color(0, 105, 0);
 			
 			drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
-			drawEngine.drawRectangle(PConstants.CORNER, DrawEngine.parent.color(0,0,180), position.x, position.y + 30, worker.workTimer, 20);
 			drawEngine.drawText(16, worker.name, position.x, position.y + width/2, DrawEngine.parent.color(0));
 		}
 		
@@ -118,6 +119,10 @@ public class WorkerBox extends UIObject {
 	
 	public boolean hasWorker() {
 		return worker != null;
+	}
+	
+	public void setWorker(Worker worker) {
+		this.worker = worker;
 	}
 
 	public void reset() {

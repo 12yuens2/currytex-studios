@@ -29,21 +29,27 @@ public class DrawEngine {
         }
     }
 
+
+	public void drawText(int textSize, String text, float posX, float posY, int col) {	
+		drawText(PConstants.CENTER, PConstants.CENTER, textSize, text, posX, posY, col);
+	}
+	
     /**
      * Generic draw text function for other classes to draw text to the screen
+     * @param align - constant of text alignment for the text
      * @param textSize - size of the text
      * @param text - text to be drawn
      * @param posX - x position of the text
      * @param posY - y position of the text
      * @param col - colour of the text
      */
-	public void drawText(int textSize, String text, float posX, float posY, int col) {
+	public void drawText(int alignX, int alignY, int textSize, String text, float posX, float posY, int col) {
 		PFont font = parent.createFont("Arial", textSize, true);
 		
 		parent.textFont(font, textSize);
 		parent.fill(col);
+		parent.textAlign(alignX, alignY);
 		parent.text(text, posX, posY);
-		parent.textAlign(PConstants.CENTER, PConstants.CENTER);
 	}
 	
     /**

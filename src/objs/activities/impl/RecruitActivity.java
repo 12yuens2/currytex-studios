@@ -17,7 +17,7 @@ public class RecruitActivity extends Activity {
 
 	@Override
 	public Activity start(Worker worker) {
-		worker.workTimer = RECRUIT_TIME;
+		worker.setWorkTimer(RECRUIT_TIME);
 		return this;
 	}
 

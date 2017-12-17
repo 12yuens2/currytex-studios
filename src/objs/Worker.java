@@ -30,6 +30,7 @@ public class Worker {
 	
 	public int stressPercent;
 	
+	public float workTimerStart;
 	public float workTimer;
 	
 	public Activity currentActivity;
@@ -40,6 +41,7 @@ public class Worker {
 		this.salary = 0;
 		this.stressPercent = 0;
 		this.workTimer = 0;
+		this.workTimerStart = 1;
 		
 		this.skills = new HashMap<>();
 		this.moreMoney = new StatLevel();
@@ -112,7 +114,7 @@ public class Worker {
 				studio.coffee--;
 			}
 			else {
-				workTimer += 5;
+				setWorkTimer(workTimer + 1);
 				addStress(1);
 			}
 		}		
@@ -134,6 +136,11 @@ public class Worker {
 	
 	public void loseStress(int amount) {
 		stressPercent = Math.max(0, stressPercent - amount);
+	}
+	
+	public void setWorkTimer(float time) {
+		workTimer = time;
+		workTimerStart = time;
 	}
 	
 	

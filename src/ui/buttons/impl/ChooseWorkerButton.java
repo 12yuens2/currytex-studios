@@ -8,6 +8,7 @@ import game.GameContext;
 import game.states.GameState;
 import objs.Worker;
 import ui.WorkerBox;
+import ui.WorkerInfo;
 import ui.buttons.Button;
 
 public class ChooseWorkerButton extends Button {
@@ -27,10 +28,10 @@ public class ChooseWorkerButton extends Button {
 			GameState currentState) {
 
 		/* Assign worker from this button to the box location */
-		ArrayList<WorkerBox> workerBoxes = currentState.ui.boxes;
-		for (WorkerBox box : workerBoxes) {
+		ArrayList<WorkerInfo> workerBoxes = currentState.ui.workerInfos;
+		for (WorkerInfo box : workerBoxes) {
 			if (!box.hasWorker()) {
-				box.worker = worker;
+				box.setWorker(worker);
 				
 				context.workers.add(worker);
 				return Optional.of(previousState);
