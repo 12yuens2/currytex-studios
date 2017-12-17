@@ -44,7 +44,6 @@ public class PlayingState extends GameState {
 	}
 
 
-
 	@Override
 	public GameState handleMouseDrag(GameInput input) {
 		ui.handleMouseDrag();

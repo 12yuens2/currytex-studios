@@ -143,14 +143,14 @@ public class DrawEngine {
 //		parent.rect(xPos, yPos, width, height);
 //	}
 	
-//	/**
-//	 * Draw a rectangle with opacity.
-//	 */
-//	public void drawRectangle(int col, float xPos, float yPos, float width, float height, int opacity) {
-//		parent.rectMode(PConstants.CORNER);
-//		parent.fill(col, opacity);
-//		parent.rect(xPos, yPos, width, height);
-//	}
+	/**
+	 * Draw a rectangle with opacity.
+	 */
+	public void drawRectangle(int rectMode, int col, float xPos, float yPos, float width, float height, int opacity) {
+		parent.rectMode(rectMode);
+		parent.fill(col, opacity);
+		parent.rect(xPos, yPos, width, height);
+	}
 	
 	
 	/**

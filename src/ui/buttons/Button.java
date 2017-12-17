@@ -15,7 +15,7 @@ public abstract class Button extends UIObject {
 	}
 	
 	public void display(DrawEngine drawEngine) {
-		drawEngine.drawRectangle(PConstants.RADIUS, col, position.x, position.y, width, height);
+		drawEngine.drawRectangle(PConstants.RADIUS, col, position.x, position.y, width, height);		
 	}
 
 }

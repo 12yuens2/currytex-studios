@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -139,9 +140,18 @@ public class GameUI {
 		drawUIObjects(drawEngine,
 				openMenuButtons, projectLocations, locations, workerInfos);
 		
-		for (WorkerInfo info : workerInfos) {
-			if (info.workerBox.mouseLocked) info.workerBox.display(drawEngine);
+		boolean hasDrag = false;
+		Iterator<WorkerInfo> infoIt = workerInfos.iterator();
+		while(infoIt.hasNext() && !hasDrag) {
+			WorkerInfo info = infoIt.next();
+			
+			if (info.workerBox.mouseLocked) {
+				info.workerBox.display(drawEngine);
+				hasDrag = true;
+			}
 		}
+		
+		
 	}
 	
 	/**
@@ -152,6 +162,7 @@ public class GameUI {
 	private void drawUIObjects(DrawEngine drawEngine, ArrayList<? extends UIObject>... uiObjectLists) {
 		for (ArrayList<? extends UIObject> uiObjects : uiObjectLists) {
 			for (UIObject object : uiObjects) {
+				object.mouseOver = object.contains(mouseX, mouseY);
 				object.display(drawEngine);
 			}
 		}
@@ -162,15 +173,15 @@ public class GameUI {
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;
 		updateBoxes();
-		
 	}
 	
 	private void updateBoxes() {
 		for (WorkerBox b : boxes) {
 			b.mouseOver = b.contains(mouseX, mouseY);
-		}
-		
+		}		
 	}
+	
+	
 
 	public GameState handleLeftClick(GameState currentState) {
 		

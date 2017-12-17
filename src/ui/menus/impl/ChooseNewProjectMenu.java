@@ -34,7 +34,7 @@ public class ChooseNewProjectMenu extends Menu {
 	@Override
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
-		PVector pos = new PVector(position.x - width + 50, position.y - height + 50);
+		PVector pos = new PVector(position.x - width + 50, position.y - height + 30);
 		//int xPos = (int) (position.x - width + 50);
 		for (ProjectActivity project : newProjects) {
 			project.menuDisplay(drawEngine, pos.copy());

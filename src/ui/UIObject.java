@@ -17,12 +17,14 @@ public abstract class UIObject {
 
 	public PVector position;
 	
+	public boolean mouseOver;
 	public int width, height;
 	public int col;
 	
 	
 	public UIObject(float xPos, float yPos, int width, int height, int col) {
 		this.position = new PVector(xPos, yPos);
+		this.mouseOver = false;
 		this.width = width;
 		this.height = height;
 		this.col = col;

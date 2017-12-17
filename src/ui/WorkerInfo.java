@@ -34,6 +34,11 @@ public class WorkerInfo extends UIObject {
 
 		workerBox.display(drawEngine);
 		
+		/* Display hover */
+		if (mouseOver) {
+			drawEngine.drawRectangle(PConstants.CENTER, col, position.x - 2*width, position.y, width, height);
+		}
+		
 	}
 	
 	private void drawProgressBar(DrawEngine drawEngine) {
@@ -48,6 +53,11 @@ public class WorkerInfo extends UIObject {
 		drawEngine.drawRectangle(PConstants.CORNER, DrawEngine.parent.color(50,50,250), 
 				workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y + 15, timer, 30);
 	}
+	
+	
+	public void displayHover(DrawEngine drawEngine) {
+	}
+	
 
 	@Override
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
