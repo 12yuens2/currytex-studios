@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Random;
 
+import game.DrawEngine;
 import game.states.GameState;
 import objs.Level;
 import objs.Skill;
@@ -14,6 +15,9 @@ import objs.Worker;
 import objs.activities.Activity;
 import objs.factories.ProjectFactory.Difficulty;
 import objs.factories.ProjectFactory.ProjectType;
+import processing.core.PConstants;
+import processing.core.PImage;
+import processing.core.PVector;
 import ui.menus.impl.ProjectMenu;
 
 public class ProjectActivity extends Activity {
@@ -119,10 +123,10 @@ public class ProjectActivity extends Activity {
 	public ArrayList<String> getProperties() {
 		ArrayList<String> projectProperties = new ArrayList<String>();
 		projectProperties.add("Project name: " + name);
-		projectProperties.add("Skills required:" + skillsRequired.toString());
+//		projectProperties.add("Skills required:" + skillsRequired.toString());
 		projectProperties.add("Number of features: " + workRequired);
-		projectProperties.add("Money: " + revenue);
-		projectProperties.add("Reputation: " + reputation);
+//		projectProperties.add("Money: " + revenue);
+//		projectProperties.add("Reputation: " + reputation);
 		projectProperties.add("Difficulty: " + difficulty);
 		projectProperties.add("Type: " + type); 
 		
@@ -137,6 +141,38 @@ public class ProjectActivity extends Activity {
 		}		
 	}
 	
+	
+	public void menuDisplay(DrawEngine drawEngine, PVector position) {
+
+		int xPos = (int) position.x;
+		int yPos = (int) position.y;
+		
+		/* Draw properties */
+		int propertiesYPos = yPos;
+		for (String s : getProperties()) {
+			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, s,
+					xPos, propertiesYPos, DrawEngine.BLACK);
+			propertiesYPos += 30;
+		}
+		
+		/* Draw skills required */
+		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Skills required: " + skillsRequired.toString(), 
+				xPos, propertiesYPos, DrawEngine.BLACK);
+		
+		
+		/* Draw money and reputation */
+		int iconYPos = yPos + 50;
+		
+		int moneyXPos = xPos + 300;
+		DrawEngine.parent.image(drawEngine.moneyIcon, moneyXPos, iconYPos);
+		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, revenue+": ", moneyXPos+40, iconYPos+20, DrawEngine.BLACK);
+
+		int repXPos = moneyXPos + 150;
+		DrawEngine.parent.image(drawEngine.reputationIcon, repXPos, iconYPos);
+		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, reputation+": ", repXPos+40, iconYPos+20, DrawEngine.BLACK);
+		
+		
+	}
 	
 	
 	

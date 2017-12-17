@@ -6,6 +6,7 @@ import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
 import objs.activities.impl.ProjectActivity;
+import processing.core.PConstants;
 import ui.buttons.Button;
 import ui.locations.impl.ProjectLocation;
 
@@ -40,6 +41,11 @@ public class ChooseProjectButton extends Button {
 			GameState currentState) {
 		
 		return Optional.empty();
+	}
+	
+	@Override
+	public void display(DrawEngine drawEngine) {
+		drawEngine.drawRectangle(PConstants.RADIUS, col, position.x, position.y, width, height);
 	}
 
 }

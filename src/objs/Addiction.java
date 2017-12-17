@@ -6,21 +6,11 @@ public enum Addiction {
 	@Override
 	public String toString() {
 		switch(this) {
-			case ADDICTED:
-				return "Addicted";
-
-			case FREQUENT:
-				return "Frequent";
-				
-			case NONE:
-				return "None";
-				
-			case SOMETIMES:
-				return "Sometimes";
-				
-			default:
-				throw new IllegalArgumentException();
-			
+			case ADDICTED: 	return "Addicted";
+			case FREQUENT:	return "Frequent";
+			case NONE: 		return "None";
+			case SOMETIMES: return "Sometimes";
+			default:		throw new IllegalArgumentException();
 		}
 	}
 }

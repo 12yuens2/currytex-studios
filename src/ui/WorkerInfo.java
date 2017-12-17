@@ -14,7 +14,7 @@ public class WorkerInfo extends UIObject {
 	public Worker worker;
 	
 	public WorkerInfo(WorkerBox box) {
-		super(box.position.x + 80, box.position.y, 140, 50, DrawEngine.parent.color(0));
+		super(box.position.x + 80, box.position.y, 140, 50, DrawEngine.BLACK);
 		this.workerBox = box;
 		this.worker = box.worker;
 	}
@@ -26,7 +26,7 @@ public class WorkerInfo extends UIObject {
 		/* Progress bar box */
 		if (worker != null) {
 			drawProgressBar(drawEngine);
-			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Stress: " + worker.stressPercent, 
+			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Stress: " + worker.stressPercent + "%", 
 					workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y + 5, 
 					DrawEngine.parent.color(255));
 		}

@@ -38,7 +38,7 @@ public class RecruitMenu extends Menu {
 			int yPos = (int) (position.y - height + 50);
 			
 			for (String property : newWorker.getProperties()) {
-				drawEngine.drawText(16, property, xPos, yPos, DrawEngine.parent.color(0));
+				drawEngine.drawText(16, property, xPos, yPos, DrawEngine.BLACK);
 				yPos += 30;
 			}
 			xPos += 250;

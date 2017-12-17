@@ -15,7 +15,21 @@ public class ProjectFactory {
 	
 	public enum ProjectType {FREE, NORMAL, CORPORATE};
 
-	public enum Difficulty {VERY_EASY, EASY, NORMAL, HARD, VERY_HARD};
+	public enum Difficulty {
+		VERY_EASY, EASY, NORMAL, HARD, VERY_HARD;
+		
+		@Override
+		public String toString() {
+			switch(this) {
+				case VERY_EASY: return "Very easy";
+				case EASY: 		return "Easy";
+				case NORMAL: 	return "Normal";
+				case HARD: 		return "Hard";
+				case VERY_HARD: return "Very hard";
+				default: 		throw new IllegalArgumentException();
+			}
+		}
+	};
 	
 	public static ProjectActivity getRandomProject(HashMap<Skill, Integer> studioReputation) {
 		
@@ -82,8 +96,8 @@ public class ProjectFactory {
 			case HARD: /* Between 5 and 7 features */
 				return 5 + random.nextInt(2);
 				
-			case VERY_HARD: /* Between 6 and 8 features */
-				return 6 + random.nextInt(2);
+			case VERY_HARD: /* Between 8 and 10 features */
+				return 8 + random.nextInt(2);
 				
 			default:
 				throw new IllegalArgumentException();

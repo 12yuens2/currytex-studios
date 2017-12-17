@@ -9,6 +9,7 @@ import game.states.impl.InMenuState;
 import objs.Worker;
 import objs.activities.Activity;
 import objs.activities.impl.ProjectActivity;
+import processing.core.PConstants;
 import ui.locations.Location;
 
 public class ProjectLocation extends Location {
@@ -49,10 +50,34 @@ public class ProjectLocation extends Location {
 		super.display(drawEngine);
 		
 		if (project != null) {
-			drawEngine.drawText(12, ""+project.workRequired, position.x, position.y, DrawEngine.parent.color(0));
+			drawProjectInfo(drawEngine);
 		} else {
-			drawEngine.drawText(12, "?", position.x, position.y, DrawEngine.parent.color(0));
+			drawEngine.drawText(12, "?", position.x, position.y, DrawEngine.BLACK);
 		}
+	}
+
+	private void drawProjectInfo(DrawEngine drawEngine) {
+		/* Project name */
+		drawEngine.drawText(PConstants.LEFT, PConstants.TOP, 12, project.name, 
+				position.x - width + 5, position.y - height + 5, DrawEngine.BLACK);
+		
+		/* Work required */
+		drawEngine.drawText(PConstants.RIGHT, PConstants.TOP, 24, ""+project.workRequired,
+				position.x + width - 5, position.y - height + 5, DrawEngine.BLACK);
+		
+		/* Difficulty */
+		drawEngine.drawText(PConstants.LEFT, PConstants.TOP, 12, ""+project.difficulty,
+				position.x - width + 5, position.y - height + 20, DrawEngine.BLACK);
+		
+		/* Money earned */
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.moneyIcon, position.x - width/2, position.y + height - 50);
+		drawEngine.drawText(16, ""+project.revenue, 
+				position.x - width/2, position.y + height - 20, DrawEngine.BLACK);
+		
+		/* Reputation earned */
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.reputationIcon, position.x + width/2, position.y + height - 50);
+		drawEngine.drawText(16, ""+project.reputation, 
+				position.x + width/2, position.y + height - 20, DrawEngine.BLACK);
 	}
 
 	@Override

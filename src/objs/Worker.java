@@ -66,8 +66,8 @@ public class Worker {
 	public void startNewActivity(Location location) {
 		Activity activity = location.getActivity();
 		if (activity.canStart(this)) {
-			currentActivity = activity.start(this);
 			location.addWorker(this);
+			currentActivity = activity.start(this);
 		}
 		
 	}

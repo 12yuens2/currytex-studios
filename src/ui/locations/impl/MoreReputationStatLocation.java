@@ -25,7 +25,7 @@ public class MoreReputationStatLocation extends Location {
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
 		
-		drawEngine.drawText(16, "More Reputation Stat", position.x, position.y, DrawEngine.parent.color(0));
+		drawEngine.drawText(16, "More Reputation Stat", position.x, position.y, DrawEngine.BLACK);
 		
 	}
 

@@ -6,30 +6,14 @@ public enum Skill {
 	@Override
 	public String toString() {
 		switch(this) {
-			case C:
-				return "C";
-				
-			case HASKELL:
-				return "Haskell";
-				
-			case JAVA:
-				return "Java";
-				
-			case RUBY:
-				return "Ruby";
-				
-			case PYTHON:
-				return "Python";
-				
-			case SQL:
-				return "SQL";
-				
-			case WEB:
-				return "Web.js";
-				
-			default:
-				throw new IllegalArgumentException();
-			
+			case C: 		return "C";
+			case HASKELL: 	return "Haskell";
+			case JAVA: 		return "Java";
+			case RUBY: 		return "Ruby";
+			case PYTHON: 	return "Python";
+			case SQL: 		return "SQL";
+			case WEB: 		return "Web.js";
+			default: 		throw new IllegalArgumentException();
 		}
 	}
 }

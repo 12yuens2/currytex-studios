@@ -42,9 +42,9 @@ public abstract class Location extends UIObject {
 	 * Add a worker to this location.
 	 */
 	public void addWorker(Worker worker) {
-		if (canAddWorker()) {
-			workers.add(worker);
-		}
+//		if (canAddWorker()) {
+		workers.add(worker);
+//		}
 	
 	}
 	
@@ -82,9 +82,9 @@ public abstract class Location extends UIObject {
 //		drawEngine.drawSquare(PConstants.RADIUS, drawEngine.parent.color(255,0,0), position, size);
 //		
 //		if (project != null) {
-//			drawEngine.drawText(12, ""+project.workRequired, position.x, position.y, drawEngine.parent.color(0));
+//			drawEngine.drawText(12, ""+project.workRequired, position.x, position.y, DrawEngine.BLACK);
 //		} else {
-//			drawEngine.drawText(12, "?", position.x, position.y, drawEngine.parent.color(0));
+//			drawEngine.drawText(12, "?", position.x, position.y, DrawEngine.BLACK);
 //		}
 //	}
 

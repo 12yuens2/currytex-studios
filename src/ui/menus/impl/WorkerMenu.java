@@ -18,7 +18,7 @@ public class WorkerMenu extends Menu {
 	public Worker worker;
 	
 	public WorkerMenu(Worker worker) {
-		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 600, 300);
+		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 300, 300);
 		this.worker = worker;
 	}
 	
@@ -29,7 +29,7 @@ public class WorkerMenu extends Menu {
 		int yPos = (int) (position.y - height + 50);
 			
 		for (String property : worker.getProperties()) {
-			drawEngine.drawText(16, property, xPos, yPos, DrawEngine.parent.color(0));
+			drawEngine.drawText(16, property, xPos, yPos, DrawEngine.BLACK);
 			yPos += 30;
 		}
 		xPos += 250;

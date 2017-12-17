@@ -24,13 +24,12 @@ public class PlayingState extends GameState {
 	
 	public PlayingState(GameContext context, GameUI ui) {
 		super(context, ui);
-
 	}
 	
-	@Override
-	public void display(DrawEngine drawEngine) {
-		super.display(drawEngine);
-	}
+//	@Override
+//	public void display(DrawEngine drawEngine) {
+//		super.display(drawEngine);
+//	}
 
 	@Override
 	public GameState update(float mouseX, float mouseY) {
@@ -40,26 +39,11 @@ public class PlayingState extends GameState {
 		if (!context.nextStates.isEmpty()){
 			return context.nextStates.poll();
 		}
-		
-//		context.updateBoxes(mouseX, mouseY);
 	
 		return this;
 	}
 
-//	@Override
-//	public GameState handleInput(GameInput input) {
-//		switch (input.mouseAction) {			
-//			case MOUSE_RELEASE:
-//				for (MenuButton b : context.openMenuButtons) {
-//					if (b.contains(input.mouseX, input.mouseY)) {
-//						return new InMenuState(parent, context, b.menu, this);
-//					}
-//				}
-//
-//				break;			
-//		}
-//		return this;
-//	}
+
 
 	@Override
 	public GameState handleMouseDrag(GameInput input) {
@@ -80,12 +64,6 @@ public class PlayingState extends GameState {
 
 	@Override
 	public GameState handleMouseRelease(GameInput input) {
-//		for (MenuButton b : ui.openMenuButtons) {
-//			if (b.contains(input.mouseX, input.mouseY)) {
-//				return new InMenuState(context, b.menu, this);
-//			}
-//		}
-		
 		for (WorkerBox b : ui.boxes) {
 			ArrayList<Location> locations = new ArrayList<>();
 			locations.addAll(ui.locations);
@@ -100,22 +78,10 @@ public class PlayingState extends GameState {
 		GameState nextState = ui.handleLeftClick(this);
 		
 		return nextState;
-		
-//		for (Location location : ui.locations) {
-//			if (location.project == null) {
-//				location.project = Project.randomProject();
-//			}
-//		}
 	}
 	
 	private GameState handleRightClick() {
 		return ui.handleRightClick(this);
-//		for (WorkerBox b : ui.boxes) {
-//			if (b.mouseOver && b.hasWorker()) {
-//				return new InMenuState(b.workerDetailsMenu(), this);
-//			}
-//		}
-//		return this;
 	}
 	
 

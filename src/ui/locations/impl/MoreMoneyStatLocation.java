@@ -25,7 +25,7 @@ public class MoreMoneyStatLocation extends Location {
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
 		
-		drawEngine.drawText(16, "More Money Stat", position.x, position.y, DrawEngine.parent.color(0));
+		drawEngine.drawText(16, "More Money Stat", position.x, position.y, DrawEngine.BLACK);
 		
 	}
 

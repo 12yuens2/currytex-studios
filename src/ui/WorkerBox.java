@@ -58,7 +58,7 @@ public class WorkerBox extends UIObject {
 			int col = worker.currentActivity == null ? DrawEngine.parent.color(0, 255, 0) : DrawEngine.parent.color(0, 105, 0);
 			
 			drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
-			drawEngine.drawText(16, worker.name, position.x, position.y + width/2, DrawEngine.parent.color(0));
+			drawEngine.drawText(16, worker.name, position.x, position.y + width/2, DrawEngine.BLACK);
 		}
 		
 		/* Vacant worker spot */

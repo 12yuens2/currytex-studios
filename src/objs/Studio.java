@@ -25,8 +25,8 @@ public class Studio {
 	}
 	
 	public void display(DrawEngine drawEngine) {
-		drawEngine.drawText(16, "$: " + currency, 800, 25, DrawEngine.parent.color(0));
-		drawEngine.drawText(16, "R: " + totalReputation, 1000, 25, DrawEngine.parent.color(0));
-		drawEngine.drawText(16, "C: " + coffee, 1200, 25, DrawEngine.parent.color(0));
+		drawEngine.drawText(16, "$: " + currency, 800, 25, DrawEngine.BLACK);
+		drawEngine.drawText(16, "R: " + totalReputation, 1000, 25, DrawEngine.BLACK);
+		drawEngine.drawText(16, "C: " + coffee, 1200, 25, DrawEngine.BLACK);
 	}
 }

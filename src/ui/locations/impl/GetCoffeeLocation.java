@@ -24,7 +24,7 @@ public class GetCoffeeLocation extends Location {
 	@Override
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
-		drawEngine.drawText(16, "Cafe", position.x, position.y, DrawEngine.parent.color(0));
+		drawEngine.drawText(16, "Cafe", position.x, position.y, DrawEngine.BLACK);
 	}
 
 }

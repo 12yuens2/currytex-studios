@@ -4,15 +4,33 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PFont;
+import processing.core.PImage;
 import processing.core.PVector;
 import ui.UIObject;
 
 public class DrawEngine {
     
+
+	public static final int ICON_SIZE = 50;
+	
 	public static PApplet parent;
+	public static int BLACK;
+	
+	
+	public PImage moneyIcon;
+	public PImage reputationIcon;
+	public PImage caffineIcon;
 	
     public DrawEngine(PApplet parent) {
     	DrawEngine.parent = parent;
+    	BLACK = parent.color(0);
+    	
+		moneyIcon = DrawEngine.parent.loadImage("imgs/money.png");
+		moneyIcon.resize(40, 40);
+		reputationIcon = DrawEngine.parent.loadImage("imgs/reputation.png");
+		reputationIcon.resize(40, 40);
+		caffineIcon = DrawEngine.parent.loadImage("imgs/caffine.png");
+		caffineIcon.resize(40, 40);
     }
     
     /**
@@ -29,6 +47,14 @@ public class DrawEngine {
         }
     }
 
+    
+    public void drawImage(int mode, PImage image, float posX, float posY) {
+    	parent.imageMode(mode);
+    	parent.image(image, posX, posY);
+    }
+    
+    
+    
 
 	public void drawText(int textSize, String text, float posX, float posY, int col) {	
 		drawText(PConstants.CENTER, PConstants.CENTER, textSize, text, posX, posY, col);
