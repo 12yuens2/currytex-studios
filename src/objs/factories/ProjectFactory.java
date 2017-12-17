@@ -70,20 +70,20 @@ public class ProjectFactory {
 	private static int getNumFeatures(Difficulty difficulty) {
 		
 		switch (difficulty) {
-			case VERY_EASY: /* Between 3 and 5 features */
+			case VERY_EASY: /* Between 2 and 4 features */
+				return 2 + random.nextInt(2);
+				
+			case EASY: /* Between 3 and 5 features */
 				return 3 + random.nextInt(2);
 				
-			case EASY: /* Between 3 and 10 features */
-				return 3 + random.nextInt(7);
+			case NORMAL: /* Between 3 and 7 features */
+				return 3 + random.nextInt(2);
 				
-			case NORMAL: /* Between 5 and 15 features */
-				return 5 + random.nextInt(10);
+			case HARD: /* Between 5 and 7 features */
+				return 5 + random.nextInt(2);
 				
-			case HARD: /* Between 10 and 15 features */
-				return 10 + random.nextInt(5);
-				
-			case VERY_HARD: /* Between 15 and 20 features */
-				return 15 + random.nextInt(5);
+			case VERY_HARD: /* Between 6 and 8 features */
+				return 6 + random.nextInt(2);
 				
 			default:
 				throw new IllegalArgumentException();
@@ -93,20 +93,20 @@ public class ProjectFactory {
 	private static int getMoneyPerFeature(Difficulty difficulty) {
 		
 		switch(difficulty) {
-			case VERY_EASY: /* Between 5 to 10 */ 
-				return 5 + random.nextInt(5);
+			case VERY_EASY: /* Between 25 to 35 */ 
+				return 35 + random.nextInt(10);
 				
-			case EASY: /* Between 10 to 15 */
-				return 10 + random.nextInt(5);
+			case EASY: /* Between 35 to 50 */
+				return 45 + random.nextInt(15);
 				
-			case NORMAL: /* 10 to 20 */
-				return 10 + random.nextInt(10);
+			case NORMAL: /* 45 to 65 */
+				return 55 + random.nextInt(20);
 				
-			case HARD: /* 15 to 20 */
-				return 15 + random.nextInt(5);
+			case HARD: /* 55 to 80 */
+				return 65 + random.nextInt(15);
 				
-			case VERY_HARD: /* 20 to 25 */
-				return 20 + random.nextInt(5);
+			case VERY_HARD: /* 65 to 90 */
+				return 75 + random.nextInt(25);
 				
 			default:
 				throw new IllegalArgumentException();
@@ -138,8 +138,9 @@ public class ProjectFactory {
 	}
 	
 	private static int getTimePerWork(Difficulty difficulty) {
-		int minutesPerWork = ProjectActivity.MINUTES_PER_WORK;
-		
+		int minutesPerWork = ProjectActivity.HOURS_PER_WORK;
+		return minutesPerWork;
+		/*
 		switch(difficulty) {
 			case VERY_EASY:
 				return (int) (minutesPerWork * 0.5);
@@ -160,6 +161,7 @@ public class ProjectFactory {
 				return minutesPerWork;
 		
 		}
+		*/
 	}
 
 }

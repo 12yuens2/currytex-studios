@@ -13,8 +13,6 @@ public class RestActivity extends Activity {
 		super(location);
 	}
 
-	public static int TIME_NEEDED = 150;
-
 	@Override
 	public boolean canStart(Worker worker) {
 		return worker.stressPercent > 0;
@@ -22,7 +20,7 @@ public class RestActivity extends Activity {
 	
 	@Override
 	public Activity start(Worker worker) {
-		worker.workTimer = TIME_NEEDED;
+		worker.workTimer = REST_TIME;
 		return this;		
 	}	
 	

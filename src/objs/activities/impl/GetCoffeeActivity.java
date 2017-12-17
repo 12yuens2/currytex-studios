@@ -15,7 +15,7 @@ public class GetCoffeeActivity extends Activity {
 
 	@Override
 	public Activity start(Worker worker) {
-		worker.workTimer = 180;
+		worker.workTimer = GET_COFFEE_TIME;
 		return this;
 	}
 	

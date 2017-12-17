@@ -12,6 +12,12 @@ public class Level {
 		this.exp = 0;
 	}
 	
+	public Level(int level) {
+		this();
+		
+		for (int i = 0; i < level - 1; i++) levelUp();
+	}
+	
 	public void gainExp(int expGain) {
 		exp += expGain;
 		if (exp >= expToLevel) {

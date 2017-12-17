@@ -72,7 +72,7 @@ public class Worker {
 	
 	public Optional<GameState> integrate(GameState currentState) {
 		if (currentActivity != null) {
-			workTimer -= GameTime.MINUTES_PER_TIMESTEP;
+			workTimer -= GameTime.HOURS_PER_TIMESTEP;
 			
 			if (currentActivity instanceof ProjectActivity && addictionLevel != Addiction.NONE) {
 				chanceToDrinkCoffee(currentState.context.studio);
@@ -151,7 +151,7 @@ public class Worker {
 						 + (moreReputation.level * 2);
 		
 		for (Entry<Skill, Level> entry : skills.entrySet()) {
-			wage += entry.getValue().level;
+			wage += 2.5 * entry.getValue().level;
 		}
 	}
 	

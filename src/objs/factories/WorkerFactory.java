@@ -91,8 +91,14 @@ public class WorkerFactory {
 	}
 	
 	private static HashMap<Skill, Level> getSkills(ProjectCategory category) {
+		List<Skill> categorySkills = category.getSkillsRequired();
+		HashMap<Skill, Level> workerSkills = new HashMap<>();
 		
-		return new HashMap<Skill, Level>();
+		for (int i = 0; i < random.nextInt(categorySkills.size()); i++) {
+			workerSkills.put(categorySkills.get(i), new Level(1 + random.nextInt(2)));
+		}
+		
+		return workerSkills;
 	}
 	
 	public static String getName() {

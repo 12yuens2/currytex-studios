@@ -16,7 +16,7 @@ public class MoreMoneyStatActivity extends Activity {
 
 	@Override
 	public Activity start(Worker worker) {
-		worker.workTimer += 150;
+		worker.workTimer += MORE_MONEY_STAT_TIME;
 		
 		return this;
 	}

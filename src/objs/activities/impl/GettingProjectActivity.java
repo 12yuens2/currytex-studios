@@ -25,7 +25,7 @@ public class GettingProjectActivity extends Activity {
 
 	@Override
 	public Activity start(Worker worker) {
-		worker.workTimer += 100;
+		worker.workTimer += GET_NEW_PROJECT_TIME;
 		return this;
 	}
 	

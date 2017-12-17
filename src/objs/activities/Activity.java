@@ -9,6 +9,14 @@ import objs.Worker;
 
 public abstract class Activity {
 
+	
+	public static final int GET_NEW_PROJECT_TIME = 40;
+	public static final int GET_COFFEE_TIME = 30;
+	public static final int MORE_MONEY_STAT_TIME = 72;
+	public static final int MORE_REP_STAT_TIME = 72;
+	public static final int RECRUIT_TIME = 84;
+	public static final int REST_TIME = 50;
+	
 	public int timeNeeded;
 	
 	public Location location;
@@ -30,7 +38,7 @@ public abstract class Activity {
 	 * @param currentState - The current state of the game.
 	 */
 	public Optional<GameState> finish(Worker worker, GameState currentState) {
-		worker.addStress(10);
+		worker.addStress(5);
 		
 		location.workers.remove(worker);
 		return Optional.empty();

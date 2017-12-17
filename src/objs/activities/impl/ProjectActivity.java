@@ -22,7 +22,7 @@ public class ProjectActivity extends Activity {
 	 * Default time needed per work load.
 	 * Increases with difficulty and as game progresses?
 	 */
-	public static int MINUTES_PER_WORK = 120;
+	public static int HOURS_PER_WORK = 36;
 	
 	public static Random random = new Random();
 

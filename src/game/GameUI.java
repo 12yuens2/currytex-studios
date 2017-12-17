@@ -54,16 +54,16 @@ public class GameUI {
 		//TODO debug
 		Worker a = new Worker("a");
 		Level java = new Level();
-		java.level = 2;
-		a.skills.put(Skill.JAVA, java);
-		a.addMoreMoneyLevel();
-		a.addictionLevel = Addiction.ADDICTED;
+//		java.level = 2;
+//		a.skills.put(Skill.JAVA, java);
+//		a.addMoreMoneyLevel();
+//		a.addictionLevel = Addiction.ADDICTED;
 		
 		Worker b = new Worker("b");
 		
 		if (context != null ) {
 			context.workers.add(a);
-			context.workers.add(b);
+//			context.workers.add(b);
 		}
 		
 		/* Draw developer boxes */
@@ -73,7 +73,7 @@ public class GameUI {
 			boxes.add(new WorkerBox(DevStudios.SCREEN_X - 250, yCoord + (((DevStudios.SCREEN_Y - 50)/numWorkers) * i), 45));
 		}
 		boxes.get(0).worker = a;
-		boxes.get(1).worker = b;
+//		boxes.get(1).worker = b;
 		
 		/* Draw project locations */
 		int xCoord = 100;
