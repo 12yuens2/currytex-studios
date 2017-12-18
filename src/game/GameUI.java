@@ -27,6 +27,7 @@ import ui.locations.impl.ProjectLocation;
 import ui.locations.impl.RecruitLocation;
 import ui.locations.impl.RestLocation;
 import ui.menus.Menu;
+import ui.menus.impl.SalaryMenu;
 import ui.menus.impl.UpgradesMenu;
 
 public class GameUI {
@@ -122,7 +123,7 @@ public class GameUI {
 	private void drawBottomMenu() {
 		/* Draw all workers menu */
 		openMenuButtons.add(new MenuButton(175, 850, 100, 30, DrawEngine.parent.color(20, 20, 200), 
-				   new Menu(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 600, 300)));
+				   new SalaryMenu(workerInfos)));
 		
 		/* Draw upgrades menu */
 		openMenuButtons.add(new MenuButton(400, 850, 100, 30, DrawEngine.parent.color(20, 200, 20),

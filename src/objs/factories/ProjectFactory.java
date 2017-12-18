@@ -58,7 +58,7 @@ public class ProjectFactory {
 		ArrayList<Skill> skillsRequired = getSkillsRequired(category);
 		
 		/* Minimum modifier is 0.2 */
-		float categoryModifier = 0.2f + Math.min(0.2f, trend.categoryTrends.get(category));
+		float categoryModifier = 0.5f + Math.min(0.2f, trend.categoryTrends.get(category));
 		
 		/* Base project properties */
 		int features = getNumFeatures(difficulty);

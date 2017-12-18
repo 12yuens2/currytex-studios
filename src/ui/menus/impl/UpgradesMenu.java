@@ -29,7 +29,7 @@ public class UpgradesMenu extends Menu {
 		/* Manual click upgrade button */
 		buttons.add(new UpgradeButton("Manual Click", xPos + 200, yPos, 500,
 				(GameState state) -> {
-					GameModifiers.manualClickPower += 1;
+					GameModifiers.manualClickPower += 0.5f;
 					return Optional.empty();
 				}
 		));
@@ -69,7 +69,7 @@ public class UpgradesMenu extends Menu {
 		));
 		
 		
-		/* More workers */
+		/* More worker slots */
 		buttons.add(new UpgradeButton("More workers", xPos + 600, yPos + 200, 250,
 				(GameState state) -> {
 					for (WorkerInfo info : state.ui.workerInfos) {
@@ -79,6 +79,16 @@ public class UpgradesMenu extends Menu {
 						}
 					}
 					
+					return Optional.empty();
+				}
+		));
+		
+		
+		
+		/* More workers per building */
+		buttons.add(new UpgradeButton("More in building", xPos + 200, yPos + 300, 250, 
+				(GameState state) -> {
+					GameModifiers.locationMaxWorkers += 1;
 					return Optional.empty();
 				}
 		));

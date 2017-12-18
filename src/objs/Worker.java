@@ -154,6 +154,7 @@ public class Worker {
 		else {
 			skills.put(skill, new Level());						
 		}
+		calculateWage();
 	}
 	
 	private void calculateWage() {

@@ -15,7 +15,7 @@ public class GameModifiers {
 	public static float expModifier = 1;
 	
 
-	public static int manualClickPower = 1;
+	public static float manualClickPower = 0.5f;
 	
 	public static int locationMaxWorkers = 2;
 	
