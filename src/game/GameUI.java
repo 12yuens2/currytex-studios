@@ -58,8 +58,8 @@ public class GameUI {
 		//TODO debug
 		Worker a = new Worker("a");
 		Level java = new Level();
-//		java.level = 2;
-//		a.skills.put(Skill.JAVA, java);
+		java.level = 3;
+		a.skills.put(Skill.JAVA, java);
 //		a.addMoreMoneyLevel();
 //		a.addictionLevel = Addiction.ADDICTED;
 		

@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import game.DrawEngine;
 import game.GameContext;
+import game.GameModifiers;
 import game.states.GameState;
 import objs.Skill;
 import objs.Worker;
@@ -38,7 +39,9 @@ public abstract class Location extends UIObject {
 	 * Check if it is possible to add a new worker to this location.
 	 * @return - If the worker can be added to this location.
 	 */
-	public abstract boolean canAddWorker();
+	public boolean canAddWorker() {
+		return workers.size() < GameModifiers.locationMaxWorkers;
+	}
 	
 	/**
 	 * Add a worker to this location.

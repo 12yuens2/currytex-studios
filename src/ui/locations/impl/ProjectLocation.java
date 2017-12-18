@@ -30,7 +30,7 @@ public class ProjectLocation extends Location {
 	
 	@Override
 	public boolean canAddWorker() {
-		return project != null && project.workRequired > 0;
+		return super.canAddWorker() && project != null && project.workRequired > 0;
 	}
 
 	@Override

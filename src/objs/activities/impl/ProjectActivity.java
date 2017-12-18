@@ -28,11 +28,13 @@ public class ProjectActivity extends Activity {
 	 */
 	public static int HOURS_PER_WORK = 36;
 	
+	public static final float LEVEL_MODIFIER = 0.05f;
+	
 	public static Random random = new Random();
 
 
 	public String name;
-	public int workRequired, revenue, timePerWork, expGain, reputation;
+	public int workRequired, revenue, timePerWork, reputation;
 	public boolean finished;
 
 	public ArrayList<Skill> skillsRequired;
@@ -57,7 +59,6 @@ public class ProjectActivity extends Activity {
 		this.revenue = revenue;
 		this.reputation = reputation;
 		this.timePerWork = timePerWork;
-		this.expGain = 20; //TODO
 	}	
 	
 
@@ -67,7 +68,8 @@ public class ProjectActivity extends Activity {
 		for (Skill s : worker.skills.keySet()) {
 			if (skillsRequired.contains(s)) {
 				//TODO better formula on reducing time needed based on worker skill level
-				timeNeeded *= (1.0 / worker.skills.get(s).level);
+//				timeNeeded *= (1.0 / worker.skills.get(s).level);
+				timeNeeded -= (timeNeeded * LEVEL_MODIFIER * worker.skills.get(s).level);
 			}
 		}
 		
@@ -91,7 +93,8 @@ public class ProjectActivity extends Activity {
 		
 		/* Add skills to workers after they finish a workload of this project */
 		for (Skill s : skillsRequired) {
-			worker.updateSkills(s, expGain);
+			int exp = difficulty.minExp() + random.nextInt(10);
+			worker.updateSkills(s, exp);
 		}
 		
 		/* Add stress to worker */

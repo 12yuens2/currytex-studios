@@ -37,7 +37,7 @@ public class GetNewProjectLocation extends Location {
 	public boolean canAddWorker() {
 		for (ProjectLocation projectLocation : projectLocations) {
 			if (!projectLocation.occupied && projectLocation.project == null) {
-				return true;
+				return super.canAddWorker();
 			}
 		}
 		return false;

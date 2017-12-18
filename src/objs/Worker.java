@@ -195,10 +195,18 @@ public class Worker {
 		int skillsYPos = yPos + 30;
 		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Skills", skillsXPos, yPos, DrawEngine.BLACK);
 		for (Entry<Skill, Level> entry : skills.entrySet()) {
+			/* Skill name */
 			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, entry.getKey() + ": " ,
 					skillsXPos, skillsYPos, DrawEngine.BLACK);
-			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ""+entry.getValue().level,
+			
+			/* Skill level */
+			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, entry.getValue().level+",",
 					skillsXPos + 75, skillsYPos, DrawEngine.BLACK);
+			
+			/* Skill exp to level */
+			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, entry.getValue().exp + "/" + entry.getValue().expToLevel,
+					skillsXPos + 125, skillsYPos, DrawEngine.BLACK);
+			
 			skillsYPos += 30;
 		}
 	}

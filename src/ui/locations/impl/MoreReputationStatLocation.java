@@ -17,10 +17,6 @@ public class MoreReputationStatLocation extends Location {
 		return new MoreReputationStatActivity(this);
 	}
 
-	@Override
-	public boolean canAddWorker() {
-		return true;
-	}
 	
 	@Override
 	public void display(DrawEngine drawEngine) {

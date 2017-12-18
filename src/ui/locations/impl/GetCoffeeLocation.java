@@ -18,11 +18,6 @@ public class GetCoffeeLocation extends Location {
 	}
 
 	@Override
-	public boolean canAddWorker() {
-		return true; //TODO max workers in one location
-	}
-	
-	@Override
 	public void display(DrawEngine drawEngine) {
 //		drawEngine.drawImage(PConstants.CENTER, drawEngine.cafeLocation, position.x, position.y);
 		super.display(drawEngine);

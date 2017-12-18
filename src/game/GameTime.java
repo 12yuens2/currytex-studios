@@ -41,6 +41,7 @@ public class GameTime {
 			months -= (months / MONTHS_IN_YEAR) * MONTHS_IN_YEAR;
 		}
 	}
+
 	
 	public int totalTime() {
 		return days + (months * 30) + (years * 360);
@@ -51,6 +52,6 @@ public class GameTime {
 	}
 
 	public void display(DrawEngine drawEngine) {
-		drawEngine.drawText(16, toString(), 100, 25, DrawEngine.BLACK);
+		drawEngine.drawText(16, toString(), 125, 25, DrawEngine.BLACK);
 	}
 }

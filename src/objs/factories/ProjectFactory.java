@@ -30,6 +30,17 @@ public class ProjectFactory {
 				default: 		throw new IllegalArgumentException();
 			}
 		}
+
+		public int minExp() {
+			switch(this) {
+				case VERY_EASY: return 10;
+				case EASY: 		return 12;
+				case NORMAL:	return 15;
+				case HARD:		return 17;
+				case VERY_HARD:	return 19;
+				default:		throw new IllegalArgumentException();
+			}
+		}
 	};
 	
 	public static ProjectActivity getRandomProject(HashMap<Skill, Integer> studioReputation, WorldTrend trend) {

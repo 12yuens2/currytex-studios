@@ -17,10 +17,6 @@ public class MoreMoneyStatLocation extends Location {
 		return new MoreMoneyStatActivity(this);
 	}
 
-	@Override
-	public boolean canAddWorker() {
-		return true;
-	}
 	
 	@Override
 	public void display(DrawEngine drawEngine) {

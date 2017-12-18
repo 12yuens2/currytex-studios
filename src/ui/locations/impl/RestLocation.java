@@ -23,11 +23,6 @@ public class RestLocation extends Location {
 	}
 
 	@Override
-	public boolean canAddWorker() {
-		return true; //TODO all locations global max workers
-	}
-
-	@Override
 	public void display(DrawEngine drawEngine) {
 //		drawEngine.drawImage(PConstants.CENTER, drawEngine.restLocation, position.x, position.y);
 		super.display(drawEngine);

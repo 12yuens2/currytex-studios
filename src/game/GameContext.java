@@ -25,7 +25,7 @@ public class GameContext {
 	
 	public GameTime gameTime;
 	public Studio studio;
-	public GameConstants constants;
+	public GameModifiers constants;
 	public WorldTrend trends;
 	
 	public LinkedList<GameState> nextStates;
@@ -36,7 +36,7 @@ public class GameContext {
 	public GameContext(PApplet parent) {
 		this.gameTime = new GameTime();
 		this.studio = new Studio();
-		this.constants = new GameConstants();
+		this.constants = new GameModifiers();
 		this.trends = new WorldTrend(parent);
 		
 		this.nextStates = new LinkedList<>();
