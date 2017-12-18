@@ -64,7 +64,7 @@ public abstract class Location extends UIObject {
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
 		
-		manualDecrement(context.constants.manualClickPower);
+		manualDecrement(GameModifiers.manualClickPower);
 		
 		return Optional.empty();
 	}

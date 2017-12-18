@@ -7,7 +7,6 @@ package game;
  */
 public class GameModifiers {
 
-	public static float manualClickPower = 1;
 	
 	public static float revenueModifier = 1;
 	
@@ -15,8 +14,13 @@ public class GameModifiers {
 
 	public static float expModifier = 1;
 	
+
+	public static int manualClickPower = 1;
 	
 	public static int locationMaxWorkers = 2;
 	
 	public static int coffeeAtCafe = 10;
+	
+	
+	public static int hireSlots = 0;
 }

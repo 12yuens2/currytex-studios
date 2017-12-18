@@ -3,7 +3,7 @@ package game;
 public class GameTime {
 	
 	public static final double DELTA_TIME = 0.02;
-	public static final double HOURS_PER_TIMESTEP = 1.1;
+	public static final double HOURS_PER_TIMESTEP = 0.1;
 	public static final int HOURS_IN_DA = 24;
 	public static final int DAYS_IN_MONTH = 30;
 	public static final int MONTHS_IN_YEAR = 12;

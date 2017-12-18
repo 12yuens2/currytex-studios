@@ -13,31 +13,46 @@ public class WorkerInfo extends UIObject {
 	public WorkerBox workerBox;
 	public Worker worker;
 	
+	public boolean locked;
+	
 	public WorkerInfo(WorkerBox box) {
 		super(box.position.x + 80, box.position.y, 140, 50, DrawEngine.BLACK);
 		this.workerBox = box;
 		this.worker = box.worker;
+		
+		this.locked = this.worker == null;
 	}
 
 	@Override
 	public void display(DrawEngine drawEngine) {
 		drawEngine.drawRectangle(PConstants.RADIUS, col, position.x, position.y, width, height);
 		
-		/* Progress bar box */
-		if (worker != null) {
+		/* Display worker */
+		if (worker != null && !locked) {
 			drawProgressBar(drawEngine);
 			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Stress: " + worker.stressPercent + "%", 
 					workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y - 30, 
 					DrawEngine.parent.color(255));
+			
+			workerBox.display(drawEngine);
+		}
+		
+		/* Display locked */
+		else if (locked) {
+			drawEngine.drawText(16, "LOCKED!", position.x, position.y, DrawEngine.parent.color(255));
+		}
+		
+		/* Display vacant */
+		else {
+			drawEngine.drawText(16, "VACANT!", position.x, position.y, DrawEngine.parent.color(255));
 		}
 		
 
-		workerBox.display(drawEngine);
 		
 		/* Display hover */
-		if (mouseOver) {
-			drawEngine.drawRectangle(PConstants.CENTER, col, position.x - 2*width, position.y, width, height);
-		}
+//		if (mouseOver) {
+//			drawEngine.drawRectangle(PConstants.CENTER, col, position.x - 2*width, position.y, width, height);
+//		}
 		
 	}
 	

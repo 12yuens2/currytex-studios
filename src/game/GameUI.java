@@ -81,7 +81,18 @@ public class GameUI {
 		for (WorkerBox box : boxes) {
 			workerInfos.add(new WorkerInfo(box));
 		}
-//		boxes.get(1).worker = b;
+		
+		
+		/* Draw map locations */
+		drawLocations();
+
+		
+		/* Draw bottom menu buttons */
+		drawBottomMenu();
+		
+	}
+	
+	private void drawLocations() {
 		
 		/* Draw project locations */
 		int xCoord = 100;
@@ -94,7 +105,7 @@ public class GameUI {
 		locations.add(new RestLocation());
 		
 		/* Recruit location */
-		locations.add(new RecruitLocation());
+		locations.add(new RecruitLocation(workerInfos));
 		
 		/* Get new project location */
 		locations.add(new GetNewProjectLocation(projectLocations));
@@ -105,13 +116,6 @@ public class GameUI {
 		
 		locations.add(new MoreMoneyStatLocation());
 		locations.add(new MoreReputationStatLocation());
-		
-		/* Draw bottom menu buttons */
-		drawBottomMenu();
-
-
-
-		
 	}
 	
 	//TODO make actual menus not the abstract menu class
@@ -129,6 +133,9 @@ public class GameUI {
 	
 	
 	public void display(DrawEngine drawEngine) {
+		
+		workerInfos.get(1).locked = false; //TODO debug
+		workerInfos.get(2).locked = false;
 		
 		/* Draw top UI for information */
 		context.studio.display(drawEngine);

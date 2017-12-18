@@ -6,6 +6,7 @@ import java.util.function.Function;
 import app.DevStudios;
 import game.DrawEngine;
 import game.GameContext;
+import game.GameModifiers;
 import game.states.GameState;
 import ui.buttons.UpgradeButton;
 import ui.menus.Menu;
@@ -25,7 +26,7 @@ public class UpgradesMenu extends Menu {
 
 					@Override
 					public Optional<GameState> apply(GameContext context) {
-						context.constants.manualClickPower += 1;
+						GameModifiers.manualClickPower += 1;
 						return Optional.empty();
 					}
 		}));
