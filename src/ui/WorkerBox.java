@@ -72,7 +72,6 @@ public class WorkerBox extends UIObject {
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
 		if (worker != null) {
-			//TODO game state for dragging
 			if (mouseOver && !isDisabled()) {
 				mouseLocked = true;
 			}

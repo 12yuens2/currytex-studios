@@ -52,9 +52,6 @@ public class ProjectActivity extends Activity {
 		this.skillsRequired = skillsRequried;
 		
 		this.finished = false;
-		
-		//TODO create projects with skills based on type of project
-//		skillsRequired.add(Skill.C);
 
 		this.workRequired = workRequired;
 		this.revenue = revenue;
@@ -98,7 +95,7 @@ public class ProjectActivity extends Activity {
 		}
 		
 		/* Add stress to worker */
-		worker.addStress(10);
+		worker.addStress(5);
 		
 		return super.finish(worker, currentState);
 	}
@@ -164,12 +161,12 @@ public class ProjectActivity extends Activity {
 		int iconYPos = yPos + 50;
 		
 		int moneyXPos = xPos + 300;
-		DrawEngine.parent.image(drawEngine.moneyIcon, moneyXPos, iconYPos);
-		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, revenue+": ", moneyXPos+40, iconYPos+20, DrawEngine.BLACK);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.moneyIcon, moneyXPos, iconYPos);
+		drawEngine.drawText(16, revenue+"", moneyXPos, iconYPos+30, DrawEngine.BLACK);
 
 		int repXPos = moneyXPos + 150;
-		DrawEngine.parent.image(drawEngine.reputationIcon, repXPos, iconYPos);
-		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, reputation+": ", repXPos+40, iconYPos+20, DrawEngine.BLACK);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.reputationIcon, repXPos, iconYPos);
+		drawEngine.drawText(16, reputation+"", repXPos, iconYPos+30, DrawEngine.BLACK);
 		
 		
 	}

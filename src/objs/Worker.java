@@ -6,10 +6,13 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Random;
 
+import game.DrawEngine;
 import game.GameTime;
 import game.states.GameState;
 import objs.activities.Activity;
 import objs.activities.impl.ProjectActivity;
+import processing.core.PConstants;
+import processing.core.PVector;
 import ui.locations.Location;
 import ui.menus.impl.WorkerMenu;
 
@@ -174,15 +177,39 @@ public class Worker {
 	public WorkerMenu getMenu() {
 		return new WorkerMenu(this);
 	}
-
 	
+	public void menuDisplay(DrawEngine drawEngine, PVector position) {
+		int xPos = (int) position.x;
+		int yPos = (int) position.y;
+		
+		/* Draw properties */
+		int propertiesYPos = yPos;
+		for (String s : getProperties()) {
+			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, s,
+					xPos, propertiesYPos, DrawEngine.BLACK);
+			propertiesYPos += 30;
+		}
+		
+		/* Draw skills */
+		int skillsXPos = xPos + 300;
+		int skillsYPos = yPos + 30;
+		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Skills", skillsXPos, yPos, DrawEngine.BLACK);
+		for (Entry<Skill, Level> entry : skills.entrySet()) {
+			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, entry.getKey() + ": " ,
+					skillsXPos, skillsYPos, DrawEngine.BLACK);
+			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ""+entry.getValue().level,
+					skillsXPos + 75, skillsYPos, DrawEngine.BLACK);
+			skillsYPos += 30;
+		}
+	}
+
 	
 	public ArrayList<String> getProperties() {
 		ArrayList<String> workerProperties = new ArrayList<String>();
 		workerProperties.add("Name: " + name);
-		for (Entry<Skill, Level> entry : skills.entrySet()) {
-			workerProperties.add(entry.getKey() + ": " + entry.getValue().level);
-		}
+//		for (Entry<Skill, Level> entry : skills.entrySet()) {
+//			workerProperties.add(entry.getKey() + ": " + entry.getValue().level);
+//		}
 		//TODO naming more more/reputation level
 		workerProperties.add("More Money Level: " + moreMoney.level);
 		workerProperties.add("More Reputation Level: " + moreReputation.level);

@@ -27,7 +27,7 @@ public class WorkerInfo extends UIObject {
 		if (worker != null) {
 			drawProgressBar(drawEngine);
 			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Stress: " + worker.stressPercent + "%", 
-					workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y + 5, 
+					workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y - 30, 
 					DrawEngine.parent.color(255));
 		}
 		
@@ -62,15 +62,15 @@ public class WorkerInfo extends UIObject {
 	@Override
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return Optional.empty();
 	}
 
 	@Override
 	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return Optional.empty();
 	}
 
 	public boolean hasWorker() {

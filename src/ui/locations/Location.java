@@ -14,6 +14,8 @@ import ui.UIObject;
 
 public abstract class Location extends UIObject {
 
+	public static final int TOWN_LOCATION_SIZE = 85;
+	
 	public ArrayList<Worker> workers;
 	//TODO maximum number of workers
 	

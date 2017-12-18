@@ -12,6 +12,7 @@ import objs.Level;
 import objs.Skill;
 import objs.Studio;
 import objs.Worker;
+import objs.WorldTrend;
 import objs.activities.impl.ProjectActivity;
 import processing.core.PApplet;
 import ui.WorkerBox;
@@ -25,6 +26,7 @@ public class GameContext {
 	public GameTime gameTime;
 	public Studio studio;
 	public GameConstants constants;
+	public WorldTrend trends;
 	
 	public LinkedList<GameState> nextStates;
 	
@@ -35,6 +37,7 @@ public class GameContext {
 		this.gameTime = new GameTime();
 		this.studio = new Studio();
 		this.constants = new GameConstants();
+		this.trends = new WorldTrend(parent);
 		
 		this.nextStates = new LinkedList<>();
 		this.workers = new ArrayList<>();
@@ -44,6 +47,7 @@ public class GameContext {
 	public void timeStep(GameState currentState) {
 		gameTime.incrementTimestep(this);
 		
+		/* Integrate workers */
 		for (Worker worker : workers) {
 			Optional<GameState> nextState = worker.integrate(currentState);
 			
@@ -52,15 +56,18 @@ public class GameContext {
 			}
 		}
 		
+		/* Integrate projects */
 		Iterator<ProjectActivity> projectIt = activeProjects.iterator();
 		while (projectIt.hasNext()) {
 			ProjectActivity project = projectIt.next();
 			if (project.finished) {
 				project.finish(studio);
 				projectIt.remove();
-				//TODO reputation
 			}
 		}
+		
+		/* Integrate trends */
+		trends.integrate(gameTime);
 		
 	}
 
@@ -79,6 +86,10 @@ public class GameContext {
 		if (studio.currency < 0) {
 			//TODO game over? or debt
 		}
+	}
+	
+	public void newYear() {
+		//TODO check yearly reputation goal.
 	}
 
 }
