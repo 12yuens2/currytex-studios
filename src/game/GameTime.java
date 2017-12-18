@@ -22,7 +22,6 @@ public class GameTime {
 	public void incrementTimestep(GameContext context) {
 		hours += HOURS_PER_TIMESTEP;
 		
-		/* New hour */
 		if (hours > HOURS_IN_DA) {
 			context.newHour();
 			days += Math.floor(hours / HOURS_IN_DA);

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import game.GameModifiers;
 import objs.Skill;
 import objs.WorldTrend;
 import objs.activities.impl.ProjectActivity;
@@ -43,8 +44,13 @@ public class ProjectFactory {
 		}
 	};
 	
+	/**
+	 * 
+	 * @param studioReputation
+	 * @param trend
+	 * @return
+	 */
 	public static ProjectActivity getRandomProject(HashMap<Skill, Integer> studioReputation, WorldTrend trend) {
-		
 		ProjectType type = ProjectType.values()[random.nextInt(ProjectType.values().length)];
 		ProjectCategory category = ProjectCategory.values()[random.nextInt(ProjectCategory.values().length)];
 		Difficulty difficulty = Difficulty.values()[random.nextInt(Difficulty.values().length)];
@@ -54,11 +60,23 @@ public class ProjectFactory {
 		/* Minimum modifier is 0.2 */
 		float categoryModifier = 0.2f + Math.min(0.2f, trend.categoryTrends.get(category));
 		
+		/* Base project properties */
 		int features = getNumFeatures(difficulty);
 		int revenue = (int) ((getMoneyPerFeature(difficulty) * features) * categoryModifier);
 		int reputation = (int) ((getReputationPerFeature(difficulty) * features) * categoryModifier);
 		int timePerWork = getTimePerWork(difficulty);
 		
+		
+		/* Apply modifiers */
+		for (Skill s : skillsRequired) {
+			if (studioReputation.containsKey(s)) {
+				revenue += revenue * studioReputation.get(s)/100f;
+			}
+		}
+		revenue *= GameModifiers.revenueModifier;
+		reputation *= GameModifiers.reputationModifier;
+		
+		/* Change project properties based on type of project */
 		switch (type) {
 			case CORPORATE:
 				double ratio = 1 + random.nextDouble();
@@ -75,8 +93,8 @@ public class ProjectFactory {
 				revenue = (int) (revenue * 0.7);
 				reputation = (int) (reputation * 0.7);
 				break;
-		
 		}
+		
 		
 		return new ProjectActivity("TODO name", features, revenue, reputation, timePerWork, type, difficulty, skillsRequired);
 	}

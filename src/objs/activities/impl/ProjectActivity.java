@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.Random;
 
 import game.DrawEngine;
+import game.GameModifiers;
 import game.states.GameState;
 import objs.Level;
 import objs.Skill;
@@ -67,8 +68,6 @@ public class ProjectActivity extends Activity {
 		double timeNeeded = timePerWork;
 		for (Skill s : worker.skills.keySet()) {
 			if (skillsRequired.contains(s)) {
-				//TODO better formula on reducing time needed based on worker skill level
-//				timeNeeded *= (1.0 / worker.skills.get(s).level);
 				timeNeeded -= (timeNeeded * LEVEL_MODIFIER * worker.skills.get(s).level);
 			}
 		}
@@ -93,7 +92,7 @@ public class ProjectActivity extends Activity {
 		
 		/* Add skills to workers after they finish a workload of this project */
 		for (Skill s : skillsRequired) {
-			int exp = difficulty.minExp() + random.nextInt(10);
+			int exp = (int) ((difficulty.minExp() + random.nextInt(10)) * GameModifiers.expModifier);
 			worker.updateSkills(s, exp);
 		}
 		
