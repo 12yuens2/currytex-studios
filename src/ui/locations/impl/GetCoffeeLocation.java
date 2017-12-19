@@ -1,25 +1,24 @@
 package ui.locations.impl;
 
 import game.DrawEngine;
+import game.GameTime;
 import objs.activities.Activity;
 import objs.activities.impl.GetCoffeeActivity;
 import processing.core.PConstants;
 import ui.locations.Location;
+import ui.locations.TownLocation;
 
-public class GetCoffeeLocation extends Location {
+public class GetCoffeeLocation extends TownLocation {
 
-	public GetCoffeeLocation() {
-		super(1050, 275, TOWN_LOCATION_SIZE, DrawEngine.parent.color(50,150,200));
+	public static final String IMAGE_PREFIX = "imgs/cafe";
+	
+	public GetCoffeeLocation(GameTime time) {
+		super(1050, 275, IMAGE_PREFIX, time);
 	}
 
 	@Override
 	public Activity getActivity() {
 		return new GetCoffeeActivity(this);
 	}
-
-	@Override
-	public void display(DrawEngine drawEngine) {
-		drawEngine.drawImage(PConstants.CENTER, drawEngine.cafeLocation, position.x, position.y);
-	}
-
+	
 }

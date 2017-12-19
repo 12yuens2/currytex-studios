@@ -16,7 +16,7 @@ public class StartState extends GameState {
 	
 	public StartState(GameContext context, GameUI ui) {
 		super(context, ui);
-		startButton = new Button(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 100, 30, DrawEngine.parent.color(255)) {
+		startButton = new Button(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 100, 30) {
 			
 			@Override
 			public void display(DrawEngine drawEngine) {

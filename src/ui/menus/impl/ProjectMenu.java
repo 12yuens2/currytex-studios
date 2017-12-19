@@ -19,13 +19,7 @@ public class ProjectMenu extends Menu {
 	@Override
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
-//		int textCol = DrawEngine.BLACK;
-//		
-//		int yPos = (int) position.y - height + 50;
-//		for (String property : project.getProperties()) {
-//			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, property, position.x - width + 50, yPos, textCol);
-//			yPos += 25;
-//		}
+
 		project.menuDisplay(drawEngine, position.copy().add(-width + 50, -height + 50));
 	}
 

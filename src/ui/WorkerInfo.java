@@ -19,7 +19,7 @@ public class WorkerInfo extends UIObject {
 	public boolean locked;
 	
 	public WorkerInfo(WorkerBox box) {
-		super(box.position.x + 80, box.position.y, WIDTH, HEIGHT, DrawEngine.BLACK);
+		super(box.position.x + 80, box.position.y, WIDTH, HEIGHT);
 		this.workerBox = box;
 		this.worker = box.worker;
 		

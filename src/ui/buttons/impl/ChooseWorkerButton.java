@@ -17,7 +17,7 @@ public class ChooseWorkerButton extends Button {
 	public GameState previousState;
 	
 	public ChooseWorkerButton(float xPos, float yPos, Worker worker, GameState previousState) {
-		super(xPos, yPos, 100, 30, DrawEngine.parent.color(0,250,0));
+		super(xPos, yPos, 100, 30);
 		
 		this.worker = worker;
 		this.previousState = previousState;

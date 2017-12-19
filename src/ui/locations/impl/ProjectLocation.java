@@ -19,7 +19,7 @@ public class ProjectLocation extends Location {
 	public boolean occupied;
 	
 	public ProjectLocation(float xPos, float yPos, int size) {
-		super(xPos, yPos, 75, 0);
+		super(xPos, yPos, LOCATION_SIZE, "imgs/box.png");
 		
 		this.occupied = false;
 	}
@@ -47,13 +47,10 @@ public class ProjectLocation extends Location {
 			occupied = false;
 		}
 		
-		col = project != null ? DrawEngine.parent.color(255, 0, 0) : DrawEngine.parent.color(150, 0, 50);
 		super.display(drawEngine);
 		
 		if (project != null) {
 			drawProjectInfo(drawEngine);
-		} else {
-			drawEngine.drawText(12, "?", position.x, position.y, DrawEngine.BLACK);
 		}
 	}
 
@@ -81,8 +78,8 @@ public class ProjectLocation extends Location {
 				position.x + width/2, position.y + height - 15, DrawEngine.BLACK);
 		
 		/* Skills required */
-		int xPos = (int) (position.x - width + 20);
-		int xPosDelta = (width*2)/project.skillsRequired.size();
+		int xPos = (int) (position.x - width + 30);
+		int xPosDelta = (width*2 - 20)/project.skillsRequired.size();
 		int i = 0;
 		for (Skill s : project.skillsRequired) {
 			drawEngine.drawImage(PConstants.CENTER, s.icon(drawEngine), xPos + i * xPosDelta , position.y - height);

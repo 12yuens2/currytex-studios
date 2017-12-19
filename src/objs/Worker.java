@@ -121,7 +121,7 @@ public class Worker {
 				studio.coffee--;
 			}
 			else {
-				setWorkTimer(workTimer + 1);
+				workTimer += 1;
 				addStress(1);
 			}
 		}		
@@ -146,6 +146,9 @@ public class Worker {
 	}
 	
 	public void setWorkTimer(float time) {
+		/* More time needed based on stress */
+		time += time * stressPercent/80f;
+		
 		workTimer = time;
 		workTimerStart = time;
 	}

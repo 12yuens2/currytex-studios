@@ -14,12 +14,8 @@ public class GetNewProjectLocation extends Location {
 	ArrayList<ProjectLocation> projectLocations;
 	
 	public GetNewProjectLocation(ArrayList<ProjectLocation> projectLocations) {
-		super(1175, 705, 75, DrawEngine.parent.color(200, 100, 150));
+		super(1175, 705, LOCATION_SIZE, "imgs/box.png");
 		this.projectLocations = projectLocations;
-	}
-	
-	public GetNewProjectLocation(float xPos, float yPos, int size, int col) {
-		super(xPos, yPos, size, col);
 	}
 
 	@Override

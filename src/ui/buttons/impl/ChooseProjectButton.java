@@ -17,7 +17,7 @@ public class ChooseProjectButton extends Button {
 	public GameState previousState;
 	
 	public ChooseProjectButton(float xPos, float yPos, ProjectActivity project, ProjectLocation location, GameState previousState) {
-		super(xPos, yPos, 100, 30, DrawEngine.parent.color(0,250,0));
+		super(xPos, yPos, 100, 30);
 		this.project = project;
 		this.location = location;
 		this.previousState = previousState;

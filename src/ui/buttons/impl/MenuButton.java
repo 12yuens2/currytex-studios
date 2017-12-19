@@ -12,8 +12,8 @@ public class MenuButton extends Button{
 
 	public Menu menu;
 	
-	public MenuButton(float xPos, float yPos, int width, int height, int col, Menu menu) {
-		super(xPos, yPos, width, height, col);
+	public MenuButton(float xPos, float yPos, int width, int height, Menu menu) {
+		super(xPos, yPos, width, height);
 		this.menu = menu;
 	}
 

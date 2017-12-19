@@ -19,19 +19,17 @@ public abstract class UIObject {
 	
 	public boolean mouseOver;
 	public int width, height;
-	public int col;
 	
 	
-	public UIObject(float xPos, float yPos, int width, int height, int col) {
+	public UIObject(float xPos, float yPos, int width, int height) {
 		this.position = new PVector(xPos, yPos);
 		this.mouseOver = false;
 		this.width = width;
 		this.height = height;
-		this.col = col;
 	}
 	
-	public UIObject(float xPos, float yPos, int size, int col) {
-		this(xPos, yPos, size, size, col);
+	public UIObject(float xPos, float yPos, int size) {
+		this(xPos, yPos, size, size);
 	}
 	
 	

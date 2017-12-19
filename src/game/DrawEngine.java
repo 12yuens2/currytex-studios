@@ -69,25 +69,25 @@ public class DrawEngine {
     }
     
     private void loadLocations() {
-    	int size = Location.TOWN_LOCATION_SIZE * 2 + 15;
-    	restLocation = parent.loadImage("imgs/rest.png");
-    	restLocation1 = parent.loadImage("imgs/rest1.png");
-
-    	recruitLocation = parent.loadImage("imgs/recruit.png");
-    	recruitLocation1 = parent.loadImage("imgs/recruit1.png");
-    	
-    	moreMoneyLocation = parent.loadImage("imgs/money.png");
-    	
-    	moreRepLocation = parent.loadImage("imgs/reputation.png");
-    	
-    	cafeLocation = parent.loadImage("imgs/cafe.png");
-    	
-    	resize(size, size, 
-    			restLocation, restLocation1, 
-    			recruitLocation, recruitLocation1,
-    			moreMoneyLocation,
-    			moreRepLocation,
-    			cafeLocation);
+//    	int size = Location.TOWN_LOCATION_SIZE * 2 + 15;
+//    	restLocation = parent.loadImage("imgs/rest0.png");
+//    	restLocation1 = parent.loadImage("imgs/rest1.png");
+//
+//    	recruitLocation = parent.loadImage("imgs/recruit0.png");
+//    	recruitLocation1 = parent.loadImage("imgs/recruit1.png");
+//    	
+//    	moreMoneyLocation = parent.loadImage("imgs/money0.png");
+//    	
+//    	moreRepLocation = parent.loadImage("imgs/reputation0.png");
+//    	
+//    	cafeLocation = parent.loadImage("imgs/cafe0.png");
+//    	
+//    	resize(size, size, 
+//    			restLocation, restLocation1, 
+//    			recruitLocation, recruitLocation1,
+//    			moreMoneyLocation,
+//    			moreRepLocation,
+//    			cafeLocation);
     }
     
     private void loadButtons() {
@@ -110,6 +110,12 @@ public class DrawEngine {
     	}
     }
     
+    /**
+     * 
+     * @param width
+     * @param height
+     * @return
+     */
     public PImage resizedBox(int width, int height) {
     	PImage box = this.box.copy();
     	box.resize(width, height);

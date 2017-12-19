@@ -33,7 +33,7 @@ public class WorkerBox extends UIObject {
 	public Worker worker;	
 	
 	public WorkerBox(float xPos, float yPos, int size, Worker worker){
-		super(xPos, yPos, size, 0);
+		super(xPos, yPos, size);
 		this.originalPosition = position.copy();
 		
 		this.worker = worker;
@@ -93,6 +93,7 @@ public class WorkerBox extends UIObject {
 	@Override
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
+
 		if (worker != null) {
 			if (mouseOver && !isDisabled()) {
 				mouseLocked = true;
@@ -104,9 +105,7 @@ public class WorkerBox extends UIObject {
 			mouseXOffset = mouseX - position.x;
 			mouseYOffset = mouseY - position.y;
 		}
-//		else {
-//			return Optional.of(new TestState(null));
-//		}
+
 		return Optional.empty();
 	}
 

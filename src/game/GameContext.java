@@ -92,6 +92,8 @@ public class GameContext {
 	}
 	
 	public void newMonth() {
+		ProjectActivity.HOURS_PER_WORK += 5;
+		
 		for (Worker worker : workers) {
 			worker.paySalary(studio);
 		}

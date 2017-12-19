@@ -20,7 +20,7 @@ public class UpgradeButton extends Button {
 
 	
 	public UpgradeButton(String upgrade, float xPos, float yPos, int initialCost, Function<GameState, Optional<GameState>> upgradeLambda) {
-		super(xPos, yPos, 75, 25, DrawEngine.parent.color(200, 50, 50));
+		super(xPos, yPos, 75, 25);
 		
 		this.cost = initialCost;
 		this.upgrade = upgrade;

@@ -107,28 +107,26 @@ public class GameUI {
 		locations.add(new GetNewProjectLocation(projectLocations));
 		
 		/* Rest location */
-		locations.add(new RestLocation());
+		locations.add(new RestLocation(context.gameTime));
 		
 		/* Recruit location */
-		locations.add(new RecruitLocation(workerInfos));
+		locations.add(new RecruitLocation(context.gameTime, workerInfos));
 		
 		/* Get coffee location */
-		locations.add(new GetCoffeeLocation());
+		locations.add(new GetCoffeeLocation(context.gameTime));
 		
 		
-		locations.add(new MoreMoneyStatLocation());
-		locations.add(new MoreReputationStatLocation());
+		locations.add(new MoreMoneyStatLocation(context.gameTime));
+		locations.add(new MoreReputationStatLocation(context.gameTime));
 	}
 	
 
 	private void drawBottomMenu() {
 		/* Draw all workers menu */
-		openMenuButtons.add(new MenuButton(175, 850, 100, 30, DrawEngine.parent.color(20, 20, 200), 
-				   new SalaryMenu(workerInfos)));
+		openMenuButtons.add(new MenuButton(175, 850, 100, 30, new SalaryMenu(workerInfos)));
 		
 		/* Draw upgrades menu */
-		openMenuButtons.add(new MenuButton(400, 850, 100, 30, DrawEngine.parent.color(20, 200, 20),
-				   new UpgradesMenu()));
+		openMenuButtons.add(new MenuButton(400, 850, 100, 30, new UpgradesMenu()));
 		
 		/* Draw some other menu */
 	}
@@ -172,7 +170,7 @@ public class GameUI {
 	private void drawUIObjects(DrawEngine drawEngine, ArrayList<? extends UIObject>... uiObjectLists) {
 		for (ArrayList<? extends UIObject> uiObjects : uiObjectLists) {
 			for (UIObject object : uiObjects) {
-				object.mouseOver = object.contains(mouseX, mouseY);
+//				object.mouseOver = object.contains(mouseX, mouseY);
 				object.display(drawEngine);
 			}
 		}
@@ -188,13 +186,13 @@ public class GameUI {
 	private void updateBoxes() {
 		for (WorkerBox b : boxes) {
 			b.mouseOver = b.contains(mouseX, mouseY);
-		}		
+		}
 	}
 	
 	
 
 	public GameState handleLeftClick(GameState currentState) {
-		
+
 		Optional<GameState> result = Stream.of(boxes.stream(), locations.stream(), projectLocations.stream(), openMenuButtons.stream())
 				.flatMap(Function.identity())
 				.filter(o -> o.contains(mouseX, mouseY))

@@ -18,21 +18,29 @@ import ui.UIObject;
 
 public abstract class Location extends UIObject {
 
-	public static final int TOWN_LOCATION_SIZE = 85;
-	
-	public boolean image = true;
-	public boolean workerCollision = false;
+	public static final int LOCATION_SIZE = 75;
+	public final PImage image;
+	public final PImage hoverImage;
+
+	public boolean workerCollision;
 	
 	public ArrayList<Worker> workers;
-	//TODO maximum number of workers
+
 	
-//	public Project project;
-	
-	public Location(float xPos, float yPos, int size, int col) {
-		super(xPos, yPos, size, col);
+	public Location(float xPos, float yPos, int size, String imageFile, String hoverImageFile) {
+		super(xPos, yPos, size);
 		
 		this.workers = new ArrayList<>();
-//		this.project = Project.randomProject();
+		this.workerCollision = false;
+		
+		this.image = DrawEngine.parent.loadImage(imageFile);
+		this.image.resize(size*2, size*2);
+		this.hoverImage = DrawEngine.parent.loadImage(hoverImageFile);
+		this.hoverImage.resize(size*2, size*2);
+	}
+	
+	public Location(float xPos, float yPos, int size, String imageFile) {
+		this(xPos, yPos, size, imageFile, imageFile);
 	}
 	
 	/**
@@ -53,17 +61,18 @@ public abstract class Location extends UIObject {
 	 * Add a worker to this location.
 	 */
 	public void addWorker(Worker worker) {
-//		if (canAddWorker()) {
 		workers.add(worker);
-//		}
-	
 	}
 	
 	
 	@Override
 	public void display(DrawEngine drawEngine) {
-//		drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
-		drawEngine.drawImage(PConstants.CENTER, drawEngine.resizedBox(TOWN_LOCATION_SIZE*2, TOWN_LOCATION_SIZE*2), position.x, position.y);
+		if (workerCollision) {
+			drawEngine.drawImage(PConstants.CENTER, hoverImage, position.x, position.y);
+		}
+		else {
+			drawEngine.drawImage(PConstants.CENTER, image, position.x, position.y);
+		}
 	}
 	
 
@@ -90,29 +99,5 @@ public abstract class Location extends UIObject {
 		}
 	}
 
-//	public void display(DrawEngine drawEngine) {
-//		drawEngine.drawSquare(PConstants.RADIUS, drawEngine.parent.color(255,0,0), position, size);
-//		
-//		if (project != null) {
-//			drawEngine.drawText(12, ""+project.workRequired, position.x, position.y, DrawEngine.BLACK);
-//		} else {
-//			drawEngine.drawText(12, "?", position.x, position.y, DrawEngine.BLACK);
-//		}
-//	}
-
-//	public void completeWorkload() {
-//		if (project != null) {
-//			numWorkers--;
-//			if (project.workRequired <= 0 && numWorkers <= 0) {
-//				project = null;
-//			}
-//		}
-//		
-//	}
-
-//	public void addWorker() {
-//		project.workRequired--;
-//		numWorkers++;		
-//	}
 
 }

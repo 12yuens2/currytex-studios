@@ -59,7 +59,7 @@ public class ProjectFactory {
 		ArrayList<Skill> skillsRequired = getSkillsRequired(category);
 		
 		/* Minimum modifier is 0.2 */
-		float categoryModifier = 0.5f + Math.min(0.2f, trend.categoryTrends.get(category));
+		float categoryModifier = 0.3f + Math.min(0.2f, trend.categoryTrends.get(category));
 		
 		/* Base project properties */
 		int features = getNumFeatures(difficulty);
@@ -200,7 +200,6 @@ public class ProjectFactory {
 	
 	private static int getTimePerWork(Difficulty difficulty) {
 		int minutesPerWork = ProjectActivity.HOURS_PER_WORK;
-//		return minutesPerWork;
 		
 		switch(difficulty) {
 			case VERY_EASY:

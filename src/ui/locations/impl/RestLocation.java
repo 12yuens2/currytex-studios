@@ -4,38 +4,25 @@ import java.util.Optional;
 
 import game.DrawEngine;
 import game.GameContext;
+import game.GameTime;
 import game.states.GameState;
 import objs.activities.Activity;
 import objs.activities.impl.RestActivity;
 import processing.core.PConstants;
 import ui.locations.Location;
+import ui.locations.TownLocation;
 
-public class RestLocation extends Location {
+public class RestLocation extends TownLocation {
 
+	public static final String IMAGE_PREFIX = "imgs/rest";
 	
-	public RestLocation() {
-		super(150, 175, TOWN_LOCATION_SIZE, DrawEngine.parent.color(200, 200, 100));
+	public RestLocation(GameTime time) {
+		super(150, 175, IMAGE_PREFIX, time);
 	}
 
 	@Override
 	public Activity getActivity() {
 		return new RestActivity(this);
 	}
-
-	@Override
-	public void display(DrawEngine drawEngine) {
-
-		if (workerCollision) {
-			drawEngine.drawImage(PConstants.CENTER, drawEngine.restLocation1, position.x, position.y);
-		}
-		else if (image) {
-			super.display(drawEngine);
-			drawEngine.drawImage(PConstants.CENTER, drawEngine.restLocation, position.x, position.y);
-		}
-		else {
-			super.display(drawEngine);
-		}
-	}
-
 
 }

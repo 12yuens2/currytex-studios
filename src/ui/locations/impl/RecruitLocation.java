@@ -3,18 +3,26 @@ package ui.locations.impl;
 import java.util.ArrayList;
 
 import game.DrawEngine;
+import game.GameTime;
 import objs.activities.Activity;
 import objs.activities.impl.RecruitActivity;
 import processing.core.PConstants;
+import processing.core.PImage;
+import ui.Animation;
 import ui.WorkerInfo;
 import ui.locations.Location;
+import ui.locations.TownLocation;
 
-public class RecruitLocation extends Location {
-
-	public ArrayList<WorkerInfo> workerInfos;
+public class RecruitLocation extends TownLocation {
 	
-	public RecruitLocation(ArrayList<WorkerInfo> workerInfos) {
-		super(570, 200, TOWN_LOCATION_SIZE, DrawEngine.parent.color(100,200,200));
+	
+	public static final String IMAGE_PREFIX = "imgs/recruit";
+	
+	public ArrayList<WorkerInfo> workerInfos;
+	public Animation animation;
+	
+	public RecruitLocation(GameTime time, ArrayList<WorkerInfo> workerInfos) {
+		super(570, 200, IMAGE_PREFIX, time);
 		
 		this.workerInfos = workerInfos;
 	}
@@ -33,20 +41,5 @@ public class RecruitLocation extends Location {
 		}
 		return false;
 	}
-
-
-	@Override
-	public void display(DrawEngine drawEngine) {
-		if (workerCollision) {
-			drawEngine.drawImage(PConstants.CENTER, drawEngine.recruitLocation1, position.x, position.y);
-		}
-		else if (image) { 
-			drawEngine.drawImage(PConstants.CENTER, drawEngine.recruitLocation, position.x, position.y);
-		}
-		else {
-			super.display(drawEngine);
-		}
-	}
-
 
 }

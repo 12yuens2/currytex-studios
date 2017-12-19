@@ -13,7 +13,7 @@ public class PaySalaryButton extends Button {
 	public Worker worker;
 	
 	public PaySalaryButton(float xPos, float yPos, Worker worker) {
-		super(xPos, yPos, 80, 20, DrawEngine.parent.color(0,250,50));
+		super(xPos, yPos, 80, 20);
 		this.worker = worker;
 	}
 

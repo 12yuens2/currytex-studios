@@ -13,7 +13,7 @@ public class ExitButton extends Button {
 	public GameState previousState;
 	
 	public ExitButton(float xPos, float yPos, GameState previousState) {
-		super(xPos, yPos, 20, 20, DrawEngine.parent.color(255, 0, 0));
+		super(xPos, yPos, 20, 20);
 		this.previousState = previousState;
 	}
 

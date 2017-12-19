@@ -25,7 +25,7 @@ public class Menu extends UIObject {
 	public ExitButton exitButton;
 	
 	public Menu(float xPos, float yPos, int width, int height) {
-		super(xPos, yPos, width, height, DrawEngine.parent.color(150));
+		super(xPos, yPos, width, height);
 		
 		this.buttons = new ArrayList<>();
 		
