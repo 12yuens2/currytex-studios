@@ -18,6 +18,8 @@ public class DrawEngine {
 	public static PApplet parent;
 	public static int BLACK;
 	
+	private PImage box;
+	
 	/* Icons */
 	public PImage moneyIcon;
 	public PImage reputationIcon;
@@ -38,6 +40,8 @@ public class DrawEngine {
     public DrawEngine(PApplet parent) {
     	DrawEngine.parent = parent;
     	BLACK = parent.color(0);
+    	
+    	box = parent.loadImage("imgs/box.png");
     	
     	loadIcons();
     	loadLocations();
@@ -106,6 +110,13 @@ public class DrawEngine {
     	}
     }
     
+    public PImage resizedBox(int width, int height) {
+    	PImage box = this.box.copy();
+    	box.resize(width, height);
+    	
+    	return box;
+    }
+    
     /**
      * Display all drawable objects.
      * @param drawables - List of drawable objects.
@@ -120,7 +131,13 @@ public class DrawEngine {
         }
     }
 
-    
+    /**
+     * 
+     * @param mode
+     * @param image
+     * @param posX
+     * @param posY
+     */
     public void drawImage(int mode, PImage image, float posX, float posY) {
     	parent.imageMode(mode);
     	parent.image(image, posX, posY);

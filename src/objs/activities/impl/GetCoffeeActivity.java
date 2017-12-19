@@ -28,4 +28,9 @@ public class GetCoffeeActivity extends Activity {
 		return super.finish(worker, currentState);
 	}
 
+	@Override
+	public String name() {
+		return "Getting coffee...";
+	}
+
 }

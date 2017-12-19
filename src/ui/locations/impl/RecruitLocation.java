@@ -46,7 +46,6 @@ public class RecruitLocation extends Location {
 		else {
 			super.display(drawEngine);
 		}
-		drawEngine.drawText(16, "Recruit location", position.x, position.y, DrawEngine.BLACK);
 	}
 
 

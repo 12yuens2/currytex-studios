@@ -32,5 +32,12 @@ public class RestActivity extends Activity {
 		return Optional.empty();
 	}
 
+	@Override
+	public String name() {
+		return "Resting...";
+	}
+	
+	
+
 
 }

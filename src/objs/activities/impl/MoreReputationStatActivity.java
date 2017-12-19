@@ -27,4 +27,9 @@ public class MoreReputationStatActivity extends Activity {
 		return super.finish(worker, currentState);
 	}
 
+	@Override
+	public String name() {
+		return "Reputationing...";
+	}
+
 }

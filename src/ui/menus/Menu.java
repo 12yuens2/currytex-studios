@@ -11,6 +11,7 @@ import game.GameInput;
 import game.states.GameState;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PImage;
 import processing.core.PVector;
 import ui.UIObject;
 import ui.buttons.Button;
@@ -34,7 +35,7 @@ public class Menu extends UIObject {
 	}
 	
 	public void initExit(GameState previousState) {
-		this.exitButton = new ExitButton(position.x + width, position.y - height, previousState);
+		this.exitButton = new ExitButton(position.x + width - 20, position.y - height + 25, previousState);
 	}
 
 	
@@ -43,7 +44,7 @@ public class Menu extends UIObject {
 	 */
 	@Override
 	public void display(DrawEngine drawEngine) {
-		drawEngine.drawRectangle(PConstants.RADIUS, col, position.x, position.y, width, height);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.resizedBox(width*2, height*2), position.x, position.y);
 		
 		for (Button b : buttons) {
 			b.display(drawEngine);
@@ -65,8 +66,6 @@ public class Menu extends UIObject {
 				.map(button -> button.handleLeftClick(mouseX, mouseY, context, currentState))
 				.flatMap(o -> o.isPresent() ? Stream.of(o.get()) : Stream.empty())
 				.findFirst();
-		
-//		return Optional.empty('');
 	}
 	
 	@Override
@@ -75,14 +74,5 @@ public class Menu extends UIObject {
 
 		return Optional.empty();
 	}
-
-//	public void clicked(GameInput input) {
-//		for (Button b : buttons) {
-//			if (b.contains(input.mouseX, input.mouseY)) {
-//				b.activate();
-//			}
-//		}
-//		
-//	}
 
 }

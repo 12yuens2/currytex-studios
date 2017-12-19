@@ -58,8 +58,8 @@ public class GameUI {
 		
 		//TODO debug
 		Worker a = new Worker("a");
-		Level java = new Level();
-		java.level = 3;
+//		Level java = new Level();
+//		java.level = 3;
 //		a.skills.put(Skill.JAVA, java);
 //		a.addMoreMoneyLevel();
 //		a.addictionLevel = Addiction.ADDICTED;
@@ -75,7 +75,7 @@ public class GameUI {
 		int yCoord = 75;
 		int numWorkers = 8;
 		for (int i = 0; i < numWorkers; i++) {
-			boxes.add(new WorkerBox(DevStudios.SCREEN_X - 250, yCoord + (((DevStudios.SCREEN_Y - 50)/numWorkers) * i), 45));
+			boxes.add(new WorkerBox(DevStudios.SCREEN_X - 235, yCoord + (((DevStudios.SCREEN_Y - 40)/numWorkers) * i), 45));
 		}
 		boxes.get(0).worker = a;
 		
@@ -99,7 +99,7 @@ public class GameUI {
 		int xCoord = 100;
 		int numProjects = 4;
 		for (int i = 0; i < numProjects; i++) {
-			projectLocations.add(new ProjectLocation(xCoord + (((DevStudios.SCREEN_X - 525)/numProjects) * i), DevStudios.SCREEN_Y - 185, 100));
+			projectLocations.add(new ProjectLocation(xCoord + (((DevStudios.SCREEN_X - 525)/numProjects) * i), DevStudios.SCREEN_Y - 195, 100));
 		}
 		
 
@@ -120,7 +120,7 @@ public class GameUI {
 		locations.add(new MoreReputationStatLocation());
 	}
 	
-	//TODO make actual menus not the abstract menu class
+
 	private void drawBottomMenu() {
 		/* Draw all workers menu */
 		openMenuButtons.add(new MenuButton(175, 850, 100, 30, DrawEngine.parent.color(20, 20, 200), 

@@ -39,4 +39,9 @@ public class GettingProjectActivity extends Activity {
 		return Optional.of(new InMenuState(projectMenu, currentState));
 	}
 
+	@Override
+	public String name() {
+		return "Getting new project...";
+	}
+
 }

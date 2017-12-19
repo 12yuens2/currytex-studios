@@ -51,4 +51,10 @@ public class ChooseWorkerButton extends Button {
 		return Optional.empty();
 	}
 
+	
+	@Override
+	public void display(DrawEngine drawEngine) {
+		super.display(drawEngine);
+		drawEngine.drawText(30, "Select", position.x, position.y, DrawEngine.BLACK);
+	}
 }

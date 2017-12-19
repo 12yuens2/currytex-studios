@@ -56,6 +56,12 @@ public abstract class Activity {
 		return worker.stressPercent < 100;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public abstract String name();
+
 	
 	
 }

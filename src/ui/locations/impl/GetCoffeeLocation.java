@@ -19,13 +19,7 @@ public class GetCoffeeLocation extends Location {
 
 	@Override
 	public void display(DrawEngine drawEngine) {
-		if (image) {
-			drawEngine.drawImage(PConstants.CENTER, drawEngine.cafeLocation, position.x, position.y);
-		}
-		else {
-			super.display(drawEngine);
-		}
-		drawEngine.drawText(16, "Cafe", position.x, position.y, DrawEngine.BLACK);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.cafeLocation, position.x, position.y);
 	}
 
 }

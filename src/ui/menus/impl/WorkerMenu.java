@@ -25,19 +25,12 @@ public class WorkerMenu extends Menu {
 	@Override
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
-		worker.menuDisplay(drawEngine, position.copy().add(-width + 25, -height + 25));
-//		int xPos = (int) (position.x - width + 150);
-//		int yPos = (int) (position.y - height + 50);
-//			
-//		for (String property : worker.getProperties()) {
-//			drawEngine.drawText(16, property, xPos, yPos, DrawEngine.BLACK);
-//			yPos += 30;
-//		}
-//		xPos += 250;
+		worker.menuDisplay(drawEngine, position.copy().add(-width + 55, -height + 55));
+
 		
 	}
 	
-//
+// TODO fire
 //	@Override
 //	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
 //		

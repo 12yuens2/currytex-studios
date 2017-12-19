@@ -26,9 +26,7 @@ public class MoreReputationStatLocation extends Location {
 		}
 		else {
 			super.display(drawEngine);
-		}
-		drawEngine.drawText(16, "More Reputation Stat", position.x, position.y, DrawEngine.BLACK);
-		
+		}		
 	}
 
 }

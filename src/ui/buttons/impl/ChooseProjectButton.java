@@ -45,7 +45,8 @@ public class ChooseProjectButton extends Button {
 	
 	@Override
 	public void display(DrawEngine drawEngine) {
-		drawEngine.drawRectangle(PConstants.RADIUS, col, position.x, position.y, width, height);
+		super.display(drawEngine);
+		drawEngine.drawText(30, "Select", position.x, position.y, DrawEngine.BLACK);
 	}
 
 }

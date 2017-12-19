@@ -69,14 +69,29 @@ public class GameContext {
 		
 	}
 
-	public void newHour() {
+	public void newDay() {
 		for (Worker worker : workers) {
 			worker.updateSalary();
 		}
 		
+		Iterator<ProjectActivity> projectIt = activeProjects.iterator();
+		while(projectIt.hasNext()) {
+			ProjectActivity project = projectIt.next();
+			
+			project.timeLeft--;
+			if (project.timeLeft <= 0) {
+				project.fail(studio);
+				projectIt.remove();
+				
+				for (Worker worker : project.activeWorkers) {
+					worker.resetActivity();
+				}
+			}
+		}
+		
 	}
 	
-	public void newDay() {
+	public void newMonth() {
 		for (Worker worker : workers) {
 			worker.paySalary(studio);
 		}

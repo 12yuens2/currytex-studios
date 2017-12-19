@@ -42,7 +42,7 @@ public class ProjectLocation extends Location {
 
 	@Override
 	public void display(DrawEngine drawEngine) {
-		if (project != null && project.finished) {
+		if (project != null && (project.finished || project.timeLeft <= 0)) {
 			project = null;
 			occupied = false;
 		}
@@ -57,31 +57,31 @@ public class ProjectLocation extends Location {
 		}
 	}
 
-	private void drawProjectInfo(DrawEngine drawEngine) {
-		/* Project name */
-		drawEngine.drawText(PConstants.LEFT, PConstants.TOP, 12, project.name, 
-				position.x - width + 5, position.y - height + 5, DrawEngine.BLACK);
-		
+	private void drawProjectInfo(DrawEngine drawEngine) {		
 		/* Work required */
 		drawEngine.drawText(PConstants.RIGHT, PConstants.TOP, 24, ""+project.workRequired,
-				position.x + width - 5, position.y - height + 5, DrawEngine.BLACK);
+				position.x + width - 5, position.y - height + 25, DrawEngine.BLACK);
 		
 		/* Difficulty */
 		drawEngine.drawText(PConstants.LEFT, PConstants.TOP, 12, ""+project.difficulty,
-				position.x - width + 5, position.y - height + 20, DrawEngine.BLACK);
+				position.x - width + 5, position.y - height + 30, DrawEngine.BLACK);
+		
+		/* Time left */
+		drawEngine.drawText(PConstants.LEFT, PConstants.TOP, 12, project.timeLeft + " days left",
+				position.x - width + 5, position.y - height + 50, DrawEngine.BLACK);
 		
 		/* Money earned */
-		drawEngine.drawImage(PConstants.CENTER, drawEngine.moneyIcon, position.x - width/2, position.y + height - 50);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.moneyIcon, position.x - width/2, position.y + height - 40);
 		drawEngine.drawText(16, ""+project.revenue, 
-				position.x - width/2, position.y + height - 20, DrawEngine.BLACK);
+				position.x - width/2, position.y + height - 15, DrawEngine.BLACK);
 		
 		/* Reputation earned */
-		drawEngine.drawImage(PConstants.CENTER, drawEngine.reputationIcon, position.x + width/2, position.y + height - 50);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.reputationIcon, position.x + width/2, position.y + height - 40);
 		drawEngine.drawText(16, ""+project.reputation, 
-				position.x + width/2, position.y + height - 20, DrawEngine.BLACK);
+				position.x + width/2, position.y + height - 15, DrawEngine.BLACK);
 		
 		/* Skills required */
-		int xPos = (int) (position.x - width + 30);
+		int xPos = (int) (position.x - width + 20);
 		int xPosDelta = (width*2)/project.skillsRequired.size();
 		int i = 0;
 		for (Skill s : project.skillsRequired) {

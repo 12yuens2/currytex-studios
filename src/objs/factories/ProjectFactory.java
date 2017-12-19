@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import game.GameModifiers;
+import game.GameTime;
 import objs.Skill;
 import objs.WorldTrend;
 import objs.activities.impl.ProjectActivity;
@@ -95,11 +96,24 @@ public class ProjectFactory {
 				break;
 		}
 		
+		/* Time limit */
+		int timeLimit = getTimeLimit(features, timePerWork, difficulty);
 		
-		return new ProjectActivity("TODO name", features, revenue, reputation, timePerWork, type, difficulty, skillsRequired);
+		return new ProjectActivity(features, revenue, reputation, timePerWork, timeLimit, type, difficulty, skillsRequired);
 	}
 	
 	
+	private static int getTimeLimit(int features, int timePerWork, Difficulty difficulty) {
+		int minTime = features * timePerWork;
+		int time = (int) (minTime + (minTime * (0.5f + random.nextDouble())));
+		
+		int daysLimit = time/GameTime.HOURS_IN_DAY + 2;
+		
+		return daysLimit;
+
+	}
+
+
 	private static ArrayList<Skill> getSkillsRequired(ProjectCategory category) {
 		ArrayList<Skill> skillsRequired = new ArrayList<>();
 		List<Skill> skills = category.getSkillsRequired();

@@ -2,6 +2,8 @@ package ui.locations;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import com.sun.xml.internal.bind.v2.runtime.output.Pcdata;
+
 import game.DrawEngine;
 import game.GameContext;
 import game.GameModifiers;
@@ -11,6 +13,7 @@ import objs.Worker;
 import objs.activities.Activity;
 import objs.activities.impl.ProjectActivity;
 import processing.core.PConstants;
+import processing.core.PImage;
 import ui.UIObject;
 
 public abstract class Location extends UIObject {
@@ -59,7 +62,8 @@ public abstract class Location extends UIObject {
 	
 	@Override
 	public void display(DrawEngine drawEngine) {
-		drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
+//		drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.resizedBox(TOWN_LOCATION_SIZE*2, TOWN_LOCATION_SIZE*2), position.x, position.y);
 	}
 	
 

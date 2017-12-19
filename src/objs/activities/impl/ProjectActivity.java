@@ -3,6 +3,7 @@ package objs.activities.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Random;
 
@@ -33,9 +34,7 @@ public class ProjectActivity extends Activity {
 	
 	public static Random random = new Random();
 
-
-	public String name;
-	public int workRequired, revenue, timePerWork, reputation;
+	public int workRequired, revenue, reputation, timePerWork, timeLeft;
 	public boolean finished;
 
 	public ArrayList<Skill> skillsRequired;
@@ -45,10 +44,10 @@ public class ProjectActivity extends Activity {
 	public final ProjectType type;
 	
 	
-	public ProjectActivity(String name, int workRequired, int revenue, int reputation, int timePerWork,
+	public ProjectActivity(int workRequired, int revenue, int reputation, int timePerWork, int timeLeft,
 			ProjectType type, Difficulty difficulty, ArrayList<Skill> skillsRequried) {
 		super(null);
-		this.name = name;
+
 		this.difficulty = difficulty;
 		this.type = type;
 		this.activeWorkers = new ArrayList<>();
@@ -60,6 +59,7 @@ public class ProjectActivity extends Activity {
 		this.revenue = revenue;
 		this.reputation = reputation;
 		this.timePerWork = timePerWork;
+		this.timeLeft = timeLeft;
 	}	
 	
 
@@ -114,6 +114,45 @@ public class ProjectActivity extends Activity {
 		}
 	}
 	
+
+	/**
+	 * Failed this project for the studio
+	 */
+	public void fail(Studio studio) {
+		switch(type) {
+			case CORPORATE:
+				/* Lose reputation */
+				studio.totalReputation -= Math.abs(reputation) * 3;
+				for (Skill s : skillsRequired) {
+					studio.addReputation(s, -Math.abs(reputation) * 3);
+				}
+				
+				/* Lose money */
+				studio.currency -= revenue/2;
+				break;
+				
+			case FREE:
+				/* Lose reputation */
+				studio.totalReputation -= Math.abs(reputation);
+				for (Skill s : skillsRequired) {
+					studio.addReputation(s, -Math.abs(reputation));
+				}
+				break;
+				
+			case NORMAL:
+				/* Lose reputation */
+				studio.totalReputation -= Math.abs(reputation) * 2;
+				for (Skill s : skillsRequired) {
+					studio.addReputation(s, -Math.abs(reputation) * 2);
+				}
+				
+			default:
+				break;
+		}
+		
+	}
+	
+	
 	
 	public ProjectMenu getMenu() {
 		return new ProjectMenu(this);
@@ -121,11 +160,8 @@ public class ProjectActivity extends Activity {
 	
 	public ArrayList<String> getProperties() {
 		ArrayList<String> projectProperties = new ArrayList<String>();
-		projectProperties.add("Project name: " + name);
-//		projectProperties.add("Skills required:" + skillsRequired.toString());
 		projectProperties.add("Number of features: " + workRequired);
-//		projectProperties.add("Money: " + revenue);
-//		projectProperties.add("Reputation: " + reputation);
+		projectProperties.add("Time limit: " + timeLeft + " days");
 		projectProperties.add("Difficulty: " + difficulty);
 		projectProperties.add("Type: " + type); 
 		
@@ -160,7 +196,7 @@ public class ProjectActivity extends Activity {
 		
 		
 		/* Draw money and reputation */
-		int iconYPos = yPos + 50;
+		int iconYPos = yPos + 30;
 		
 		int moneyXPos = xPos + 300;
 		drawEngine.drawImage(PConstants.CENTER, drawEngine.moneyIcon, moneyXPos, iconYPos);
@@ -172,7 +208,14 @@ public class ProjectActivity extends Activity {
 		
 		
 	}
-	
+
+
+	@Override
+	public String name() {
+		return "Working on project...";
+	}
+
+
 	
 	
 //	/**

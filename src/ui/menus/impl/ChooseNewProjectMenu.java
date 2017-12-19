@@ -34,25 +34,12 @@ public class ChooseNewProjectMenu extends Menu {
 	@Override
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
-		PVector pos = new PVector(position.x - width + 50, position.y - height + 30);
-		//int xPos = (int) (position.x - width + 50);
+		PVector pos = new PVector(position.x - width + 50, position.y - height + 50);
+
 		for (ProjectActivity project : newProjects) {
 			project.menuDisplay(drawEngine, pos.copy());
-			pos.add(new PVector(0, 225));
+			pos.add(new PVector(0, 215));
 		}
-//			int yPos = (int) (position.y - height + 50);
-//			
-//			for (String property : project.getProperties()) {
-//				drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, property, xPos, yPos, DrawEngine.BLACK);
-//				yPos += 30;
-//			}
-//			xPos += 250;
-//		}
-//		
-//		PImage icon = DrawEngine.parent.loadImage("imgs/placeholder.png");
-//		icon.resize(40, 40);
-//		
-//		DrawEngine.parent.image(icon, position.x, position.y - height + 200);
 	}
 
 }

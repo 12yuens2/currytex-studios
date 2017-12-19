@@ -28,14 +28,17 @@ public class WorkerInfo extends UIObject {
 
 	@Override
 	public void display(DrawEngine drawEngine) {
-		drawEngine.drawRectangle(PConstants.RADIUS, col, position.x, position.y, width, height);
 		
 		/* Display worker */
 		if (worker != null && !locked) {
+			drawEngine.drawImage(PConstants.CENTER, drawEngine.workerInfo, position.x, position.y);
+			
+			/* Progress bar */
 			drawProgressBar(drawEngine);
+			
 			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Stress: " + worker.stressPercent + "%", 
 					workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y - 30, 
-					DrawEngine.parent.color(255));
+					DrawEngine.BLACK);
 			
 			workerBox.display(drawEngine);
 		}
@@ -43,13 +46,12 @@ public class WorkerInfo extends UIObject {
 		/* Display locked */
 		else if (locked) {
 			drawEngine.drawImage(PConstants.CENTER, drawEngine.workerInfoLocked, position.x, position.y);
-//			drawEngine.drawText(16, "LOCKED!", position.x, position.y, DrawEngine.parent.color(255));
 		}
 		
 		/* Display vacant */
 		else {
 			drawEngine.drawImage(PConstants.CENTER, drawEngine.workerInfoUnlocked, position.x, position.y);
-//			drawEngine.drawText(16, "VACANT!", position.x, position.y, DrawEngine.parent.color(255));
+			workerBox.display(drawEngine);
 		}
 		
 
@@ -63,15 +65,22 @@ public class WorkerInfo extends UIObject {
 	
 	private void drawProgressBar(DrawEngine drawEngine) {
 		drawEngine.drawRectangle(PConstants.CORNER, DrawEngine.parent.color(255), 
-				workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y + 15, 150, 30);
+				workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y + 10, 150, 30);
 		
 		
+		/* Timer progress */
 		float timer = 0f;
 		if (worker != null) {
 			timer  = (worker.workTimer / worker.workTimerStart) * 150;
 		}
 		drawEngine.drawRectangle(PConstants.CORNER, DrawEngine.parent.color(50,50,250), 
-				workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y + 15, timer, 30);
+				workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y + 10, timer, 30, 100);
+		
+		/* Activity name */
+		if (worker != null && worker.currentActivity != null) {
+			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 12, worker.currentActivity.name(), 
+					workerBox.originalPosition.x + workerBox.width + 15, workerBox.originalPosition.y + 25, DrawEngine.BLACK);
+		}
 	}
 	
 	

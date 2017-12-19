@@ -2,6 +2,7 @@ package ui;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Set;
 
 import game.DrawEngine;
 import game.GameContext;
@@ -14,6 +15,7 @@ import objs.Skill;
 import objs.Worker;
 import objs.activities.impl.ProjectActivity;
 import processing.core.PConstants;
+import processing.core.PImage;
 import processing.core.PVector;
 import ui.locations.Location;
 import ui.menus.Menu;
@@ -54,17 +56,37 @@ public class WorkerBox extends UIObject {
 	
 	@Override
 	public void display(DrawEngine drawEngine) {
+
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.resizedBox(width*2, height*2), position.x, position.y);
+		
 		if (worker != null) {
-			int col = worker.currentActivity == null ? DrawEngine.parent.color(0, 255, 0) : DrawEngine.parent.color(0, 105, 0);
+//			int col = worker.currentActivity == null ? DrawEngine.parent.color(0, 255, 0) : DrawEngine.parent.color(0, 105, 0);
+//			
+//			drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
+//			PImage box = drawEngine.box.copy();
+//			box.resize(width*2, height*2);
 			
-			drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
+			
+			/* Worker name */
 			drawEngine.drawText(16, worker.name, position.x, position.y + width/2, DrawEngine.BLACK);
+			
+			/* Best worker skills */
+			drawWorkerSkills(drawEngine);
 		}
 		
 		/* Vacant worker spot */
-		else {
-			int col = DrawEngine.parent.color(200, 150, 0);
-			drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
+//		else {
+//			int col = DrawEngine.parent.color(200, 150, 0);
+//			drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
+//		}
+	}
+	
+	private void drawWorkerSkills(DrawEngine drawEngine) {
+		int xPos = (int) (position.x - 20);
+		int yPos = (int) (position.y - height + 20);
+		for (Skill s : worker.getSkills().keySet()) {
+			drawEngine.drawImage(PConstants.CENTER, s.icon(drawEngine), xPos, yPos);
+			xPos += 40;
 		}
 	}
 	

@@ -29,4 +29,9 @@ public class RecruitActivity extends Activity {
 		return Optional.of(new InMenuState(recruitMenu, currentState));
 	}
 
+	@Override
+	public String name() {
+		return "Recruiting...";
+	}
+
 }

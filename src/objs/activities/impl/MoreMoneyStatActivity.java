@@ -28,4 +28,9 @@ public class MoreMoneyStatActivity extends Activity {
 		return super.finish(worker, currentState);
 	}
 
+	@Override
+	public String name() {
+		return "Entrepreneuring...";
+	}
+
 }

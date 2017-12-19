@@ -234,9 +234,7 @@ public class Worker {
 	public ArrayList<String> getProperties() {
 		ArrayList<String> workerProperties = new ArrayList<String>();
 		workerProperties.add("Name: " + name);
-//		for (Entry<Skill, Level> entry : skills.entrySet()) {
-//			workerProperties.add(entry.getKey() + ": " + entry.getValue().level);
-//		}
+
 		//TODO naming more more/reputation level
 		workerProperties.add("More Money Level: " + moreMoney.level);
 		workerProperties.add("More Reputation Level: " + moreReputation.level);
@@ -245,5 +243,10 @@ public class Worker {
 		workerProperties.add("Wage: " + wage);
 		
 		return workerProperties;
+	}
+
+	public void resetActivity() {
+		currentActivity = null;
+		workTimer = 0;		
 	}
 }
