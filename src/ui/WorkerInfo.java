@@ -10,13 +10,16 @@ import processing.core.PConstants;
 
 public class WorkerInfo extends UIObject {
 
+	public static final int WIDTH = 140;
+	public static final int HEIGHT = 50;
+	
 	public WorkerBox workerBox;
 	public Worker worker;
 	
 	public boolean locked;
 	
 	public WorkerInfo(WorkerBox box) {
-		super(box.position.x + 80, box.position.y, 140, 50, DrawEngine.BLACK);
+		super(box.position.x + 80, box.position.y, WIDTH, HEIGHT, DrawEngine.BLACK);
 		this.workerBox = box;
 		this.worker = box.worker;
 		
@@ -39,12 +42,14 @@ public class WorkerInfo extends UIObject {
 		
 		/* Display locked */
 		else if (locked) {
-			drawEngine.drawText(16, "LOCKED!", position.x, position.y, DrawEngine.parent.color(255));
+			drawEngine.drawImage(PConstants.CENTER, drawEngine.workerInfoLocked, position.x, position.y);
+//			drawEngine.drawText(16, "LOCKED!", position.x, position.y, DrawEngine.parent.color(255));
 		}
 		
 		/* Display vacant */
 		else {
-			drawEngine.drawText(16, "VACANT!", position.x, position.y, DrawEngine.parent.color(255));
+			drawEngine.drawImage(PConstants.CENTER, drawEngine.workerInfoUnlocked, position.x, position.y);
+//			drawEngine.drawText(16, "VACANT!", position.x, position.y, DrawEngine.parent.color(255));
 		}
 		
 

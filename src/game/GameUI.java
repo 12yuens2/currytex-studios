@@ -99,17 +99,18 @@ public class GameUI {
 		int xCoord = 100;
 		int numProjects = 4;
 		for (int i = 0; i < numProjects; i++) {
-			projectLocations.add(new ProjectLocation(xCoord + (((DevStudios.SCREEN_X - 525)/numProjects) * i), DevStudios.SCREEN_Y - 200, 100));
+			projectLocations.add(new ProjectLocation(xCoord + (((DevStudios.SCREEN_X - 525)/numProjects) * i), DevStudios.SCREEN_Y - 185, 100));
 		}
+		
+
+		/* Get new project location */
+		locations.add(new GetNewProjectLocation(projectLocations));
 		
 		/* Rest location */
 		locations.add(new RestLocation());
 		
 		/* Recruit location */
 		locations.add(new RecruitLocation(workerInfos));
-		
-		/* Get new project location */
-		locations.add(new GetNewProjectLocation(projectLocations));
 		
 		/* Get coffee location */
 		locations.add(new GetCoffeeLocation());

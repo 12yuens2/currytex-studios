@@ -7,6 +7,7 @@ import processing.core.PFont;
 import processing.core.PImage;
 import processing.core.PVector;
 import ui.UIObject;
+import ui.WorkerInfo;
 import ui.locations.Location;
 
 public class DrawEngine {
@@ -22,12 +23,17 @@ public class DrawEngine {
 	public PImage reputationIcon;
 	public PImage caffineIcon;
 	
+	public PImage cIcon, haskellIcon, javaIcon, rubyIcon, pythonIcon, sqlIcon, jsIcon;
+	
 	/* Locations */
 	public PImage restLocation, recruitLocation, moreMoneyLocation, moreRepLocation, cafeLocation;
 	public PImage restLocation1, recruitLocation1;
 	
 	/* Buttons */
 	public PImage exitButton;
+	
+	/* Workers */
+	public PImage workerInfoLocked, workerInfoUnlocked, workerInfo, workerBox;
 	
     public DrawEngine(PApplet parent) {
     	DrawEngine.parent = parent;
@@ -36,46 +42,68 @@ public class DrawEngine {
     	loadIcons();
     	loadLocations();
     	loadButtons();
-
+    	loadWorkers();
     }
     
     private void loadIcons() {
+    	int size = 35;
 		moneyIcon = parent.loadImage("imgs/money-icon.png");
-		moneyIcon.resize(35, 35);
 		reputationIcon = parent.loadImage("imgs/reputation-icon.png");
-		reputationIcon.resize(35, 35);
 		caffineIcon = parent.loadImage("imgs/coffee-icon.png");
-		caffineIcon.resize(35, 35);
+		
+		/* Language icons */
+		cIcon = parent.loadImage("imgs/c-icon.png");
+		haskellIcon = parent.loadImage("imgs/haskell-icon.png");
+		javaIcon = parent.loadImage("imgs/java-icon.png");
+		rubyIcon = parent.loadImage("imgs/ruby-icon.png");
+		pythonIcon = parent.loadImage("imgs/python-icon.png");
+		sqlIcon = parent.loadImage("imgs/sql-icon.png");
+		jsIcon = parent.loadImage("imgs/js-icon.png");
+		
+		resize(size, size, moneyIcon, reputationIcon, caffineIcon,
+				cIcon, haskellIcon, javaIcon, rubyIcon, pythonIcon, sqlIcon, jsIcon);
     }
     
     private void loadLocations() {
     	int size = Location.TOWN_LOCATION_SIZE * 2 + 15;
     	restLocation = parent.loadImage("imgs/rest.png");
-    	restLocation.resize(size, size);
-    	
     	restLocation1 = parent.loadImage("imgs/rest1.png");
-    	restLocation1.resize(size, size);
-    	
-    	
+
     	recruitLocation = parent.loadImage("imgs/recruit.png");
-    	recruitLocation.resize(size, size);
-    	
     	recruitLocation1 = parent.loadImage("imgs/recruit1.png");
-    	recruitLocation1.resize(size, size);
     	
     	moreMoneyLocation = parent.loadImage("imgs/money.png");
-    	moreMoneyLocation.resize(size, size);
     	
     	moreRepLocation = parent.loadImage("imgs/reputation.png");
-    	moreRepLocation.resize(size, size);
     	
     	cafeLocation = parent.loadImage("imgs/cafe.png");
-    	cafeLocation.resize(size, size);
+    	
+    	resize(size, size, 
+    			restLocation, restLocation1, 
+    			recruitLocation, recruitLocation1,
+    			moreMoneyLocation,
+    			moreRepLocation,
+    			cafeLocation);
     }
     
     private void loadButtons() {
     	exitButton = parent.loadImage("imgs/exit.png");
     	exitButton.resize(40, 40);
+    }
+    
+    private void loadWorkers() {
+    	workerInfo = parent.loadImage("imgs/worker-info.png");
+    	workerInfoLocked = parent.loadImage("imgs/worker-info-locked.png");
+    	workerInfoUnlocked = parent.loadImage("imgs/worker-info-unlocked.png");
+    	
+    	resize(WorkerInfo.WIDTH * 2, WorkerInfo.HEIGHT * 2,
+    			workerInfo, workerInfoLocked, workerInfoUnlocked);
+    }
+    
+    private void resize(int width, int height, PImage... images) {
+    	for (PImage image : images) {
+    		image.resize(width, height);
+    	}
     }
     
     /**
