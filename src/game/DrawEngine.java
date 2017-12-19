@@ -7,6 +7,7 @@ import processing.core.PFont;
 import processing.core.PImage;
 import processing.core.PVector;
 import ui.UIObject;
+import ui.locations.Location;
 
 public class DrawEngine {
     
@@ -23,8 +24,10 @@ public class DrawEngine {
 	
 	/* Locations */
 	public PImage restLocation, recruitLocation, moreMoneyLocation, moreRepLocation, cafeLocation;
+	public PImage restLocation1, recruitLocation1;
 	
 	/* Buttons */
+	public PImage exitButton;
 	
     public DrawEngine(PApplet parent) {
     	DrawEngine.parent = parent;
@@ -32,6 +35,7 @@ public class DrawEngine {
     	
     	loadIcons();
     	loadLocations();
+    	loadButtons();
 
     }
     
@@ -45,20 +49,33 @@ public class DrawEngine {
     }
     
     private void loadLocations() {
+    	int size = Location.TOWN_LOCATION_SIZE * 2 + 15;
     	restLocation = parent.loadImage("imgs/rest.png");
-    	restLocation.resize(150, 150);
+    	restLocation.resize(size, size);
+    	
+    	restLocation1 = parent.loadImage("imgs/rest1.png");
+    	restLocation1.resize(size, size);
+    	
     	
     	recruitLocation = parent.loadImage("imgs/recruit.png");
-    	recruitLocation.resize(150, 150);
+    	recruitLocation.resize(size, size);
+    	
+    	recruitLocation1 = parent.loadImage("imgs/recruit1.png");
+    	recruitLocation1.resize(size, size);
     	
     	moreMoneyLocation = parent.loadImage("imgs/money.png");
-    	moreMoneyLocation.resize(150, 150);
+    	moreMoneyLocation.resize(size, size);
     	
     	moreRepLocation = parent.loadImage("imgs/reputation.png");
-    	moreRepLocation.resize(150, 150);
+    	moreRepLocation.resize(size, size);
     	
     	cafeLocation = parent.loadImage("imgs/cafe.png");
-    	cafeLocation.resize(150, 150);
+    	cafeLocation.resize(size, size);
+    }
+    
+    private void loadButtons() {
+    	exitButton = parent.loadImage("imgs/exit.png");
+    	exitButton.resize(40, 40);
     }
     
     /**

@@ -60,7 +60,7 @@ public class GameUI {
 		Worker a = new Worker("a");
 		Level java = new Level();
 		java.level = 3;
-		a.skills.put(Skill.JAVA, java);
+//		a.skills.put(Skill.JAVA, java);
 //		a.addMoreMoneyLevel();
 //		a.addictionLevel = Addiction.ADDICTED;
 		
@@ -136,7 +136,6 @@ public class GameUI {
 	public void display(DrawEngine drawEngine) {
 		
 		workerInfos.get(1).locked = false; //TODO debug
-		workerInfos.get(2).locked = false;
 		
 		/* Draw top UI for information */
 		context.studio.display(drawEngine);
@@ -148,6 +147,8 @@ public class GameUI {
 		drawUIObjects(drawEngine,
 				openMenuButtons, projectLocations, locations, workerInfos);
 		
+		
+		/* Draw dragging worker in front of all objects */
 		boolean hasDrag = false;
 		Iterator<WorkerInfo> infoIt = workerInfos.iterator();
 		while(infoIt.hasNext() && !hasDrag) {
@@ -240,6 +241,7 @@ public class GameUI {
 		for (WorkerBox box : boxes) {
 			if (box.mouseLocked) {
 				box.position = new PVector(mouseX - box.mouseXOffset, mouseY - box.mouseYOffset);
+				box.checkCollision(locations);
 			}
 		}
 	}

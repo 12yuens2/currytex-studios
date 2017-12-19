@@ -14,7 +14,7 @@ import ui.menus.Menu;
 
 public class UpgradesMenu extends Menu {
 
-	public static final float MODIFIER_INCREASE = 0.25f;
+	public static final float MODIFIER_INCREASE = 0.15f;
 	
 	public UpgradesMenu() {
 		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 600, 400);
@@ -70,7 +70,7 @@ public class UpgradesMenu extends Menu {
 		
 		
 		/* More worker slots */
-		buttons.add(new UpgradeButton("More workers", xPos + 600, yPos + 200, 250,
+		buttons.add(new UpgradeButton("More workers", xPos + 600, yPos + 200, 200,
 				(GameState state) -> {
 					for (WorkerInfo info : state.ui.workerInfos) {
 						if (info.locked) {

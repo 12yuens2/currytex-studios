@@ -9,7 +9,7 @@ import ui.locations.Location;
 public class MoreReputationStatLocation extends Location {
 
 	public MoreReputationStatLocation() {
-		super(750, 480, TOWN_LOCATION_SIZE, DrawEngine.parent.color(150, 50, 150));
+		super(750, 460, TOWN_LOCATION_SIZE, DrawEngine.parent.color(150, 50, 150));
 	}
 
 	@Override
@@ -20,8 +20,13 @@ public class MoreReputationStatLocation extends Location {
 	
 	@Override
 	public void display(DrawEngine drawEngine) {
-//		drawEngine.drawImage(PConstants.CENTER, drawEngine.moreRepLocation, position.x, position.y);
-		super.display(drawEngine);
+		if (image) {
+			super.display(drawEngine);
+			drawEngine.drawImage(PConstants.CENTER, drawEngine.moreRepLocation, position.x, position.y);
+		}
+		else {
+			super.display(drawEngine);
+		}
 		drawEngine.drawText(16, "More Reputation Stat", position.x, position.y, DrawEngine.BLACK);
 		
 	}

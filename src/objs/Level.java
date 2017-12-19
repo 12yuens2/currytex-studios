@@ -1,6 +1,6 @@
 package objs;
 
-public class Level {
+public class Level implements Comparable {
 
 	//TODO max level?
 	
@@ -29,5 +29,28 @@ public class Level {
 	private void levelUp() {
 		level++;
 		expToLevel = expToLevel*level;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		Level otherLevel = (Level) o;
+		
+		if (level > otherLevel.level) {
+			return 1;
+		} 
+		else if (otherLevel.level > level) {
+			return -1;
+		}
+		else {
+			if (exp > otherLevel.exp) {
+				return 1;
+			}
+			else if (otherLevel.exp > exp) {
+				return -1;
+			}
+			else {
+				return 0;
+			}
+		}
 	}
 }

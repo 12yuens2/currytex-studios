@@ -36,9 +36,16 @@ public class RecruitLocation extends Location {
 
 
 	@Override
-	public void display(DrawEngine drawEngine) {		
-//		drawEngine.drawImage(PConstants.CENTER, drawEngine.recruitLocation, position.x, position.y);
-		super.display(drawEngine);
+	public void display(DrawEngine drawEngine) {
+		if (workerCollision) {
+			drawEngine.drawImage(PConstants.CENTER, drawEngine.recruitLocation1, position.x, position.y);
+		}
+		else if (image) { 
+			drawEngine.drawImage(PConstants.CENTER, drawEngine.recruitLocation, position.x, position.y);
+		}
+		else {
+			super.display(drawEngine);
+		}
 		drawEngine.drawText(16, "Recruit location", position.x, position.y, DrawEngine.BLACK);
 	}
 
