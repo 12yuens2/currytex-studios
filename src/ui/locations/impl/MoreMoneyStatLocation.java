@@ -20,8 +20,12 @@ public class MoreMoneyStatLocation extends Location {
 	
 	@Override
 	public void display(DrawEngine drawEngine) {
-//		drawEngine.drawImage(PConstants.CENTER, drawEngine.moreMoneyLocation, position.x, position.y);
-		super.display(drawEngine);
+		if(image) {
+			drawEngine.drawImage(PConstants.CENTER, drawEngine.moreMoneyLocation, position.x, position.y);
+		}
+		else {
+			super.display(drawEngine);
+		}
 		drawEngine.drawText(16, "More Money Stat", position.x, position.y, DrawEngine.BLACK);
 		
 	}

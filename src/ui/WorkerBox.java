@@ -103,6 +103,8 @@ public class WorkerBox extends UIObject {
 		if (mouseLocked) {
 			mouseLocked = false;
 			for (Location location : locations) {
+				location.workerCollision = false;
+				
 				if (overlapsWith(location) && location.canAddWorker()) {
 					worker.startNewActivity(location);
 				}
@@ -128,6 +130,18 @@ public class WorkerBox extends UIObject {
 		mouseLocked = false;
 		mouseOver = false;
 		position = originalPosition.copy();
+		
+	}
+
+	public void checkCollision(ArrayList<Location> locations) {
+		for (Location location : locations) {
+			if (location.overlapsWith(this)) {
+				location.workerCollision = true;
+			} 
+			else {
+				location.workerCollision = false;
+			}
+		}
 		
 	}
 

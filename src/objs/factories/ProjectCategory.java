@@ -23,7 +23,7 @@ public enum ProjectCategory {
 				return Arrays.asList(Skill.PYTHON, Skill.HASKELL, Skill.SQL);
 				
 			case FINTECH:
-				return Arrays.asList(Skill.RUBY, Skill.WEB, Skill.JAVA, Skill.HASKELL);
+				return Arrays.asList(Skill.RUBY, Skill.JS, Skill.JAVA, Skill.HASKELL);
 				
 			case GAME:
 				return Arrays.asList(Skill.C, Skill.JAVA, Skill.PYTHON);
@@ -32,7 +32,7 @@ public enum ProjectCategory {
 				return Arrays.asList(Skill.C, Skill.PYTHON);
 				
 			case WEB:
-				return Arrays.asList(Skill.WEB, Skill.SQL, Skill.RUBY);
+				return Arrays.asList(Skill.JS, Skill.SQL, Skill.RUBY);
 				
 			default:
 				throw new IllegalArgumentException();

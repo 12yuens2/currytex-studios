@@ -1,8 +1,12 @@
 package objs;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import java.util.Optional;
 import java.util.Random;
 
@@ -147,6 +151,20 @@ public class Worker {
 	}
 	
 	
+	public HashMap<Skill, Level> getSkills() {
+		LinkedHashMap<Skill, Level> sortedSkills = skills.entrySet()
+												.stream()
+												.sorted(Map.Entry.comparingByValue(Collections.reverseOrder()))
+												.collect(Collectors.toMap(
+														Map.Entry::getKey, Map.Entry::getValue, 
+														(e1, e2) -> e1,
+														LinkedHashMap::new));
+	
+		return sortedSkills.entrySet().stream()
+				.limit(2)
+				.collect(LinkedHashMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), Map::putAll);
+	}
+	
 	public void updateSkills(Skill skill, int expGain) {
 		if (skills.containsKey(skill)) {
 			skills.get(skill).gainExp(expGain);
@@ -195,7 +213,7 @@ public class Worker {
 		int skillsXPos = xPos + 300;
 		int skillsYPos = yPos + 30;
 		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Skills", skillsXPos, yPos, DrawEngine.BLACK);
-		for (Entry<Skill, Level> entry : skills.entrySet()) {
+		for (Entry<Skill, Level> entry : getSkills().entrySet()) {
 			/* Skill name */
 			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, entry.getKey() + ": " ,
 					skillsXPos, skillsYPos, DrawEngine.BLACK);

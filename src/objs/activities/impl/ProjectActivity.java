@@ -29,7 +29,7 @@ public class ProjectActivity extends Activity {
 	 */
 	public static int HOURS_PER_WORK = 36;
 	
-	public static final float LEVEL_MODIFIER = 0.05f;
+	public static final float LEVEL_MODIFIER = 0.1f;
 	
 	public static Random random = new Random();
 
@@ -66,7 +66,7 @@ public class ProjectActivity extends Activity {
 	@Override
 	public Activity start(Worker worker) {
 		double timeNeeded = timePerWork;
-		for (Skill s : worker.skills.keySet()) {
+		for (Skill s : worker.getSkills().keySet()) {
 			if (skillsRequired.contains(s)) {
 				timeNeeded -= (timeNeeded * LEVEL_MODIFIER * worker.skills.get(s).level);
 			}

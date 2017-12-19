@@ -34,8 +34,7 @@ public class Menu extends UIObject {
 	}
 	
 	public void initExit(GameState previousState) {
-		this.exitButton = new ExitButton(position.x + width, position.y - height, 
-				 20, 20, previousState);
+		this.exitButton = new ExitButton(position.x + width, position.y - height, previousState);
 	}
 
 	

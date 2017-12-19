@@ -6,6 +6,7 @@ import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
 import game.states.impl.InMenuState;
+import objs.Skill;
 import objs.Worker;
 import objs.activities.Activity;
 import objs.activities.impl.ProjectActivity;
@@ -78,6 +79,15 @@ public class ProjectLocation extends Location {
 		drawEngine.drawImage(PConstants.CENTER, drawEngine.reputationIcon, position.x + width/2, position.y + height - 50);
 		drawEngine.drawText(16, ""+project.reputation, 
 				position.x + width/2, position.y + height - 20, DrawEngine.BLACK);
+		
+		/* Skills required */
+		int xPos = (int) (position.x - width + 30);
+		int xPosDelta = (width*2)/project.skillsRequired.size();
+		int i = 0;
+		for (Skill s : project.skillsRequired) {
+			drawEngine.drawImage(PConstants.CENTER, s.icon(drawEngine), xPos + i * xPosDelta , position.y - height);
+			i++;
+		}
 	}
 
 	@Override

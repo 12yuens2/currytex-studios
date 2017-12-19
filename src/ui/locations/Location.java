@@ -17,6 +17,9 @@ public abstract class Location extends UIObject {
 
 	public static final int TOWN_LOCATION_SIZE = 85;
 	
+	public boolean image = true;
+	public boolean workerCollision = false;
+	
 	public ArrayList<Worker> workers;
 	//TODO maximum number of workers
 	
