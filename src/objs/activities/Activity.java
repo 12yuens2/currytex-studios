@@ -2,6 +2,7 @@ package objs.activities;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Random;
 
 import ui.locations.Location;
 import game.states.GameState;
@@ -38,7 +39,8 @@ public abstract class Activity {
 	 * @param currentState - The current state of the game.
 	 */
 	public Optional<GameState> finish(Worker worker, GameState currentState) {
-		worker.addStress(5);
+		Random random = new Random();
+		worker.addStress(5 + random.nextInt(5));
 		
 		location.workers.remove(worker);
 		return Optional.empty();

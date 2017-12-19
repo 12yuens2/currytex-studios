@@ -16,21 +16,49 @@ public class DrawEngine {
 	public static PApplet parent;
 	public static int BLACK;
 	
-	
+	/* Icons */
 	public PImage moneyIcon;
 	public PImage reputationIcon;
 	public PImage caffineIcon;
+	
+	/* Locations */
+	public PImage restLocation, recruitLocation, moreMoneyLocation, moreRepLocation, cafeLocation;
+	
+	/* Buttons */
 	
     public DrawEngine(PApplet parent) {
     	DrawEngine.parent = parent;
     	BLACK = parent.color(0);
     	
-		moneyIcon = DrawEngine.parent.loadImage("imgs/money.png");
-		moneyIcon.resize(40, 40);
-		reputationIcon = DrawEngine.parent.loadImage("imgs/reputation.png");
-		reputationIcon.resize(40, 40);
-		caffineIcon = DrawEngine.parent.loadImage("imgs/caffine.png");
-		caffineIcon.resize(40, 40);
+    	loadIcons();
+    	loadLocations();
+
+    }
+    
+    private void loadIcons() {
+		moneyIcon = parent.loadImage("imgs/money-icon.png");
+		moneyIcon.resize(35, 35);
+		reputationIcon = parent.loadImage("imgs/reputation-icon.png");
+		reputationIcon.resize(35, 35);
+		caffineIcon = parent.loadImage("imgs/coffee-icon.png");
+		caffineIcon.resize(35, 35);
+    }
+    
+    private void loadLocations() {
+    	restLocation = parent.loadImage("imgs/rest.png");
+    	restLocation.resize(150, 150);
+    	
+    	recruitLocation = parent.loadImage("imgs/recruit.png");
+    	recruitLocation.resize(150, 150);
+    	
+    	moreMoneyLocation = parent.loadImage("imgs/money.png");
+    	moreMoneyLocation.resize(150, 150);
+    	
+    	moreRepLocation = parent.loadImage("imgs/reputation.png");
+    	moreRepLocation.resize(150, 150);
+    	
+    	cafeLocation = parent.loadImage("imgs/cafe.png");
+    	cafeLocation.resize(150, 150);
     }
     
     /**
@@ -70,7 +98,7 @@ public class DrawEngine {
      * @param col - colour of the text
      */
 	public void drawText(int alignX, int alignY, int textSize, String text, float posX, float posY, int col) {
-		PFont font = parent.createFont("Arial", textSize, true);
+		PFont font = parent.createFont("Lucida Sans Regular", textSize, true);
 		
 		parent.textFont(font, textSize);
 		parent.fill(col);

@@ -30,7 +30,7 @@ public class ChooseWorkerButton extends Button {
 		/* Assign worker from this button to the box location */
 		ArrayList<WorkerInfo> workerBoxes = currentState.ui.workerInfos;
 		for (WorkerInfo box : workerBoxes) {
-			if (!box.hasWorker()) {
+			if (!box.hasWorker() && !box.locked) {
 				box.setWorker(worker);
 				
 				context.workers.add(worker);

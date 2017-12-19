@@ -27,6 +27,7 @@ import ui.locations.impl.ProjectLocation;
 import ui.locations.impl.RecruitLocation;
 import ui.locations.impl.RestLocation;
 import ui.menus.Menu;
+import ui.menus.impl.SalaryMenu;
 import ui.menus.impl.UpgradesMenu;
 
 public class GameUI {
@@ -58,8 +59,8 @@ public class GameUI {
 		//TODO debug
 		Worker a = new Worker("a");
 		Level java = new Level();
-//		java.level = 2;
-//		a.skills.put(Skill.JAVA, java);
+		java.level = 3;
+		a.skills.put(Skill.JAVA, java);
 //		a.addMoreMoneyLevel();
 //		a.addictionLevel = Addiction.ADDICTED;
 		
@@ -81,7 +82,18 @@ public class GameUI {
 		for (WorkerBox box : boxes) {
 			workerInfos.add(new WorkerInfo(box));
 		}
-//		boxes.get(1).worker = b;
+		
+		
+		/* Draw map locations */
+		drawLocations();
+
+		
+		/* Draw bottom menu buttons */
+		drawBottomMenu();
+		
+	}
+	
+	private void drawLocations() {
 		
 		/* Draw project locations */
 		int xCoord = 100;
@@ -94,7 +106,7 @@ public class GameUI {
 		locations.add(new RestLocation());
 		
 		/* Recruit location */
-		locations.add(new RecruitLocation());
+		locations.add(new RecruitLocation(workerInfos));
 		
 		/* Get new project location */
 		locations.add(new GetNewProjectLocation(projectLocations));
@@ -105,20 +117,13 @@ public class GameUI {
 		
 		locations.add(new MoreMoneyStatLocation());
 		locations.add(new MoreReputationStatLocation());
-		
-		/* Draw bottom menu buttons */
-		drawBottomMenu();
-
-
-
-		
 	}
 	
 	//TODO make actual menus not the abstract menu class
 	private void drawBottomMenu() {
 		/* Draw all workers menu */
 		openMenuButtons.add(new MenuButton(175, 850, 100, 30, DrawEngine.parent.color(20, 20, 200), 
-				   new Menu(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 600, 300)));
+				   new SalaryMenu(workerInfos)));
 		
 		/* Draw upgrades menu */
 		openMenuButtons.add(new MenuButton(400, 850, 100, 30, DrawEngine.parent.color(20, 200, 20),
@@ -129,6 +134,9 @@ public class GameUI {
 	
 	
 	public void display(DrawEngine drawEngine) {
+		
+		workerInfos.get(1).locked = false; //TODO debug
+		workerInfos.get(2).locked = false;
 		
 		/* Draw top UI for information */
 		context.studio.display(drawEngine);

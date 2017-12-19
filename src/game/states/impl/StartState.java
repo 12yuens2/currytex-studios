@@ -27,15 +27,15 @@ public class StartState extends GameState {
 			@Override
 			public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
 					GameState currentState) {
-				// TODO Auto-generated method stub
-				return null;
+				
+				return Optional.empty();
 			}
 			
 			@Override
 			public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
 					GameState currentState) {
-				// TODO Auto-generated method stub
-				return null;
+				
+				return Optional.empty();
 			}
 		};
 	}

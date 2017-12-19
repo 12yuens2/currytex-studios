@@ -3,6 +3,7 @@ package objs;
 import java.util.HashMap;
 
 import game.DrawEngine;
+import processing.core.PConstants;
 
 public class Studio {
 
@@ -25,8 +26,13 @@ public class Studio {
 	}
 	
 	public void display(DrawEngine drawEngine) {
-		drawEngine.drawText(16, "$: " + currency, 800, 25, DrawEngine.BLACK);
-		drawEngine.drawText(16, "R: " + totalReputation, 1000, 25, DrawEngine.BLACK);
-		drawEngine.drawText(16, "C: " + coffee, 1200, 25, DrawEngine.BLACK);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.moneyIcon, 700, 25);
+		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ": "+currency, 725, 25, DrawEngine.BLACK);
+		
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.reputationIcon, 900, 25);
+		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ": " + totalReputation, 925, 25, DrawEngine.BLACK);
+		
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.caffineIcon, 1100, 25);
+		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ": " + coffee, 1125, 25, DrawEngine.BLACK);
 	}
 }

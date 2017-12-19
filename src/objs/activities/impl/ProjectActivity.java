@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.Random;
 
 import game.DrawEngine;
+import game.GameModifiers;
 import game.states.GameState;
 import objs.Level;
 import objs.Skill;
@@ -28,11 +29,13 @@ public class ProjectActivity extends Activity {
 	 */
 	public static int HOURS_PER_WORK = 36;
 	
+	public static final float LEVEL_MODIFIER = 0.05f;
+	
 	public static Random random = new Random();
 
 
 	public String name;
-	public int workRequired, revenue, timePerWork, expGain, reputation;
+	public int workRequired, revenue, timePerWork, reputation;
 	public boolean finished;
 
 	public ArrayList<Skill> skillsRequired;
@@ -52,15 +55,11 @@ public class ProjectActivity extends Activity {
 		this.skillsRequired = skillsRequried;
 		
 		this.finished = false;
-		
-		//TODO create projects with skills based on type of project
-//		skillsRequired.add(Skill.C);
 
 		this.workRequired = workRequired;
 		this.revenue = revenue;
 		this.reputation = reputation;
 		this.timePerWork = timePerWork;
-		this.expGain = 20; //TODO
 	}	
 	
 
@@ -69,8 +68,7 @@ public class ProjectActivity extends Activity {
 		double timeNeeded = timePerWork;
 		for (Skill s : worker.skills.keySet()) {
 			if (skillsRequired.contains(s)) {
-				//TODO better formula on reducing time needed based on worker skill level
-				timeNeeded *= (1.0 / worker.skills.get(s).level);
+				timeNeeded -= (timeNeeded * LEVEL_MODIFIER * worker.skills.get(s).level);
 			}
 		}
 		
@@ -94,11 +92,12 @@ public class ProjectActivity extends Activity {
 		
 		/* Add skills to workers after they finish a workload of this project */
 		for (Skill s : skillsRequired) {
-			worker.updateSkills(s, expGain);
+			int exp = (int) ((difficulty.minExp() + random.nextInt(10)) * GameModifiers.expModifier);
+			worker.updateSkills(s, exp);
 		}
 		
 		/* Add stress to worker */
-		worker.addStress(10);
+		worker.addStress(-5);
 		
 		return super.finish(worker, currentState);
 	}
@@ -164,12 +163,12 @@ public class ProjectActivity extends Activity {
 		int iconYPos = yPos + 50;
 		
 		int moneyXPos = xPos + 300;
-		DrawEngine.parent.image(drawEngine.moneyIcon, moneyXPos, iconYPos);
-		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, revenue+": ", moneyXPos+40, iconYPos+20, DrawEngine.BLACK);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.moneyIcon, moneyXPos, iconYPos);
+		drawEngine.drawText(16, revenue+"", moneyXPos, iconYPos+30, DrawEngine.BLACK);
 
 		int repXPos = moneyXPos + 150;
-		DrawEngine.parent.image(drawEngine.reputationIcon, repXPos, iconYPos);
-		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, reputation+": ", repXPos+40, iconYPos+20, DrawEngine.BLACK);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.reputationIcon, repXPos, iconYPos);
+		drawEngine.drawText(16, reputation+"", repXPos, iconYPos+30, DrawEngine.BLACK);
 		
 		
 	}

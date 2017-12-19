@@ -14,7 +14,7 @@ public class RestLocation extends Location {
 
 	
 	public RestLocation() {
-		super(100, 200, 75, DrawEngine.parent.color(200, 200, 100));
+		super(150, 175, TOWN_LOCATION_SIZE, DrawEngine.parent.color(200, 200, 100));
 	}
 
 	@Override
@@ -23,12 +23,8 @@ public class RestLocation extends Location {
 	}
 
 	@Override
-	public boolean canAddWorker() {
-		return true; //TODO all locations global max workers
-	}
-
-	@Override
 	public void display(DrawEngine drawEngine) {
+//		drawEngine.drawImage(PConstants.CENTER, drawEngine.restLocation, position.x, position.y);
 		super.display(drawEngine);
 		drawEngine.drawText(16, "Rest location", position.x, position.y, DrawEngine.BLACK);		
 	}

@@ -2,6 +2,7 @@ package objs.activities.impl;
 
 import java.util.Optional;
 
+import game.GameModifiers;
 import game.states.GameState;
 import objs.Worker;
 import objs.activities.Activity;
@@ -22,7 +23,7 @@ public class GetCoffeeActivity extends Activity {
 	@Override
 	
 	public Optional<GameState> finish(Worker worker, GameState currentState) {
-		currentState.context.studio.coffee += 10; //TODO upgradable
+		currentState.context.studio.coffee += GameModifiers.coffeeAtCafe;
 		
 		return super.finish(worker, currentState);
 	}

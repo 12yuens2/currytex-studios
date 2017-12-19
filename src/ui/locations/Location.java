@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import game.DrawEngine;
 import game.GameContext;
+import game.GameModifiers;
 import game.states.GameState;
 import objs.Skill;
 import objs.Worker;
@@ -14,6 +15,8 @@ import ui.UIObject;
 
 public abstract class Location extends UIObject {
 
+	public static final int TOWN_LOCATION_SIZE = 85;
+	
 	public ArrayList<Worker> workers;
 	//TODO maximum number of workers
 	
@@ -36,7 +39,9 @@ public abstract class Location extends UIObject {
 	 * Check if it is possible to add a new worker to this location.
 	 * @return - If the worker can be added to this location.
 	 */
-	public abstract boolean canAddWorker();
+	public boolean canAddWorker() {
+		return workers.size() < GameModifiers.locationMaxWorkers;
+	}
 	
 	/**
 	 * Add a worker to this location.
@@ -59,7 +64,7 @@ public abstract class Location extends UIObject {
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
 		
-		manualDecrement(context.constants.manualClickPower);
+		manualDecrement(GameModifiers.manualClickPower);
 		
 		return Optional.empty();
 	}
@@ -72,7 +77,7 @@ public abstract class Location extends UIObject {
 	}
 
 	
-	protected void manualDecrement(int amount) {
+	protected void manualDecrement(float amount) {
 		for (Worker worker : workers) {
 			worker.workTimer = Math.max(0, worker.workTimer - amount);
 		}

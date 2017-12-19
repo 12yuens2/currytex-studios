@@ -23,7 +23,7 @@ public class ChooseNewProjectMenu extends Menu {
 
 		newProjects = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
-			ProjectActivity newProject = ProjectFactory.getRandomProject(previousState.context.studio.reputation);
+			ProjectActivity newProject = ProjectFactory.getRandomProject(previousState.context.studio.reputation, previousState.context.trends);
 			newProjects.add(newProject);
 			
 			float yPos = (position.y - height - 110) + (225 * (i + 1));
