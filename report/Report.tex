@@ -37,14 +37,67 @@
 \section{Genre}
 Management simulator.
 
-\section{Player}
-The player plays as a manager of a tech start-up. The player can hire workers and manage what they do.
-
 
 \section{Rules and mechanics}
 The idea of the game is to build the start-up company to be bigger, by gaining reputation and therefore earning more money and growing the company. The core gameplay mechanic is managing how the workers work by dragging their avatar boxes to different locations to start new activities. Some activities add progress to the company, such as getting and working on new projects to gain money/reputation. Other activities include improving the workers individually, such as giving them stats. 
 \n
+The rest of this section explains all the various game mechanics and what they represent in terms of design and ludology.
+\subsection{Player}
+The player plays as a manager of a technology start-up company. The player can hire workers and manage what they do.
+
 \subsection{Workers}
+There are many mechanics to each worker:
+\begin{itemize}
+\item Skills
+\item Stats
+\item Caffine addiction
+\item Stress
+\item Wage
+\end{itemize}
+An important aspect of the game is balancing workload and the different mechanics for all workers in the company. For example, always assigning workers to work on projects increases their skills and stress and earns the company money, but assigning workers to increase their stats allows the company to earn more money and reputation in the long run. 
+\subsubsection{Skills}
+As the game is programming themed, each project has associated skills (languages) that are needed. Any worker can work on any project regardless of skills like in real life, but will be less efficient if they are not skilled in those languages. Working on projects increase the worker's experience and level in the project's related skills. This was chosen instead of allowing the player to manually assign skill points to workers to make it more realistic and slightly reduce the complexity of the game as there are already many systems that add complexity. The experience gained is also random to make the game less deterministic and also more realistic and people may learn more or less based on many factors when working.
+\n
+The player can assign workers with no skill or different skills to a project without any negative penalty and the skills matching only provides a bonus. 
+
+\subsubsection{Stats}
+Workers have two stats:
+\begin{itemize}
+\item Entrepreneur level
+\item Fame level
+\end{itemize}
+These stats affect projects that the worker works on. Whenever a worker works on a project, they have a chance to increase the money and/or reputation that project generates based on these stats. Additionally, the high level these stats are, the more wage must be paid to the worker. 
+\n
+The design behind adding these stats is to represent a trade off. The player has to decide between assigning workers to work which generates income and reputation or spending time to improve their stats to get more money/reputation in the long run. 
+
+
+\subsubsection{Coffee}
+Coffee is an additional mechanic is make the game more challenging and provide conflict to reach the goal. Workers with caffeine addiction will drink coffee when they work on projects. When they need to drink is stochastic and based on their addiction level to add predictable randomness to their behaviour. The coffee makes them a bit more productive than other workers, but they consume one coffee. If the company is out of coffee, workers who need to drink coffee regularly become more stressed and may not be able to continue to work until they get some coffee. 
+\n
+The player can drag workers to the cafe to get more coffee for the company. This mechanic represents a small trade off, difficulty and conflict to the game. The trade off comes when choosing new workers to hire, as the player may have to choose between a less skilled worker with less caffeine needs and a more skilled worker with more caffeine needs. The difficulty and conflict comes from needing to remember and assign workers to occasionally get coffee instead of doing productive activities and stalling and increasing a worker's stress when the company is out of coffee. 
+
+\subsubsection{Stress}
+Stress is another mechanic that adds conflict. Every time a worker does any activity, it adds to their stress levels. At 100\% stress the worker cannot do any further activities and must rest. The stress also increases the time it takes for a worker to complete an activity by exactly the stress percentage. 
+\n
+This gives a bit of ``downtime" for workers so they cannot always be doing productive work and for players to decide when they should let their workers rest. The amount of stress gained is random to add non-determinism.
+
+\subsubsection{Wage}
+Wage in combination with the game time are part of the ``opponents" of this game. Every worker employed by the player/company have a salary that must be paid at the end of every month. This means the player has to earn enough money every month to pay the workers. This mechanic is deterministic so that the player knows exactly what is required to not lose the game. Even more control is provided via the ability to pre-emptively pay salaries. 
+\n
+If the player cannot pay the wages once, the company's money goes into the negative. This is bad for the player because they cannot buy any upgrades until they get over the negative debt and will push into the next month's earnings. The player will lose the game if they still have negative money at the start of the next month. 
+
+
+\subsection{Money and reputation}
+Both money and reputation play a key role in the game. Reputation is the end goal and win condition of the game and money helps to both reach that goal and prevent the player from losing. 
+\n
+There are again more trade offs here. Money is used to pay wages and also buy upgrades and hire new workers, which allows the player to progress and expand the company while reputation is the final goal so it cannot be ignored. Additionally, more reputation increases the money that project gives. This is to reward players who wish to focus on gaining reputation, ensuring progress so players aren't punished for trying to reach the goal rather than earn money and as a bit of realism since a more known company should be able to find higher paying projects. 
+\n
+The kind of projects that are generated reflect the trade off as well. For example, some projects earn the player a lot of money, but give negative reputation and there are projects which earn no money, but give much more reputation. 
+
+
+\subsection{Upgrades}
+Upgrades serves as an important aspect of the game for progression. 
+
 
 \section{Opponent and goal}
 The opponent of the game is a combination of time limit, milestone goals  that have to be reached and regular time intervals. This represents higher up ``bosses" who demands good performance from the player and the need to pay salary to the workers. 
@@ -57,6 +110,15 @@ The opponent is also the goal that has to be met. The milestone goals are in pla
 \section{Design}
 
 \subsection{Testing}
+
+\subsubsection{Incremental progress}
+
+\subsubsection{Skills mechanic}
+
+\subsubsection{Coffee mechanic}
+
+\subsubsection{Stress mechanic}
+
 
 \subsection{Further work}
 
