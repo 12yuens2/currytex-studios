@@ -250,7 +250,7 @@ public class Worker {
 
 		workerProperties.add("Entreprenuer Level: " + moreMoney.level);
 		workerProperties.add("Fame Level: " + moreReputation.level);
-		workerProperties.add("Caffine addiction: " + addictionLevel.toString());
+		workerProperties.add("Caffeine addiction: " + addictionLevel.toString());
 		workerProperties.add("Stress: " + stressPercent + "%");
 		workerProperties.add("Wage: " + wage);
 		

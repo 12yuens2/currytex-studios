@@ -5,6 +5,7 @@ import java.util.Optional;
 import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
+import game.states.impl.InMenuState;
 import objs.workers.Worker;
 import processing.core.PConstants;
 
@@ -36,15 +37,20 @@ public class WorkerInfo extends UIObject {
 			/* Progress bar */
 			drawProgressBar(drawEngine);
 			
-			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Stress: " + worker.stressPercent + "%", 
+			/* Draw text */
+			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 14, "Stress: " + worker.stressPercent + "%", 
 					workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y - 30, 
+					DrawEngine.BLACK);
+			
+			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 14, "Coffee need: " + worker.addictionLevel.level(),
+					workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y - 10, 
 					DrawEngine.BLACK);
 			
 			
 			/* Draw coffee */
 			if (!worker.canWork) {
-				drawEngine.drawText(36, "!", position.x + width - 55, position.y - height + 25 , DrawEngine.BLACK);
-				drawEngine.drawImage(PConstants.CENTER, drawEngine.caffineIcon, 
+				drawEngine.drawText(36, "!", position.x + width - 52, position.y - height + 25 , DrawEngine.BLACK);
+				drawEngine.drawImage(PConstants.CENTER, drawEngine.caffeineIcon, 
 						position.x + width - 30, position.y - height + 30);
 			}
 			
@@ -91,10 +97,6 @@ public class WorkerInfo extends UIObject {
 		}
 	}
 	
-	
-	public void displayHover(DrawEngine drawEngine) {
-	}
-	
 
 	@Override
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
@@ -107,6 +109,10 @@ public class WorkerInfo extends UIObject {
 	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
 
+		if (worker != null) {
+			return Optional.of(new InMenuState(worker.getMenu(), currentState));
+		}
+		
 		return Optional.empty();
 	}
 

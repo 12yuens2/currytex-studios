@@ -209,7 +209,7 @@ public class GameUI {
 	}
 	
 	public GameState handleRightClick(GameState currentState) {
-		Optional<GameState> result = Stream.of(boxes.stream(), locations.stream(), projectLocations.stream())
+		Optional<GameState> result = Stream.of(boxes.stream(), workerInfos.stream(), locations.stream(), projectLocations.stream())
 				.flatMap(Function.identity())
 				.filter(o -> o.contains(mouseX, mouseY))
 				.map(o -> o.handleRightClick(mouseX, mouseY, context, currentState))

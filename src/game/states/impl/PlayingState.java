@@ -125,7 +125,7 @@ public class PlayingState extends GameState {
 		
 		return new InMenuState(new Tooltip(
 				"At the end of every month, the salaries of all your workers have to be paid. "
-				+ "Each worker can be paid what they have earned pre-emptively from the [Salary] menu. ",
+				+ "Each worker can be paid what they have earned pre-emptively from the [Salaries] menu. ",
 				200, 200), this);
 		
 	}

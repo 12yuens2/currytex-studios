@@ -33,4 +33,14 @@ public enum Addiction {
 			default:		throw new IllegalArgumentException();
 		}
 	}
+
+	public String level() {
+		switch(this) {
+			case NONE: 		return "None";
+			case ADDICTED:  return "!!!";
+			case FREQUENT:  return "!!";
+			case SOMETIMES: return "!";
+			default: 		throw new IllegalArgumentException();		
+		}
+	}
 }

@@ -13,7 +13,7 @@ public class Studio {
 
 	public Studio() {
 		this.currency = 10000;
-		this.coffee = 20;
+		this.coffee = 2;
 		this.totalReputation = 0;
 		this.reputation = new HashMap<>();
 	}
@@ -33,7 +33,7 @@ public class Studio {
 		drawEngine.drawImage(PConstants.CENTER, drawEngine.reputationIcon, 900, 25);
 		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ": " + totalReputation, 925, 25, DrawEngine.BLACK);
 		
-		drawEngine.drawImage(PConstants.CENTER, drawEngine.caffineIcon, 1100, 25);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.caffeineIcon, 1100, 25);
 		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ": " + coffee, 1125, 25, DrawEngine.BLACK);
 	}
 }

@@ -75,8 +75,9 @@ public class ProjectActivity extends Activity {
 		worker.setWorkTimer(1 + (int) timeNeeded);
 		activeWorkers.add(worker);
 		
+		/* Increase project money/reputation based on worker stats */
 		Random random = new Random();
-		revenue += random.nextInt(worker.moreMoney.level) * random.nextInt(worker.moreMoney.level);
+		revenue += 3 * random.nextInt(worker.moreMoney.level) * random.nextInt(worker.moreMoney.level);
 		reputation += random.nextInt(worker.moreReputation.level) * random.nextInt(worker.moreReputation.level);
 		
 		return this;

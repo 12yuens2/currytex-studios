@@ -23,7 +23,7 @@ public class DrawEngine {
 	/* Icons */
 	public PImage moneyIcon;
 	public PImage reputationIcon;
-	public PImage caffineIcon;
+	public PImage caffeineIcon;
 	
 	public PImage cIcon, haskellIcon, javaIcon, rubyIcon, pythonIcon, sqlIcon, jsIcon;
 	
@@ -53,7 +53,7 @@ public class DrawEngine {
     	int size = 35;
 		moneyIcon = parent.loadImage("imgs/money-icon.png");
 		reputationIcon = parent.loadImage("imgs/reputation-icon.png");
-		caffineIcon = parent.loadImage("imgs/coffee-icon.png");
+		caffeineIcon = parent.loadImage("imgs/coffee-icon.png");
 		
 		/* Language icons */
 		cIcon = parent.loadImage("imgs/c-icon.png");
@@ -64,7 +64,7 @@ public class DrawEngine {
 		sqlIcon = parent.loadImage("imgs/sql-icon.png");
 		jsIcon = parent.loadImage("imgs/js-icon.png");
 		
-		resize(size, size, moneyIcon, reputationIcon, caffineIcon,
+		resize(size, size, moneyIcon, reputationIcon, caffeineIcon,
 				cIcon, haskellIcon, javaIcon, rubyIcon, pythonIcon, sqlIcon, jsIcon);
     }
     

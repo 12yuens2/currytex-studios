@@ -112,10 +112,7 @@ public class WorkerBox extends UIObject {
 	@Override
 	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
-
-		if (worker != null) {
-			return Optional.of(new InMenuState(worker.getMenu(), currentState));
-		}
+		
 		return Optional.empty();
 	}
 	
