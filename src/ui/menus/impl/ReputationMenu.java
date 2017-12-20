@@ -24,7 +24,7 @@ public class ReputationMenu extends Menu {
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
 		
-		drawEngine.drawText(20, "Company reputation", position.x, position.y - height + 75, DrawEngine.BLACK);
+		drawEngine.drawText(18, "Company reputation analytics", position.x, position.y - height + 75, DrawEngine.BLACK);
 		drawReputations(drawEngine);
 	}
 	

@@ -95,7 +95,8 @@ public abstract class Location extends UIObject {
 	
 	protected void manualDecrement(float amount) {
 		for (Worker worker : workers) {
-			worker.workTimer = Math.max(0, worker.workTimer - amount);
+			worker.work(amount);
+//			worker.workTimer = Math.max(0, worker.workTimer - amount);
 		}
 	}
 

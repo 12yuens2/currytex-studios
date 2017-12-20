@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 import game.GameTime;
+import objs.Studio;
 import objs.workers.Addiction;
 import objs.workers.Level;
 import objs.workers.Skill;
@@ -68,12 +69,12 @@ public class WorkerFactory {
 
 	
 	
-	public static Worker getPlainWorker() {
+	public static Worker getPlainWorker(Studio studio) {
 		String name = getName();
-		return new Worker(name);
+		return new Worker(name, studio);
 	}
 	
-	public static Worker getRandomWorker(GameTime time) {
+	public static Worker getRandomWorker(Studio studio, GameTime time) {
 		Random random = new Random();
 		
 		int cap = 2 + time.months;
@@ -86,7 +87,7 @@ public class WorkerFactory {
 		HashMap<Skill, Level> skills = getSkills(ProjectCategory.values()[random.nextInt(ProjectCategory.values().length)], cap);
 
 		
-		Worker worker = new Worker(name, moneyLevel, repLevel, addictLevel, skills);
+		Worker worker = new Worker(name, studio, moneyLevel, repLevel, addictLevel, skills);
 
 		
 		return worker;

@@ -13,4 +13,24 @@ public enum Addiction {
 			default:		throw new IllegalArgumentException();
 		}
 	}
+	
+	public int drinkChance() {
+		switch(this) {
+			case NONE:		return -1;
+			case ADDICTED: 	return 100;
+			case FREQUENT:	return 150;
+			case SOMETIMES:	return 250;
+			default:		throw new IllegalArgumentException();
+		}
+	}
+	
+	public int stallChance() {
+		switch(this) {
+			case NONE:		return -1;
+			case ADDICTED: 	return 2;
+			case FREQUENT:	return 4;
+			case SOMETIMES:	return 6;
+			default:		throw new IllegalArgumentException();
+		}
+	}
 }

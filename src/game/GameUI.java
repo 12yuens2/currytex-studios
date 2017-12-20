@@ -58,14 +58,13 @@ public class GameUI {
 	private void testInit() {
 		
 		//TODO debug
-		Worker a = new Worker("a");
+		Worker a = new Worker("a", context.studio);
 //		Level java = new Level();
 //		java.level = 3;
 //		a.skills.put(Skill.JAVA, java);
 //		a.addMoreMoneyLevel();
 //		a.addictionLevel = Addiction.ADDICTED;
 		
-		Worker b = new Worker("b");
 		
 		if (context != null ) {
 			context.workers.add(a);

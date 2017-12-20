@@ -23,7 +23,7 @@ public class RecruitMenu extends Menu {
 		
 		this.newRecruits = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
-			Worker newWorker = WorkerFactory.getRandomWorker(previousState.context.gameTime);
+			Worker newWorker = WorkerFactory.getRandomWorker(previousState.context.studio, previousState.context.gameTime);
 			newRecruits.add(newWorker);
 			
 			float yPos = (position.y - height + 150) + (250 * (i));

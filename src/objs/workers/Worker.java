@@ -31,22 +31,27 @@ public class Worker {
 	public HashMap<Skill, Level> skills;
 	public StatLevel moreMoney, moreReputation; //TODO better names
 	
+	public Studio studio;
+	
 	public int wage; /* How much this worker gets paid per hour */
 	public int salary; /* How much money this worker is owed */
-
 	
 	public int stressPercent;
 	
 	public float workTimerStart;
 	public float workTimer;
 	
+	public boolean canWork;
+	
 	public Activity currentActivity;
 	
-	public Worker(String name) {
+	public Worker(String name, Studio studio) {
 		this.name = name;
+		this.studio = studio;
 		this.addictionLevel = Addiction.NONE;
 		this.salary = 0;
 		this.stressPercent = 0;
+		this.canWork = true;
 		this.workTimer = 0;
 		this.workTimerStart = 1;
 		
@@ -57,8 +62,8 @@ public class Worker {
 		calculateWage();
 	}
 	
-	public Worker(String name, int moreMoneyLevel, int moreReputationLevel, Addiction addictionLevel, HashMap<Skill, Level> skills) {
-		this(name);
+	public Worker(String name, Studio studio,  int moreMoneyLevel, int moreReputationLevel, Addiction addictionLevel, HashMap<Skill, Level> skills) {
+		this(name, studio);
 		this.addictionLevel = addictionLevel;
 		this.moreMoney.level = moreMoneyLevel;
 		this.moreReputation.level = moreReputationLevel;
@@ -81,7 +86,7 @@ public class Worker {
 	
 	public Optional<GameState> integrate(GameState currentState) {
 		if (currentActivity != null) {
-			workTimer -= GameTime.HOURS_PER_TIMESTEP;
+			work((float) GameTime.HOURS_PER_TIMESTEP);
 			
 			if (currentActivity instanceof ProjectActivity && addictionLevel != Addiction.NONE) {
 				chanceToDrinkCoffee(currentState.context.studio);
@@ -99,29 +104,21 @@ public class Worker {
 	}
 	
 	private void chanceToDrinkCoffee(Studio studio) {
-		int chance = 0;
-		
-		switch (addictionLevel) {
-			case ADDICTED:
-				chance = 100;
-				break;
-				
-			case FREQUENT:
-				chance = 150;
-				break;
-				
-			case SOMETIMES:
-				chance = 250;
-				break;
-		}
+		int chance = addictionLevel.drinkChance();
+
 		
 		Random random = new Random();
 		if (random.nextInt(chance) == 0) {
 			if (studio.coffee > 0) {
+				canWork = true;
 				studio.coffee--;
+				work(1);
 			}
 			else {
-				workTimer += 1;
+				if (random.nextInt(addictionLevel.stallChance()) == 0) {
+					canWork = false;
+				}
+				work(-1);
 				addStress(1);
 			}
 		}		
@@ -151,6 +148,19 @@ public class Worker {
 		
 		workTimer = time;
 		workTimerStart = time;
+	}
+	
+	public void work(float amount) {
+		if (canWork) {	
+			workTimer = Math.max(0, workTimer - amount);
+		}
+		else {
+			if (studio.coffee > 0) {
+				canWork = true;
+				studio.coffee--;
+			}
+		}
+		
 	}
 	
 	
@@ -252,4 +262,6 @@ public class Worker {
 		currentActivity = null;
 		workTimer = 0;		
 	}
+
+
 }

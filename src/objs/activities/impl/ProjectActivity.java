@@ -172,7 +172,7 @@ public class ProjectActivity extends Activity {
 
 	public void manualDecrement(int amount) {
 		for (Worker worker : activeWorkers) {
-			worker.workTimer -= amount;
+			worker.work(amount);
 		}		
 	}
 	

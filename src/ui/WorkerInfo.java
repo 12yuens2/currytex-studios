@@ -40,6 +40,14 @@ public class WorkerInfo extends UIObject {
 					workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y - 30, 
 					DrawEngine.BLACK);
 			
+			
+			/* Draw coffee */
+			if (!worker.canWork) {
+				drawEngine.drawText(36, "!", position.x + width - 55, position.y - height + 25 , DrawEngine.BLACK);
+				drawEngine.drawImage(PConstants.CENTER, drawEngine.caffineIcon, 
+						position.x + width - 30, position.y - height + 30);
+			}
+			
 			workerBox.display(drawEngine);
 		}
 		
