@@ -20,16 +20,11 @@ import ui.locations.Location;
 import ui.menus.Menu;
 
 public class PlayingState extends GameState {
-
 	
 	public PlayingState(GameContext context, GameUI ui) {
 		super(context, ui);
 	}
-	
-//	@Override
-//	public void display(DrawEngine drawEngine) {
-//		super.display(drawEngine);
-//	}
+
 
 	@Override
 	public GameState update(float mouseX, float mouseY) {
@@ -44,11 +39,6 @@ public class PlayingState extends GameState {
 	}
 
 
-	@Override
-	public GameState handleMouseDrag(GameInput input) {
-		ui.handleMouseDrag();
-		return this;
-	}
 
 	@Override
 	public GameState handleMousePress(GameInput input) {
@@ -72,6 +62,14 @@ public class PlayingState extends GameState {
 		}
 		return this;
 	}
+	
+
+	@Override
+	public GameState handleMouseDrag(GameInput input) {
+		ui.handleMouseDrag();
+		return this;
+	}
+	
 	
 	private GameState handleLeftClick() {
 		GameState nextState = ui.handleLeftClick(this);

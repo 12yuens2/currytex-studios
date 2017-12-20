@@ -1,4 +1,4 @@
-package objs;
+package objs.workers;
 
 public enum Addiction {
 	NONE, SOMETIMES, FREQUENT, ADDICTED;

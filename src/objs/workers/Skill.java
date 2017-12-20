@@ -1,4 +1,4 @@
-package objs;
+package objs.workers;
 
 import game.DrawEngine;
 import processing.core.PImage;

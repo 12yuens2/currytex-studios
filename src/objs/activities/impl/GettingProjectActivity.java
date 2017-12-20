@@ -1,7 +1,7 @@
 package objs.activities.impl;
 
-import objs.Worker;
 import objs.activities.Activity;
+import objs.workers.Worker;
 import ui.locations.Location;
 import ui.locations.impl.ProjectLocation;
 import ui.menus.impl.ChooseNewProjectMenu;

@@ -8,9 +8,9 @@ import java.util.Random;
 
 import game.GameModifiers;
 import game.GameTime;
-import objs.Skill;
 import objs.WorldTrend;
 import objs.activities.impl.ProjectActivity;
+import objs.workers.Skill;
 
 public class ProjectFactory {
 
@@ -71,7 +71,7 @@ public class ProjectFactory {
 		/* Apply modifiers */
 		for (Skill s : skillsRequired) {
 			if (studioReputation.containsKey(s)) {
-				revenue += revenue * studioReputation.get(s)/100f;
+				revenue += revenue * studioReputation.get(s)/250f;
 			}
 		}
 		revenue *= GameModifiers.revenueModifier;
@@ -105,7 +105,7 @@ public class ProjectFactory {
 	
 	private static int getTimeLimit(int features, int timePerWork, Difficulty difficulty) {
 		int minTime = features * timePerWork;
-		int time = (int) (minTime + (minTime * (0.5f + random.nextDouble())));
+		int time = (int) (minTime + (minTime * Math.max(0.3f + random.nextDouble(), 0.75f)));
 		
 		int daysLimit = time/GameTime.HOURS_IN_DAY + 2;
 		
@@ -178,19 +178,19 @@ public class ProjectFactory {
 	private static int getReputationPerFeature(Difficulty difficulty) {
 		switch(difficulty) {
 			case VERY_EASY: /* Between 1 to 3 */
-				return 3 + random.nextInt(2);
-				
-			case EASY: /* Between 2 to 4 */
 				return 5 + random.nextInt(2);
 				
+			case EASY: /* Between 2 to 4 */
+				return 5 + random.nextInt(5);
+				
 			case NORMAL: /* Between 3 to 7 */
-				return 5 + random.nextInt(4);
+				return 5 + random.nextInt(10);
 				
 			case HARD: /* Between 6 to 8 */
-				return 8 + random.nextInt(2);
+				return 8 + random.nextInt(7);
 				
 			case VERY_HARD: /* Between 8 to 10 */
-				return 10 + random.nextInt(2);
+				return 8 + random.nextInt(12);
 				
 			default:
 				throw new IllegalArgumentException();

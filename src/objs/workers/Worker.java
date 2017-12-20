@@ -1,4 +1,4 @@
-package objs;
+package objs.workers;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +13,7 @@ import java.util.Random;
 import game.DrawEngine;
 import game.GameTime;
 import game.states.GameState;
+import objs.Studio;
 import objs.activities.Activity;
 import objs.activities.impl.ProjectActivity;
 import processing.core.PConstants;
@@ -23,7 +24,6 @@ import ui.menus.impl.WorkerMenu;
 public class Worker {
 	
 	public static final int BASE_WAGE = 5;
-	
 
 	public final String name;
 	public Addiction addictionLevel;

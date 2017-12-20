@@ -6,7 +6,7 @@ import java.util.Optional;
 import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
-import objs.Worker;
+import objs.workers.Worker;
 import ui.WorkerBox;
 import ui.WorkerInfo;
 import ui.buttons.Button;

@@ -7,9 +7,9 @@ import app.DevStudios;
 import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
-import objs.Level;
-import objs.Skill;
-import objs.Worker;
+import objs.workers.Level;
+import objs.workers.Skill;
+import objs.workers.Worker;
 import processing.core.PApplet;
 import ui.menus.Menu;
 

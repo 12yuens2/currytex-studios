@@ -6,7 +6,7 @@ import java.util.Random;
 
 import ui.locations.Location;
 import game.states.GameState;
-import objs.Worker;
+import objs.workers.Worker;
 
 public abstract class Activity {
 

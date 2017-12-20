@@ -8,12 +8,12 @@ import java.util.Queue;
 
 import app.DevStudios;
 import game.states.GameState;
-import objs.Level;
-import objs.Skill;
 import objs.Studio;
-import objs.Worker;
 import objs.WorldTrend;
 import objs.activities.impl.ProjectActivity;
+import objs.workers.Level;
+import objs.workers.Skill;
+import objs.workers.Worker;
 import processing.core.PApplet;
 import ui.WorkerBox;
 import ui.buttons.Button;
@@ -92,7 +92,8 @@ public class GameContext {
 	}
 	
 	public void newMonth() {
-		ProjectActivity.HOURS_PER_WORK += 5;
+		/* Make work more difficult as time progresses */
+		ProjectActivity.HOURS_PER_WORK += 5 + (studio.totalReputation/50);
 		
 		for (Worker worker : workers) {
 			worker.paySalary(studio);

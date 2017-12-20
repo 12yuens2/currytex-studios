@@ -8,11 +8,11 @@ import java.util.stream.Stream;
 
 import app.DevStudios;
 import game.states.GameState;
-import objs.Addiction;
-import objs.Level;
-import objs.Skill;
-import objs.Worker;
 import objs.activities.impl.MoreMoneyStatActivity;
+import objs.workers.Addiction;
+import objs.workers.Level;
+import objs.workers.Skill;
+import objs.workers.Worker;
 import processing.core.PVector;
 import ui.UIObject;
 import ui.WorkerBox;
@@ -27,6 +27,7 @@ import ui.locations.impl.ProjectLocation;
 import ui.locations.impl.RecruitLocation;
 import ui.locations.impl.RestLocation;
 import ui.menus.Menu;
+import ui.menus.impl.ReputationMenu;
 import ui.menus.impl.SalaryMenu;
 import ui.menus.impl.UpgradesMenu;
 
@@ -123,10 +124,12 @@ public class GameUI {
 
 	private void drawBottomMenu() {
 		/* Draw all workers menu */
-		openMenuButtons.add(new MenuButton(175, 850, 100, 30, new SalaryMenu(workerInfos)));
+		openMenuButtons.add(new MenuButton("Salaries", 175, 850, 100, 30, new SalaryMenu(workerInfos)));
 		
 		/* Draw upgrades menu */
-		openMenuButtons.add(new MenuButton(400, 850, 100, 30, new UpgradesMenu()));
+		openMenuButtons.add(new MenuButton("Upgrades", 400, 850, 100, 30, new UpgradesMenu()));
+		
+		openMenuButtons.add(new MenuButton("Reputation", 700, 850, 100, 30, new ReputationMenu(context.studio)));
 		
 		/* Draw some other menu */
 	}

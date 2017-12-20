@@ -27,15 +27,7 @@ public class DevStudios extends PApplet {
 	}
 
 	public void draw() { 
-		background(bg);
-//		for (int x = 0; x < SCREEN_X; x += 50) {
-//			for (int y = 0; y < SCREEN_Y; y += 50) {
-//				line(x, 0, x, SCREEN_Y);
-//				line(0, y, SCREEN_X, y);
-//			}
-//		}
-		
-		
+		background(bg);		
 		controller.step(mouseX, mouseY);
 	}
 	

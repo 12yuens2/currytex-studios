@@ -3,8 +3,8 @@ package objs.activities.impl;
 import java.util.Optional;
 
 import game.states.GameState;
-import objs.Worker;
 import objs.activities.Activity;
+import objs.workers.Worker;
 import ui.locations.Location;
 
 public class MoreReputationStatActivity extends Activity {

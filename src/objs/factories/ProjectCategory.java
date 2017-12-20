@@ -8,9 +8,9 @@ import java.util.Map.Entry;
 
 import javax.swing.event.ListSelectionEvent;
 
-import java.util.Random;
+import objs.workers.Skill;
 
-import objs.Skill;
+import java.util.Random;
 
 public enum ProjectCategory {
 	WEB, GAME, FINTECH, DATA, SYSTEMS;	

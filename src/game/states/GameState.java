@@ -50,10 +50,27 @@ public abstract class GameState {
 		
 	}
 	
+	/**
+	 * 
+	 * @param input
+	 * @return
+	 */
 	public abstract GameState handleMouseDrag(GameInput input);
 	
+	
+	/**
+	 * 
+	 * @param input
+	 * @return
+	 */
 	public abstract GameState handleMousePress(GameInput input);
 	
+	
+	/**
+	 * 
+	 * @param input
+	 * @return
+	 */
 	public abstract GameState handleMouseRelease(GameInput input);
 
 }

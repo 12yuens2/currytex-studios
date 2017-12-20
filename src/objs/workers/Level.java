@@ -1,4 +1,4 @@
-package objs;
+package objs.workers;
 
 public class Level implements Comparable {
 

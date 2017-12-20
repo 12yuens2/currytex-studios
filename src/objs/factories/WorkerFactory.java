@@ -7,10 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-import objs.Addiction;
-import objs.Level;
-import objs.Skill;
-import objs.Worker;
+import game.GameTime;
+import objs.workers.Addiction;
+import objs.workers.Level;
+import objs.workers.Skill;
+import objs.workers.Worker;
 
 public class WorkerFactory {
 
@@ -72,15 +73,17 @@ public class WorkerFactory {
 		return new Worker(name);
 	}
 	
-	public static Worker getRandomWorker() {
+	public static Worker getRandomWorker(GameTime time) {
 		Random random = new Random();
 		
+		int cap = 2 + time.months;
+		
 		String name = getName();
-		int moneyLevel = 1 + random.nextInt(2);
-		int repLevel = 1 + random.nextInt(2);
+		int moneyLevel = 1 + random.nextInt(cap);
+		int repLevel = 1 + random.nextInt(cap);
 		Addiction addictLevel = Addiction.values()[random.nextInt(Addiction.values().length)];
 		
-		HashMap<Skill, Level> skills = getSkills(ProjectCategory.values()[random.nextInt(ProjectCategory.values().length)]);
+		HashMap<Skill, Level> skills = getSkills(ProjectCategory.values()[random.nextInt(ProjectCategory.values().length)], cap);
 
 		
 		Worker worker = new Worker(name, moneyLevel, repLevel, addictLevel, skills);
@@ -90,12 +93,12 @@ public class WorkerFactory {
 		
 	}
 	
-	private static HashMap<Skill, Level> getSkills(ProjectCategory category) {
+	private static HashMap<Skill, Level> getSkills(ProjectCategory category, int cap) {
 		List<Skill> categorySkills = category.getSkillsRequired();
 		HashMap<Skill, Level> workerSkills = new HashMap<>();
 		
 		for (int i = 0; i < random.nextInt(categorySkills.size()); i++) {
-			workerSkills.put(categorySkills.get(i), new Level(1 + random.nextInt(2)));
+			workerSkills.put(categorySkills.get(i), new Level(cap));
 		}
 		
 		return workerSkills;

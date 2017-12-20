@@ -19,11 +19,7 @@ public class InMenuState extends GameState {
 	public InMenuState(Menu menu, GameState previousState) {
 		super(previousState.context, previousState.ui);
 		this.menu = menu;
-		this.menu.initExit(previousState);
-//		this.previousState = previousState;
-//		this.exitMenuButton = new ExitButton(menu.position.x + menu.width, menu.position.y - menu.height, 
-//										 20, 20, DrawEngine.parent.color(250, 0, 0));
-		
+		this.menu.initExit(previousState);		
 	}
 	
 	@Override
@@ -40,23 +36,6 @@ public class InMenuState extends GameState {
 		return this;
 	}
 
-//	@Override
-//	public GameState handleInput(GameInput input) {
-//		switch (input.mouseAction) {
-//			case NONE:
-//				
-//				break;
-//				
-//			case MOUSE_RELEASE:
-//				if (exitMenuButton.contains(input.mouseX, input.mouseY)) {
-//					return previousState;
-//				}
-//				menu.clicked(input);
-//				break;			
-//		}
-//		return this;
-//	}
-
 	@Override
 	public GameState handleMouseDrag(GameInput input) {
 		return this;
@@ -72,11 +51,6 @@ public class InMenuState extends GameState {
 		Optional<GameState> result = menu.handleLeftClick(input.mouseX, input.mouseY, context, this);
 		
 		return result.isPresent() ? result.get() : this;
-//		menu.clicked(input);
-//		if (exitMenuButton.contains(input.mouseX, input.mouseY)) {
-//			return previousState;
-//		}
-//		return this;
 	}
 
 }

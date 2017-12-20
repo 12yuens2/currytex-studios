@@ -7,6 +7,7 @@ import java.util.Queue;
 
 import game.GameTime;
 import objs.factories.ProjectCategory;
+import objs.workers.Skill;
 import processing.core.PApplet;
 
 public class WorldTrend {

@@ -5,7 +5,7 @@ import java.util.Optional;
 import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
-import objs.Worker;
+import objs.workers.Worker;
 import processing.core.PConstants;
 
 public class WorkerInfo extends UIObject {

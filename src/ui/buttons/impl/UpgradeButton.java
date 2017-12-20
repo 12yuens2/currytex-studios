@@ -2,6 +2,7 @@ package ui.buttons.impl;
 
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import game.DrawEngine;
 import game.GameContext;
@@ -11,24 +12,35 @@ import ui.buttons.Button;
 
 public class UpgradeButton extends Button {
 
-	public static final int INITIAL_COST = 100;
-//	public static final int COST_INCREASE = 100; //TODO balance formula
+	public static final int DEFAULT_COST = 100;
 	
 	public int cost;
-	public String upgrade;
+	public Supplier<String> descriptionLambda;
 	public Function<GameState, Optional<GameState>> upgradeLambda;
 
 	
-	public UpgradeButton(String upgrade, float xPos, float yPos, int initialCost, Function<GameState, Optional<GameState>> upgradeLambda) {
+	public UpgradeButton(float xPos, float yPos, int initialCost, 
+			Supplier<String> descriptionLamda, Function<GameState, Optional<GameState>> upgradeLambda) {
 		super(xPos, yPos, 75, 25);
 		
 		this.cost = initialCost;
-		this.upgrade = upgrade;
 		this.upgradeLambda = upgradeLambda;
+		this.descriptionLambda = descriptionLamda;
 	}
 	
-	public UpgradeButton(String upgrade, float xPos, float yPos, Function<GameState, Optional<GameState>> upgradeLambda) {
-		this(upgrade, xPos, yPos, INITIAL_COST, upgradeLambda);
+	public UpgradeButton(float xPos, float yPos, 
+			Supplier<String> descriptionLambda, Function<GameState, Optional<GameState>> upgradeLambda) {
+		
+		this(xPos, yPos, DEFAULT_COST, descriptionLambda, upgradeLambda);
+	}
+	
+	public UpgradeButton(float xPos, float yPos, int initialCost, 
+			String description, Function<GameState, Optional<GameState>> upgradeLamda) {
+		this(xPos, yPos, initialCost, () -> description, upgradeLamda);
+	}
+	
+	public UpgradeButton(float xPos, float yPos, String description, Function<GameState, Optional<GameState>> upgradeLambda) {
+		this(xPos, yPos, DEFAULT_COST, description, upgradeLambda);
 	}
 
 	
@@ -45,7 +57,8 @@ public class UpgradeButton extends Button {
 	@Override
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
-		drawEngine.drawText(16, upgrade + ": " + cost, position.x, position.y, DrawEngine.BLACK);
+		drawEngine.drawText(16, "Buy: " + cost, position.x, position.y, DrawEngine.BLACK);
+		drawEngine.drawText(14, descriptionLambda.get(), position.x, position.y - height - 15, DrawEngine.BLACK);
 	}
 	
 	

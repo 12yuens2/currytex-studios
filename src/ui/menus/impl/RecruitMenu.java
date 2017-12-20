@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import app.DevStudios;
 import game.DrawEngine;
 import game.states.GameState;
-import objs.Worker;
 import objs.activities.impl.ProjectActivity;
 import objs.factories.WorkerFactory;
+import objs.workers.Worker;
 import processing.core.PConstants;
 import processing.core.PVector;
 import ui.WorkerBox;
@@ -23,7 +23,7 @@ public class RecruitMenu extends Menu {
 		
 		this.newRecruits = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
-			Worker newWorker = WorkerFactory.getRandomWorker();
+			Worker newWorker = WorkerFactory.getRandomWorker(previousState.context.gameTime);
 			newRecruits.add(newWorker);
 			
 			float yPos = (position.y - height + 150) + (250 * (i));

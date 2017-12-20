@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import game.states.GameState;
 import game.states.impl.InMenuState;
-import objs.Worker;
 import objs.activities.Activity;
+import objs.workers.Worker;
 import ui.locations.Location;
 import ui.menus.impl.RecruitMenu;
 
