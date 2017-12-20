@@ -25,11 +25,12 @@ public class SalaryMenu extends Menu {
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
 		
+		drawEngine.drawText(30, "Salary", position.x, position.y - height + 75, DrawEngine.BLACK);
 		
 		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Worker", 
-				position.x - width + 50, position.y - height + 75, DrawEngine.BLACK);
+				position.x - width + 50, position.y - height + 125, DrawEngine.BLACK);
 		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Unpaid Salary", 
-				position.x - width + 250, position.y - height + 75, DrawEngine.BLACK);
+				position.x - width + 250, position.y - height + 125, DrawEngine.BLACK);
 		
 		drawWorkerSalaries(drawEngine);
 		
@@ -58,7 +59,7 @@ public class SalaryMenu extends Menu {
 		}
 		
 		/* Draw total */
-		yPos += 50;
+		yPos += 25;
 		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, "Total salary: ", xPos, yPos, DrawEngine.BLACK);
 		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ""+salarySum, xPos + 200, yPos, DrawEngine.BLACK);
 		buttons.add(new PaySalaryButton(xPos + 450, yPos, workers));

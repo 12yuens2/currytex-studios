@@ -14,6 +14,7 @@ import objs.workers.Level;
 import objs.workers.Skill;
 import objs.workers.Worker;
 import processing.core.PVector;
+import ui.Tooltip;
 import ui.UIObject;
 import ui.WorkerBox;
 import ui.WorkerInfo;
@@ -107,17 +108,11 @@ public class GameUI {
 		locations.add(new GetNewProjectLocation(projectLocations));
 		
 		/* Rest location */
-		locations.add(new RestLocation(context.gameTime));
+//		locations.add(new RestLocation(context.gameTime));
 		
 		/* Recruit location */
-		locations.add(new RecruitLocation(context.gameTime, workerInfos));
-		
-		/* Get coffee location */
-		locations.add(new GetCoffeeLocation(context.gameTime));
-		
-		
-		locations.add(new MoreMoneyStatLocation(context.gameTime));
-		locations.add(new MoreReputationStatLocation(context.gameTime));
+//		locations.add(new RecruitLocation(context.gameTime, workerInfos));
+
 	}
 	
 
@@ -128,9 +123,17 @@ public class GameUI {
 		/* Draw upgrades menu */
 		openMenuButtons.add(new MenuButton("Upgrades", 400, 850, 100, 30, new UpgradesMenu()));
 		
-		openMenuButtons.add(new MenuButton("Reputation", 700, 850, 100, 30, new ReputationMenu(context.studio)));
+		/* Draw reputations menu */
+		openMenuButtons.add(new MenuButton("Reputation", 625, 850, 100, 30, new ReputationMenu(context.studio)));
 		
 		/* Draw some other menu */
+//		openMenuButtons.add(new MenuButton("Tooltip", 850, 850, 100, 30, 
+//				new Tooltip(
+//						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
+//						+ "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+//						+ "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris "
+//						+ "nisi ut aliquip ex ea commodo consequat.", 
+//						DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 300, 400)));
 	}
 	
 	

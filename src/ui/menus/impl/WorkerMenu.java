@@ -25,7 +25,10 @@ public class WorkerMenu extends Menu {
 	@Override
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
-		worker.menuDisplay(drawEngine, position.copy().add(-width + 55, -height + 55));
+		
+		drawEngine.drawText(30, "Worker " + worker.name, position.x, position.y - height + 50, DrawEngine.BLACK);
+		
+		worker.menuDisplay(drawEngine, position.copy().add(-width + 55, -height + 125));
 
 		
 	}

@@ -19,14 +19,14 @@ public class RecruitMenu extends Menu {
 	public ArrayList<Worker> newRecruits;
 	
 	public RecruitMenu(GameState previousState) {
-		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 500, 400);
+		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 500, 450);
 		
 		this.newRecruits = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
 			Worker newWorker = WorkerFactory.getRandomWorker(previousState.context.studio, previousState.context.gameTime);
 			newRecruits.add(newWorker);
 			
-			float yPos = (position.y - height + 150) + (250 * (i));
+			float yPos = (position.y - height + 200) + (250 * (i));
 			buttons.add(new ChooseWorkerButton((position.x - width + 750), yPos, newWorker, previousState));
 		}
 	}
@@ -36,8 +36,9 @@ public class RecruitMenu extends Menu {
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
 		
-		PVector pos = new PVector(position.x - width + 50, position.y - height + 60);
+		drawEngine.drawText(30, "Recruitment", position.x, position.y - height + 50, DrawEngine.BLACK);
 		
+		PVector pos = new PVector(position.x - width + 50, position.y - height + 125);
 		for (Worker worker : newRecruits) {
 			worker.menuDisplay(drawEngine, pos.copy());
 			pos.add(new PVector(0, 255));

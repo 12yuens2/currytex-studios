@@ -5,8 +5,10 @@ import java.util.Optional;
 import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
+import game.states.impl.InMenuState;
 import objs.activities.impl.ProjectActivity;
 import processing.core.PConstants;
+import ui.Tooltip;
 import ui.buttons.Button;
 import ui.locations.impl.ProjectLocation;
 
@@ -32,7 +34,22 @@ public class ChooseProjectButton extends Button {
 		
 		context.activeProjects.add(project);
 		
-		return Optional.of(previousState);
+		if (!context.projectReveal) {
+			previousState.projectReveal();
+			return Optional.of(new InMenuState(new Tooltip(
+					"To work on a project, drag the worker to the corresponding project box. "
+					+ "Each time a worker works on a project, they complete 1 feature. ", 
+					200, 200), 
+					
+					new InMenuState(new Tooltip(
+							"Workers with matching skills work faster on a project. "
+							+ "Workers gain experience in that skill as they work on projects, "
+							+ "but only their 2 best skills are active.",
+							200, 200), previousState)));
+		}
+		else {
+			return Optional.of(previousState);
+		}
 	
 	}
 

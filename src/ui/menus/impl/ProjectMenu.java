@@ -20,7 +20,9 @@ public class ProjectMenu extends Menu {
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
 
-		project.menuDisplay(drawEngine, position.copy().add(-width + 50, -height + 50));
+		drawEngine.drawText(30, "Project details", position.x, position.y - height + 60, DrawEngine.BLACK);
+		
+		project.menuDisplay(drawEngine, position.copy().add(-width + 50, -height + 125));
 	}
 
 }

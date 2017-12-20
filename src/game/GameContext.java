@@ -26,7 +26,9 @@ public class GameContext {
 	public GameTime gameTime;
 	public Studio studio;
 	public WorldTrend trends;
-	
+
+	public boolean projectReveal, coffeeReveal, moreMoneyReveal, moreRepReveal, multipleReveal;
+
 	public LinkedList<GameState> nextStates;
 	
 	public ArrayList<Worker> workers;
@@ -36,6 +38,12 @@ public class GameContext {
 		this.gameTime = new GameTime();
 		this.studio = new Studio();
 		this.trends = new WorldTrend(parent);
+		
+		this.projectReveal = false;
+		this.coffeeReveal = false;
+		this.moreMoneyReveal = false;
+		this.moreRepReveal = false;
+		this.multipleReveal = false;
 		
 		this.nextStates = new LinkedList<>();
 		this.workers = new ArrayList<>();

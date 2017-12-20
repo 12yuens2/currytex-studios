@@ -5,6 +5,7 @@ import game.GameContext;
 import game.GameInput;
 import game.GameUI;
 import processing.core.PApplet;
+import ui.locations.impl.GetCoffeeLocation;
 
 public abstract class GameState {
 
@@ -72,5 +73,19 @@ public abstract class GameState {
 	 * @return
 	 */
 	public abstract GameState handleMouseRelease(GameInput input);
+
+	
+	public void coffeeReveal() {
+		context.coffeeReveal = true;
+		ui.locations.add(new GetCoffeeLocation(context.gameTime));
+	}
+	
+	public void projectReveal() {
+		context.projectReveal = true;
+	}
+
+	public void multipleReveal() {
+		context.multipleReveal = true;		
+	}
 
 }

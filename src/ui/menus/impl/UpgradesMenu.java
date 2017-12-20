@@ -21,10 +21,17 @@ public class UpgradesMenu extends Menu {
 		
 		initUpgradeButtons();
 	}
+	
+	@Override
+	public void display(DrawEngine drawEngine) {
+		super.display(drawEngine);
+		
+		drawEngine.drawText(30, "Upgrades", position.x, position.y - height + 60, DrawEngine.BLACK);
+	}
 
 	private void initUpgradeButtons() {
 		int xPos = (int) (position.x - width + 50);
-		int yPos = (int) (position.y - height + 150);
+		int yPos = (int) (position.y - height + 175);
 		
 		/* Manual click upgrade button */
 		
@@ -75,7 +82,7 @@ public class UpgradesMenu extends Menu {
 		
 		
 		/* More worker slots */
-		buttons.add(new UpgradeButton(xPos + 600, yPos + 300, 250, "Hire more workers!",
+		buttons.add(new UpgradeButton(xPos + 600, yPos + 300, 250, "Unlock more worker slots!",
 				(GameState state) -> {
 					for (WorkerInfo info : state.ui.workerInfos) {
 						if (info.locked) {

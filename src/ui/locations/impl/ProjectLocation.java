@@ -61,11 +61,11 @@ public class ProjectLocation extends Location {
 		
 		/* Difficulty */
 		drawEngine.drawText(PConstants.LEFT, PConstants.TOP, 12, ""+project.difficulty,
-				position.x - width + 5, position.y - height + 30, DrawEngine.BLACK);
+				position.x - width + 10, position.y - height + 30, DrawEngine.BLACK);
 		
 		/* Time left */
 		drawEngine.drawText(PConstants.LEFT, PConstants.TOP, 12, project.timeLeft + " days left",
-				position.x - width + 5, position.y - height + 50, DrawEngine.BLACK);
+				position.x - width + 10, position.y - height + 50, DrawEngine.BLACK);
 		
 		/* Money earned */
 		drawEngine.drawImage(PConstants.CENTER, drawEngine.moneyIcon, position.x - width/2, position.y + height - 40);

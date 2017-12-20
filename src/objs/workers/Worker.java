@@ -248,9 +248,8 @@ public class Worker {
 		ArrayList<String> workerProperties = new ArrayList<String>();
 		workerProperties.add("Name: " + name);
 
-		//TODO naming more more/reputation level
-		workerProperties.add("More Money Level: " + moreMoney.level);
-		workerProperties.add("More Reputation Level: " + moreReputation.level);
+		workerProperties.add("Entreprenuer Level: " + moreMoney.level);
+		workerProperties.add("Fame Level: " + moreReputation.level);
 		workerProperties.add("Caffine addiction: " + addictionLevel.toString());
 		workerProperties.add("Stress: " + stressPercent + "%");
 		workerProperties.add("Wage: " + wage);
