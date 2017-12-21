@@ -6,6 +6,7 @@ import java.util.Set;
 
 import game.DrawEngine;
 import game.GameContext;
+import game.GameModifiers;
 import game.GameTime;
 import game.states.GameState;
 import game.states.impl.InMenuState;
@@ -56,16 +57,9 @@ public class WorkerBox extends UIObject {
 	
 	@Override
 	public void display(DrawEngine drawEngine) {
-
 		drawEngine.drawImage(PConstants.CENTER, drawEngine.resizedBox(width*2, height*2), position.x, position.y);
 		
 		if (worker != null) {
-//			int col = worker.currentActivity == null ? DrawEngine.parent.color(0, 255, 0) : DrawEngine.parent.color(0, 105, 0);
-//			
-//			drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
-//			PImage box = drawEngine.box.copy();
-//			box.resize(width*2, height*2);
-			
 			
 			/* Worker name */
 			drawEngine.drawText(16, worker.name, position.x, position.y + width/2, DrawEngine.BLACK);
@@ -73,12 +67,6 @@ public class WorkerBox extends UIObject {
 			/* Best worker skills */
 			drawWorkerSkills(drawEngine);
 		}
-		
-		/* Vacant worker spot */
-//		else {
-//			int col = DrawEngine.parent.color(200, 150, 0);
-//			drawEngine.drawSquare(PConstants.RADIUS, col, position, width);
-//		}
 	}
 	
 	private void drawWorkerSkills(DrawEngine drawEngine) {
@@ -95,11 +83,18 @@ public class WorkerBox extends UIObject {
 			GameState currentState) {
 
 		if (worker != null) {
+			
+			/* Allow drag if not disabled */
 			if (mouseOver && !isDisabled()) {
 				mouseLocked = true;
 			}
 			else {
 				mouseLocked =  false;
+			}
+			
+			/* Allow manual clicking on worker to decrease timer */
+			if (worker.workTimer > 0) {
+				worker.work(GameModifiers.manualClickPower);
 			}
 			
 			mouseXOffset = mouseX - position.x;
