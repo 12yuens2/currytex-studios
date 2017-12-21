@@ -1,9 +1,14 @@
 package game;
 
+/**
+ * Class that represents in-game time. 
+ * The game time is updated according to real time and not frame rate.
+ *
+ */
 public class GameTime {
 	
-	public static final double DELTA_TIME = 0.02;
-	public static final double HOURS_PER_TIMESTEP = 0.07;
+	public static final float DELTA_TIME = 0.02f;
+	public static final float HOURS_PER_TIMESTEP = 1.07f;
 	public static final int HOURS_IN_DAY = 24;
 	public static final int DAYS_IN_MONTH = 30;
 	public static final int MONTHS_IN_YEAR = 12;
@@ -19,6 +24,11 @@ public class GameTime {
 		this.months = 0;
 	}
 	
+	/**
+	 * Increment this time by one time step.
+	 * Update the days/months/years accordingly.
+	 * @param context
+	 */
 	public void incrementTimestep(GameContext context) {
 		hours += HOURS_PER_TIMESTEP;
 		
@@ -41,11 +51,14 @@ public class GameTime {
 		}
 	}
 
-	
+	/**
+	 * @return Total time in terms of days.
+	 */
 	public int totalTime() {
 		return days + (months * 30) + (years * 360);
 	}
 	
+	@Override
 	public String toString() {
 		return days + " days, " + months + " months, " + years + " years";
 	}

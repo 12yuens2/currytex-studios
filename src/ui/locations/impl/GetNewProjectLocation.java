@@ -2,8 +2,6 @@ package ui.locations.impl;
 
 import java.util.ArrayList;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Occurs;
-
 import game.DrawEngine;
 import objs.activities.Activity;
 import objs.activities.impl.GettingProjectActivity;
@@ -21,6 +19,8 @@ public class GetNewProjectLocation extends Location {
 	@Override
 	public Activity getActivity() {
 		for (ProjectLocation projectLocation : projectLocations) {
+			
+			/* Only get a new project if there is space for a new project */
 			if (!projectLocation.occupied && projectLocation.project == null) {
 				projectLocation.occupied = true;
 				return new GettingProjectActivity(this, projectLocation);

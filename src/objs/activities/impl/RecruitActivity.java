@@ -25,12 +25,13 @@ public class RecruitActivity extends Activity {
 	public Optional<GameState> finish(Worker worker, GameState currentState) {
 		super.finish(worker, currentState);
 		
+		/* Open a recruitment menu when this project finished */
 		RecruitMenu recruitMenu = new RecruitMenu(currentState);
 		return Optional.of(new InMenuState(recruitMenu, currentState));
 	}
 
 	@Override
-	public String name() {
+	public String getName() {
 		return "Recruiting...";
 	}
 

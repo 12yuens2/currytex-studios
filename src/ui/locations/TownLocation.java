@@ -5,10 +5,15 @@ import game.GameTime;
 import processing.core.PConstants;
 import ui.Animation;
 
+/**
+ * A location in the town that has animation.
+ *
+ */
 public abstract class TownLocation extends Location {
 
 	public static final int TOWN_LOCATION_SIZE = 85;
 	
+	/* Animation that plays when a worker is in this location */
 	public Animation animation;
 	
 	public TownLocation(float xPos, float yPos, String imagePrefix, GameTime time) {
@@ -23,6 +28,7 @@ public abstract class TownLocation extends Location {
 			drawEngine.drawImage(PConstants.CENTER, hoverImage, position.x, position.y);
 		}
 		else {
+			/* Draw animation if there are workers in this location */
 			if (workers.size() > 0) {
 				animation.display(position, drawEngine);
 			} 

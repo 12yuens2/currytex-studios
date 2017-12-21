@@ -2,11 +2,9 @@ package objs.activities.impl;
 
 import objs.activities.Activity;
 import objs.workers.Worker;
-import ui.Tooltip;
 import ui.locations.Location;
 import ui.locations.impl.ProjectLocation;
 import ui.menus.impl.ChooseNewProjectMenu;
-import ui.menus.impl.RecruitMenu;
 
 import java.util.Optional;
 
@@ -36,6 +34,7 @@ public class GettingProjectActivity extends Activity {
 		
 		projectLocation.occupied = false;
 		 
+		/* Create a menu to choose new projects */
 		ChooseNewProjectMenu projectMenu = new ChooseNewProjectMenu(projectLocation, currentState);
 		GameState menuState = new InMenuState(projectMenu, currentState);
 		
@@ -43,7 +42,7 @@ public class GettingProjectActivity extends Activity {
 	}
 
 	@Override
-	public String name() {
+	public String getName() {
 		return "Getting new project...";
 	}
 

@@ -2,7 +2,6 @@ package objs.factories;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -68,32 +67,46 @@ public class WorkerFactory {
 	public static ArrayList<String> names = new ArrayList<>(Arrays.asList(namesCSV.split(",")));
 
 	
-	
+	/**
+	 * Get a worker with a random name and no skills or stats.
+	 * @param studio
+	 * @return
+	 */
 	public static Worker getPlainWorker(Studio studio) {
 		String name = getName();
 		return new Worker(name, studio);
 	}
 	
+	/**
+	 * Get a worker with random skills and stats.
+	 * @param studio
+	 * @param time - The level cap for random skills increases with time. 
+	 * @return
+	 */
 	public static Worker getRandomWorker(Studio studio, GameTime time) {
 		Random random = new Random();
 		
-		int cap = 2 + time.months;
+		/* Level cap for randomly generated skills/stats */
+		int cap = Math.min(5, 2 + time.months/3);
 		
+		/* Worker properties */
 		String name = getName();
 		int moneyLevel = 1 + random.nextInt(cap);
 		int repLevel = 1 + random.nextInt(cap);
 		Addiction addictLevel = Addiction.values()[random.nextInt(Addiction.values().length)];
-		
 		HashMap<Skill, Level> skills = getSkills(ProjectCategory.values()[random.nextInt(ProjectCategory.values().length)], cap);
 
-		
 		Worker worker = new Worker(name, studio, moneyLevel, repLevel, addictLevel, skills);
-
 		
 		return worker;
-		
 	}
 	
+	/**
+	 * Get random skills based on a category. 
+	 * @param category
+	 * @param cap - maximum level for a random skill to be. 
+	 * @return
+	 */
 	private static HashMap<Skill, Level> getSkills(ProjectCategory category, int cap) {
 		List<Skill> categorySkills = category.getSkillsRequired();
 		HashMap<Skill, Level> workerSkills = new HashMap<>();
@@ -105,6 +118,11 @@ public class WorkerFactory {
 		return workerSkills;
 	}
 	
+	/**
+	 * Get a random name from the list of names. 
+	 * Removes that name from the list. 
+	 * @return
+	 */
 	public static String getName() {
 		Random random = new Random();
 		String name = names.get(random.nextInt(names.size()));

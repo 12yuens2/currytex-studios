@@ -3,19 +3,22 @@ package game.states.impl;
 import java.util.Optional;
 
 import game.DrawEngine;
-import game.GameContext;
 import game.GameInput;
-import game.GameUI;
 import game.states.GameState;
-import processing.core.PApplet;
-import ui.buttons.Button;
-import ui.buttons.impl.ExitButton;
 import ui.menus.Menu;
 
+/**
+ * GameState where a menu is displayed and time does not pass.
+ *
+ */
 public class InMenuState extends GameState {
 
 	public Menu menu;
 	
+	/**
+	 * @param menu - Menu to be displayed
+	 * @param previousState - Previous GameState to return to when the menu is closed
+	 */
 	public InMenuState(Menu menu, GameState previousState) {
 		super(previousState.context, previousState.ui);
 		this.menu = menu;

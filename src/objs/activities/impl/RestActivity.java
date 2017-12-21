@@ -33,7 +33,7 @@ public class RestActivity extends Activity {
 	}
 
 	@Override
-	public String name() {
+	public String getName() {
 		return "Resting...";
 	}
 	

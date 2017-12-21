@@ -10,6 +10,11 @@ import objs.workers.Skill;
 import processing.core.PConstants;
 import ui.menus.Menu;
 
+/**
+ * Menu to show reputation details.
+ * Total reputation and skill reputation are calculated slightly differently and don't add up.
+ *
+ */
 public class ReputationMenu extends Menu {
 
 	public HashMap<Skill, Integer> reputations;
@@ -31,6 +36,8 @@ public class ReputationMenu extends Menu {
 	private void drawReputations(DrawEngine drawEngine) {
 		int xPos = (int) (position.x - width + 100);
 		int yPos = (int) (position.y - height + 150);
+		
+		/* Draw each skill and its reputation */
 		for (Entry<Skill, Integer> entry : reputations.entrySet()) {
 			drawEngine.drawImage(PConstants.CENTER, entry.getKey().icon(drawEngine), xPos, yPos);
 			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, entry.getKey().toString(), 

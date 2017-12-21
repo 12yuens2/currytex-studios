@@ -17,7 +17,6 @@ public class MoreMoneyStatActivity extends Activity {
 	@Override
 	public Activity start(Worker worker) {
 		worker.setWorkTimer(MORE_MONEY_STAT_TIME);
-		
 		return this;
 	}
 	
@@ -29,7 +28,7 @@ public class MoreMoneyStatActivity extends Activity {
 	}
 
 	@Override
-	public String name() {
+	public String getName() {
 		return "Entrepreneuring...";
 	}
 

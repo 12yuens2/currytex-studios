@@ -1,11 +1,8 @@
 package ui.locations.impl;
 
-import game.DrawEngine;
 import game.GameTime;
 import objs.activities.Activity;
 import objs.activities.impl.GetCoffeeActivity;
-import processing.core.PConstants;
-import ui.locations.Location;
 import ui.locations.TownLocation;
 
 public class GetCoffeeLocation extends TownLocation {

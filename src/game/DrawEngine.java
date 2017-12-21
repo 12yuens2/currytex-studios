@@ -8,16 +8,13 @@ import processing.core.PImage;
 import processing.core.PVector;
 import ui.UIObject;
 import ui.WorkerInfo;
-import ui.locations.Location;
 
 public class DrawEngine {
-    
-
-	public static final int ICON_SIZE = 50;
 	
 	public static PApplet parent;
 	public static int BLACK;
 	
+	/* Standard box for menus/buttons */
 	private PImage box;
 	
 	/* Icons */
@@ -26,10 +23,6 @@ public class DrawEngine {
 	public PImage caffeineIcon;
 	
 	public PImage cIcon, haskellIcon, javaIcon, rubyIcon, pythonIcon, sqlIcon, jsIcon;
-	
-	/* Locations */
-	public PImage restLocation, recruitLocation, moreMoneyLocation, moreRepLocation, cafeLocation;
-	public PImage restLocation1, recruitLocation1;
 	
 	/* Buttons */
 	public PImage exitButton;
@@ -44,7 +37,6 @@ public class DrawEngine {
     	box = parent.loadImage("imgs/box.png");
     	
     	loadIcons();
-    	loadLocations();
     	loadButtons();
     	loadWorkers();
     }
@@ -64,30 +56,9 @@ public class DrawEngine {
 		sqlIcon = parent.loadImage("imgs/sql-icon.png");
 		jsIcon = parent.loadImage("imgs/js-icon.png");
 		
+		/* Resize all icons */
 		resize(size, size, moneyIcon, reputationIcon, caffeineIcon,
 				cIcon, haskellIcon, javaIcon, rubyIcon, pythonIcon, sqlIcon, jsIcon);
-    }
-    
-    private void loadLocations() {
-//    	int size = Location.TOWN_LOCATION_SIZE * 2 + 15;
-//    	restLocation = parent.loadImage("imgs/rest0.png");
-//    	restLocation1 = parent.loadImage("imgs/rest1.png");
-//
-//    	recruitLocation = parent.loadImage("imgs/recruit0.png");
-//    	recruitLocation1 = parent.loadImage("imgs/recruit1.png");
-//    	
-//    	moreMoneyLocation = parent.loadImage("imgs/money0.png");
-//    	
-//    	moreRepLocation = parent.loadImage("imgs/reputation0.png");
-//    	
-//    	cafeLocation = parent.loadImage("imgs/cafe0.png");
-//    	
-//    	resize(size, size, 
-//    			restLocation, restLocation1, 
-//    			recruitLocation, recruitLocation1,
-//    			moreMoneyLocation,
-//    			moreRepLocation,
-//    			cafeLocation);
     }
     
     private void loadButtons() {
@@ -100,10 +71,17 @@ public class DrawEngine {
     	workerInfoLocked = parent.loadImage("imgs/worker-info-locked.png");
     	workerInfoUnlocked = parent.loadImage("imgs/worker-info-unlocked.png");
     	
+    	/* Resize all worker info images */
     	resize(WorkerInfo.WIDTH * 2, WorkerInfo.HEIGHT * 2,
     			workerInfo, workerInfoLocked, workerInfoUnlocked);
     }
     
+    /**
+     * Helper function to resize any number of images
+     * @param width
+     * @param height
+     * @param images
+     */
     private void resize(int width, int height, PImage... images) {
     	for (PImage image : images) {
     		image.resize(width, height);
@@ -111,7 +89,7 @@ public class DrawEngine {
     }
     
     /**
-     * 
+     * Get a resized version of the normal box image.
      * @param width
      * @param height
      * @return
@@ -138,11 +116,11 @@ public class DrawEngine {
     }
 
     /**
-     * 
-     * @param mode
-     * @param image
-     * @param posX
-     * @param posY
+     * Generic image draw function for other classes to draw an image. 
+     * @param mode - Processing mode for how to draw an object
+     * @param image - image to draw
+     * @param posX - x position of the image
+     * @param posY - y position of the image
      */
     public void drawImage(int mode, PImage image, float posX, float posY) {
     	parent.imageMode(mode);
@@ -150,21 +128,9 @@ public class DrawEngine {
     }
     
     
-    
-
-	public void drawText(int textSize, String text, float posX, float posY, int col) {	
-		drawText(PConstants.CENTER, PConstants.CENTER, textSize, text, posX, posY, col);
-	}
-	
-    /**
-     * Generic draw text function for other classes to draw text to the screen
-     * @param align - constant of text alignment for the text
-     * @param textSize - size of the text
-     * @param text - text to be drawn
-     * @param posX - x position of the text
-     * @param posY - y position of the text
-     * @param col - colour of the text
-     */
+	/**
+	 * Generic draw text function for other classes to draw text to the screen with alignment.
+	 */
 	public void drawText(int alignX, int alignY, int textSize, String text, float posX, float posY, int col) {
 		PFont font = parent.createFont("Lucida Sans Regular", textSize, true);
 		
@@ -174,17 +140,25 @@ public class DrawEngine {
 		parent.text(text, posX, posY);
 	}
 	
+
+	/**
+	 * Draw text with center alignment. 
+	 */
+	public void drawText(int textSize, String text, float posX, float posY, int col) {	
+		drawText(PConstants.CENTER, PConstants.CENTER, textSize, text, posX, posY, col);
+	}
+	
     /**
      * Draw text with opacity
      */
-	public void drawText(int textSize, String text, float posX, float posY, int col, int opacity) {
-		PFont font = parent.createFont("Arial", textSize, true);
-		
-		parent.textFont(font, textSize);
-		parent.fill(col, opacity);
-		parent.text(text, posX, posY);
-		parent.textAlign(PConstants.CENTER, PConstants.CENTER);
-	}
+//	public void drawText(int textSize, String text, float posX, float posY, int col, int opacity) {
+//		PFont font = parent.createFont("Arial", textSize, true);
+//		
+//		parent.textFont(font, textSize);
+//		parent.fill(col, opacity);
+//		parent.text(text, posX, posY);
+//		parent.textAlign(PConstants.CENTER, PConstants.CENTER);
+//	}
 	
 	/**
 	 * Draw an ellipse based on given parameters.
@@ -213,7 +187,8 @@ public class DrawEngine {
 	
 	
 	/**
-	 * Draw a rectangle based on given parameters with rectMode CORNER.
+	 * Draw a rectangle based on given parameters.
+	 * @param rectMode - Processing rectMode to specific how to draw the rectangle.
 	 * @param col - colour of the rectangle
 	 * @param xPos - x coordinate of the circle
 	 * @param yPos - y coordinate of the circle
@@ -226,18 +201,12 @@ public class DrawEngine {
 		parent.rect(xPos, yPos, width, height);
 	}
 	
+	/**
+	 * Draw a square.
+	 */
 	public void drawSquare(int rectMode, int col, PVector position, float size) {
 		drawRectangle(rectMode, col, position.x, position.y, size, size);
 	}
-	
-//	/**
-//	 * Draw a rectangle with a specified rectMode.
-//	 */
-//	public void drawRectangle(int col, float xPos, float yPos, float width, float height, int rectMode) {
-//		parent.rectMode(rectMode);
-//		parent.fill(col);
-//		parent.rect(xPos, yPos, width, height);
-//	}
 	
 	/**
 	 * Draw a rectangle with opacity.

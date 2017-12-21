@@ -11,7 +11,6 @@ import game.states.impl.InMenuState;
 import objs.workers.Addiction;
 import objs.workers.Worker;
 import ui.Tooltip;
-import ui.WorkerBox;
 import ui.WorkerInfo;
 import ui.buttons.Button;
 
@@ -46,7 +45,7 @@ public class ChooseWorkerButton extends Button {
 							"Some workers may have levels of coffee addition. "
 							+ "These workers need to drink coffee when they work on projects. "
 							+ "If you have no coffee available, they become more stressed and have a chance to stop working altogether. "
-							+ "To get more coffee, send any worker to the cafe. ",
+							+ "To get more coffee, send any worker to the [Cafe]. ",
 							250, 200), previousState));
 				}
 				
@@ -62,10 +61,7 @@ public class ChooseWorkerButton extends Button {
 			}
 		}
 		
-
 		return Optional.of(previousState);
-		
-
 	}
 	
 	@Override

@@ -1,17 +1,16 @@
 package objs.factories;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map.Entry;
-
-import javax.swing.event.ListSelectionEvent;
 
 import objs.workers.Skill;
 
-import java.util.Random;
-
+/**
+ * Internal project category representation.
+ * The category of the project determines the languages it may require.
+ * All project require at least one language and at most all language belonging to that category.
+ * 
+ */
 public enum ProjectCategory {
 	WEB, GAME, FINTECH, DATA, SYSTEMS;	
 	

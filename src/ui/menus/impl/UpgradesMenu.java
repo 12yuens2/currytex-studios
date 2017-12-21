@@ -1,17 +1,20 @@
 package ui.menus.impl;
 
 import java.util.Optional;
-import java.util.function.Function;
 
 import app.CurryTeXStudios;
 import game.DrawEngine;
-import game.GameContext;
 import game.GameModifiers;
 import game.states.GameState;
 import ui.WorkerInfo;
 import ui.buttons.impl.UpgradeButton;
 import ui.menus.Menu;
 
+
+/**
+ * Menu for buying upgrades. 
+ *
+ */
 public class UpgradesMenu extends Menu {
 
 	public static final float MODIFIER_INCREASE = 0.15f;

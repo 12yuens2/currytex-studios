@@ -2,17 +2,12 @@ package ui.menus;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 import game.DrawEngine;
 import game.GameContext;
-import game.GameInput;
 import game.states.GameState;
-import processing.core.PApplet;
 import processing.core.PConstants;
-import processing.core.PImage;
-import processing.core.PVector;
 import ui.UIObject;
 import ui.buttons.Button;
 import ui.buttons.impl.ExitButton;
@@ -61,18 +56,16 @@ public class Menu extends UIObject {
 
 	@Override
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
+		
+		/* 
+		 * Call all left click handlers for a buttons in the menu and
+		 * return the first Optional<GameState> that is not empty.
+		 */
 		return Stream.concat(buttons.stream(), Stream.of(exitButton))
 				.filter(button -> button.contains(mouseX, mouseY))
 				.map(button -> button.handleLeftClick(mouseX, mouseY, context, currentState))
 				.flatMap(o -> o.isPresent() ? Stream.of(o.get()) : Stream.empty())
 				.findFirst();
-	}
-	
-	@Override
-	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
-			GameState currentState) {
-
-		return Optional.empty();
 	}
 
 }

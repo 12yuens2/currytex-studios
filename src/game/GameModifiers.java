@@ -2,7 +2,6 @@ package game;
 
 /**
  * Mutable game constants.
- * @author sy35
  *
  */
 public class GameModifiers {

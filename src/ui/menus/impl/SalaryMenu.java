@@ -10,6 +10,10 @@ import ui.WorkerInfo;
 import ui.buttons.impl.PaySalaryButton;
 import ui.menus.Menu;
 
+/**
+ * Menu to show current salaries and allow pre-emptive paying.
+ *
+ */
 public class SalaryMenu extends Menu {
 
 	public ArrayList<WorkerInfo> workerInfos;
@@ -47,6 +51,7 @@ public class SalaryMenu extends Menu {
 		int xPos = (int) (position.x - width + 50);
 		int yPos = (int) (position.y - height + 175);
 		
+		/* Draw salary and pay button for each worker */
 		int salarySum = 0;
 		for (Worker worker : workers) {
 			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, worker.name, xPos, yPos, DrawEngine.BLACK);

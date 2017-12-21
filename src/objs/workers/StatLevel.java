@@ -1,8 +1,13 @@
 package objs.workers;
 
+
+/**
+ * StatLevel is also a Level, but uses a static progress rather than experience to level up.
+ *
+ */
 public class StatLevel extends Level {
 
-	public static final int PROGRESS_REQUIRED = 1;
+	public static final int PROGRESS_REQUIRED = 2;
 	
 	public int progress;
 	

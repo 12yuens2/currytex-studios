@@ -3,9 +3,12 @@ package ui.menus.impl;
 import app.CurryTeXStudios;
 import game.DrawEngine;
 import objs.activities.impl.ProjectActivity;
-import processing.core.PConstants;
 import ui.menus.Menu;
 
+/**
+ * Menu with project details.
+ *
+ */
 public class ProjectMenu extends Menu {
 
 	public ProjectActivity project;

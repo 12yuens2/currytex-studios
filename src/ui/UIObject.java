@@ -9,8 +9,8 @@ import game.GameContext;
 import processing.core.PVector;
 
 /**
- * Assume all gameobjects are rectangles
- * @author sy35
+ * Represents all elements that are drawn on the screen.
+ * This assumes all elements are rectangles.
  *
  */
 public abstract class UIObject {
@@ -33,6 +33,9 @@ public abstract class UIObject {
 	}
 	
 	
+	/**
+	 * Function to display the object.
+	 */
 	public abstract void display(DrawEngine drawEngine);
 	
 	
@@ -48,10 +51,10 @@ public abstract class UIObject {
 	}
 	
 	/**
-	 * 
+	 * Check if this object is contained within the given x and y coordinates.
 	 * @param x
 	 * @param y
-	 * @return
+	 * @return - If x and y are in this object.
 	 */
 	public boolean contains(float x, float y) {
 		return (x > position.x - width && x < position.x + width &&
@@ -65,7 +68,7 @@ public abstract class UIObject {
 	 * @param mouseY
 	 * @param currentState 
 	 * @param context 
-	 * @return - Optional.empty() if the gamestate does change, Optional.of(gamestate) if changes to new state.
+	 * @return - Optional.empty() if the game state does change, Optional.of(GameState) if changes to new state.
 	 */
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
 		return Optional.empty();
@@ -77,7 +80,7 @@ public abstract class UIObject {
 	 * @param mouseY
 	 * @param context
 	 * @param currentState
-	 * @return
+	 * @return - Optional.empty() if the game state does change, Optional.of(GameState) if changes to new state.
 	 */
 	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
 		return Optional.empty();

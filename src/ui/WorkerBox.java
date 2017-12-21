@@ -2,26 +2,21 @@ package ui;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Set;
 
 import game.DrawEngine;
 import game.GameContext;
 import game.GameModifiers;
-import game.GameTime;
 import game.states.GameState;
-import game.states.impl.InMenuState;
-import game.states.impl.PlayingState;
-import objs.activities.impl.ProjectActivity;
-import objs.workers.Level;
 import objs.workers.Skill;
 import objs.workers.Worker;
 import processing.core.PConstants;
-import processing.core.PImage;
 import processing.core.PVector;
 import ui.locations.Location;
-import ui.menus.Menu;
-import ui.menus.impl.WorkerMenu;
 
+/**
+ * Box representing a worker avatar that can be dragged around.
+ *
+ */
 public class WorkerBox extends UIObject {
 
 	public final PVector originalPosition;
@@ -115,6 +110,7 @@ public class WorkerBox extends UIObject {
 			for (Location location : locations) {
 				location.workerCollision = false;
 				
+				/* Start an activity at a location this worker box overlaps with */
 				if (overlapsWith(location) && location.canAddWorker()) {
 					worker.startNewActivity(location);
 				}

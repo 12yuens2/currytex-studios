@@ -4,33 +4,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Optional;
-import java.util.Queue;
 
-import app.CurryTeXStudios;
 import game.states.GameState;
 import objs.Studio;
 import objs.WorldTrend;
 import objs.activities.impl.ProjectActivity;
-import objs.workers.Level;
-import objs.workers.Skill;
 import objs.workers.Worker;
-import processing.core.PApplet;
-import ui.Tooltip;
-import ui.WorkerBox;
-import ui.buttons.Button;
-import ui.buttons.impl.MenuButton;
-import ui.locations.Location;
-import ui.menus.Menu;
 
 public class GameContext {
-	 
 	
 	public GameTime gameTime;
 	public Studio studio;
 	public WorldTrend trends;
 
-
 	public boolean gameOver, firstYear, reachedGoal;
+	
+	/* Tutorial tooltip reveals */
 	public boolean projectReveal, coffeeReveal, moreMoneyReveal, moreRepReveal, multipleReveal;
 
 	public LinkedList<GameState> nextStates;
@@ -57,7 +46,12 @@ public class GameContext {
 		this.activeProjects = new ArrayList<>();
 	}
 	
+	/**
+	 * Update the time and game objects.
+	 * @param currentState
+	 */
 	public void timeStep(GameState currentState) {
+		/* Integrate game time */
 		gameTime.incrementTimestep(this);
 		
 		/* Integrate workers */
@@ -84,6 +78,10 @@ public class GameContext {
 		
 	}
 
+	/**
+	 * Function to do all things that need to be done on a new in-game day.
+	 * Update worker salaries and project time limits. 
+	 */
 	public void newDay() {
 		for (Worker worker : workers) {
 			worker.updateSalary();
@@ -106,6 +104,10 @@ public class GameContext {
 		
 	}
 	
+	/**
+	 * Function to do all things that need to be done on a new in-game month. 
+	 * Pay salaries and check for game over. 
+	 */
 	public void newMonth() {
 		/* Make work more difficult as time progresses */
 		ProjectActivity.HOURS_PER_WORK += 5 + (studio.totalReputation/50);
@@ -118,10 +120,12 @@ public class GameContext {
 				worker.paySalary(studio);
 			}
 		}
-		
-
 	}
 	
+	/**
+	 * Function to do all things that need to be done on a new in-game year.
+	 * Check for reputation goal and game over.
+	 */
 	public void newYear() {
 		if (studio.totalReputation >= studio.reputationGoal) {
 			studio.reputationGoal += studio.reputationGoal;

@@ -9,20 +9,23 @@ import game.DrawEngine;
 import game.GameTime;
 import objs.factories.ProjectCategory;
 import objs.workers.Skill;
-import processing.core.PApplet;
 
+
+/**
+ * Uses Perlin noise provided by processing to generate random trends for project categories.
+ * @author sy35
+ *
+ */
 public class WorldTrend {
 
 	public static final int MAX_HISTORY = 30;
 	
 	public HashMap<ProjectCategory, Float> categoryTrends;
 	public HashMap<ProjectCategory, Queue<Float>> categoryTrendHistory;
-	public HashMap<Skill, Float> skillTrends;
 	
 	public WorldTrend() {
 		this.categoryTrends = new HashMap<>();
 		this.categoryTrendHistory = new HashMap<>();
-		this.skillTrends = new HashMap<>();
 		
 		initCategoryTrends();
 		initHistory();
@@ -45,7 +48,10 @@ public class WorldTrend {
 	}
 	
 	
-	
+	/**
+	 * Update the next data point on the noise line.
+	 * @param time - The in-game time is used as the x-axis on the noise line. 
+	 */
 	public void integrate(GameTime time) {
 		float x = time.totalTime() / 100f;
 		int y = 1;
@@ -53,12 +59,6 @@ public class WorldTrend {
 		for (Entry<ProjectCategory, Float> entry : categoryTrends.entrySet()) {
 			categoryTrends.put(entry.getKey(), DrawEngine.parent.noise(x,y));
 			y++;
-		}
-		
-		for (Entry<Skill, Float> entry : skillTrends.entrySet()) {
-			skillTrends.put(entry.getKey(), DrawEngine.parent.noise(x,y));
-			y++;
-		}
-		
+		}		
 	}
 }

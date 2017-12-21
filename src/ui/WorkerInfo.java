@@ -9,6 +9,11 @@ import game.states.impl.InMenuState;
 import objs.workers.Worker;
 import processing.core.PConstants;
 
+
+/**
+ * Represents workers in the game with their activity progression bar.
+ *
+ */
 public class WorkerInfo extends UIObject {
 
 	public static final int WIDTH = 140;
@@ -66,15 +71,7 @@ public class WorkerInfo extends UIObject {
 		else {
 			drawEngine.drawImage(PConstants.CENTER, drawEngine.workerInfoUnlocked, position.x, position.y);
 			workerBox.display(drawEngine);
-		}
-		
-
-		
-		/* Display hover */
-//		if (mouseOver) {
-//			drawEngine.drawRectangle(PConstants.CENTER, col, position.x - 2*width, position.y, width, height);
-//		}
-		
+		}	
 	}
 	
 	private void drawProgressBar(DrawEngine drawEngine) {
@@ -92,23 +89,16 @@ public class WorkerInfo extends UIObject {
 		
 		/* Activity name */
 		if (worker != null && worker.currentActivity != null) {
-			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 12, worker.currentActivity.name(), 
+			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 12, worker.currentActivity.getName(), 
 					workerBox.originalPosition.x + workerBox.width + 15, workerBox.originalPosition.y + 25, DrawEngine.BLACK);
 		}
-	}
-	
-
-	@Override
-	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
-			GameState currentState) {
-		
-		return Optional.empty();
 	}
 
 	@Override
 	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
 			GameState currentState) {
 
+		/* Right click gets worker details */
 		if (worker != null) {
 			return Optional.of(new InMenuState(worker.getMenu(), currentState));
 		}

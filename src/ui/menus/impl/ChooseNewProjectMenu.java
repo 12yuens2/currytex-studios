@@ -7,13 +7,16 @@ import game.DrawEngine;
 import game.states.GameState;
 import objs.activities.impl.ProjectActivity;
 import objs.factories.ProjectFactory;
-import processing.core.PConstants;
-import processing.core.PImage;
 import processing.core.PVector;
 import ui.buttons.impl.ChooseProjectButton;
 import ui.locations.impl.ProjectLocation;
 import ui.menus.Menu;
 
+
+/**
+ * Menu to choose a new project.
+ *
+ */
 public class ChooseNewProjectMenu extends Menu {
 	
 	public ArrayList<ProjectActivity> newProjects;
@@ -23,9 +26,12 @@ public class ChooseNewProjectMenu extends Menu {
 
 		newProjects = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
-			ProjectActivity newProject = ProjectFactory.getRandomProject(previousState.context.studio.reputation, previousState.context.trends);
+			/* New projects */
+			ProjectActivity newProject = ProjectFactory.getRandomProject(
+					previousState.context.studio.reputation, previousState.context.trends);
 			newProjects.add(newProject);
 			
+			/* New project buttons to choose the corresponding project */
 			float yPos = (position.y - height - 50) + (225 * (i + 1));
 			buttons.add(new ChooseProjectButton(position.x + width - 200, yPos, newProject, location, previousState));
 		}
@@ -37,6 +43,7 @@ public class ChooseNewProjectMenu extends Menu {
 		
 		drawEngine.drawText(30, "New projects", position.x, position.y - height + 50, DrawEngine.BLACK);
 		
+		/* Draw each project details */
 		PVector pos = new PVector(position.x - width + 50, position.y - height + 100);
 		for (ProjectActivity project : newProjects) {
 			project.menuDisplay(drawEngine, pos.copy());

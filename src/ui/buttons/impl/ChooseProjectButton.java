@@ -7,7 +7,6 @@ import game.GameContext;
 import game.states.GameState;
 import game.states.impl.InMenuState;
 import objs.activities.impl.ProjectActivity;
-import processing.core.PConstants;
 import ui.Tooltip;
 import ui.buttons.Button;
 import ui.locations.impl.ProjectLocation;
@@ -34,6 +33,7 @@ public class ChooseProjectButton extends Button {
 		
 		context.activeProjects.add(project);
 		
+		/* Tutorial tooltip */
 		if (!context.projectReveal) {
 			previousState.projectReveal();
 			return Optional.of(new InMenuState(new Tooltip(

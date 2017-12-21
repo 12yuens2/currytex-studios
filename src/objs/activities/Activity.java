@@ -1,6 +1,5 @@
 package objs.activities;
 
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
 
@@ -8,8 +7,12 @@ import ui.locations.Location;
 import game.states.GameState;
 import objs.workers.Worker;
 
-public abstract class Activity {
 
+/**
+ * Represents any activity a worker can complete.
+ *
+ */
+public abstract class Activity {
 	
 	public static final int GET_NEW_PROJECT_TIME = 40;
 	public static final int GET_COFFEE_TIME = 30;
@@ -57,10 +60,10 @@ public abstract class Activity {
 	}
 
 	/**
-	 * 
+	 * Get the name of this activity. 
 	 * @return
 	 */
-	public abstract String name();
+	public abstract String getName();
 
 	
 	

@@ -21,6 +21,11 @@ import processing.core.PVector;
 import ui.locations.Location;
 import ui.menus.impl.WorkerMenu;
 
+
+/**
+ * Class that represents a worker in the game.
+ *
+ */
 public class Worker {
 	
 	public static final int BASE_WAGE = 5;
@@ -29,7 +34,7 @@ public class Worker {
 	public Addiction addictionLevel;
 	
 	public HashMap<Skill, Level> skills;
-	public StatLevel moreMoney, moreReputation; //TODO better names
+	public StatLevel entrepreneur, fame;
 	
 	public Studio studio;
 	
@@ -56,17 +61,19 @@ public class Worker {
 		this.workTimerStart = 1;
 		
 		this.skills = new HashMap<>();
-		this.moreMoney = new StatLevel();
-		this.moreReputation = new StatLevel();
+		this.entrepreneur = new StatLevel();
+		this.fame = new StatLevel();
 		
 		calculateWage();
 	}
 	
-	public Worker(String name, Studio studio,  int moreMoneyLevel, int moreReputationLevel, Addiction addictionLevel, HashMap<Skill, Level> skills) {
+	public Worker(String name, Studio studio, int moreMoneyLevel, int moreReputationLevel, 
+			Addiction addictionLevel, HashMap<Skill, Level> skills) {
 		this(name, studio);
+		
 		this.addictionLevel = addictionLevel;
-		this.moreMoney.level = moreMoneyLevel;
-		this.moreReputation.level = moreReputationLevel;
+		this.entrepreneur.level = moreMoneyLevel;
+		this.fame.level = moreReputationLevel;
 		
 		this.skills = skills;
 		
@@ -81,18 +88,24 @@ public class Worker {
 			location.addWorker(this);
 			currentActivity = activity.start(this);
 		}
-		
 	}
 	
+	/**
+	 * Update step for this worker. 
+	 * @param currentState
+	 * @return - May return a game state if an activity triggers a new game state.
+	 */
 	public Optional<GameState> integrate(GameState currentState) {
 		if (currentActivity != null) {
-			work((float) GameTime.HOURS_PER_TIMESTEP);
+			/* Reduce work timer */
+			work(GameTime.HOURS_PER_TIMESTEP);
 			
+			/* Drink coffee if working on project */
 			if (currentActivity instanceof ProjectActivity && addictionLevel != Addiction.NONE) {
 				chanceToDrinkCoffee(currentState.context.studio);
 			}
 			
-			
+			/* Finish current activity */
 			if (workTimer <= 0) {
 				Optional<GameState> nextState = currentActivity.finish(this, currentState);
 				currentActivity = null;
@@ -105,16 +118,17 @@ public class Worker {
 	
 	private void chanceToDrinkCoffee(Studio studio) {
 		int chance = addictionLevel.drinkChance();
-
 		
 		Random random = new Random();
 		if (random.nextInt(chance) == 0) {
 			if (studio.coffee > 0) {
+				/* Drink coffee */
 				canWork = true;
 				studio.coffee--;
 				work(1);
 			}
 			else {
+				/* No more coffee */
 				if (random.nextInt(addictionLevel.stallChance()) == 0) {
 					canWork = false;
 				}
@@ -124,13 +138,19 @@ public class Worker {
 		}		
 	}
 
+	/**
+	 * Add progress to the entrepreneur stat and recalulate wages.
+	 */
 	public void addMoreMoneyLevel() {
-		moreMoney.addProgress();
+		entrepreneur.addProgress();
 		calculateWage();
 	}
 	
+	/**
+	 * Add progress to the fame stat and recalulate wages.
+	 */
 	public void addMoreReputationLevel() {
-		moreReputation.addProgress();
+		fame.addProgress();
 		calculateWage();
 	}
 	
@@ -150,11 +170,18 @@ public class Worker {
 		workTimerStart = time;
 	}
 	
+	/**
+	 * Reduce work timer and drink coffee if needed.
+	 * The work timer will not reduce if canWork is false.
+	 * @param amount to work. 
+	 */
 	public void work(float amount) {
 		if (canWork) {	
 			workTimer = Math.max(0, workTimer - amount);
 		}
 		else {
+			
+			/* Cannot continue to work automatically until the worker gets coffee */
 			if (studio.coffee > 0) {
 				canWork = true;
 				studio.coffee--;
@@ -163,21 +190,31 @@ public class Worker {
 		
 	}
 	
-	
+	/**
+	 * Get the 2 best skills for this worker which are the worker's active skills.
+	 * @return
+	 */
 	public HashMap<Skill, Level> getSkills() {
+		/* Sort the skills hashmap */
 		LinkedHashMap<Skill, Level> sortedSkills = skills.entrySet()
 												.stream()
-												.sorted(Map.Entry.comparingByValue(Collections.reverseOrder()))
+												.sorted(Entry.comparingByValue(Collections.reverseOrder()))
 												.collect(Collectors.toMap(
-														Map.Entry::getKey, Map.Entry::getValue, 
+														Entry::getKey, Entry::getValue, 
 														(e1, e2) -> e1,
 														LinkedHashMap::new));
 	
+		/* Get the first two from the sorted hashmap */
 		return sortedSkills.entrySet().stream()
 				.limit(2)
 				.collect(LinkedHashMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), Map::putAll);
 	}
 	
+	/**
+	 * Update skills and recalculate wage. 
+	 * @param skill
+	 * @param expGain
+	 */
 	public void updateSkills(Skill skill, int expGain) {
 		if (skills.containsKey(skill)) {
 			skills.get(skill).gainExp(expGain);
@@ -188,9 +225,12 @@ public class Worker {
 		calculateWage();
 	}
 	
+	/**
+	 * Calculate the worker's wage based on skill and stat levels.
+	 */
 	private void calculateWage() {
-		wage = BASE_WAGE + (moreMoney.level * 3)
-						 + (moreReputation.level * 2);
+		wage = BASE_WAGE + (entrepreneur.level * 3)
+						 + (fame.level * 2);
 		
 		for (Entry<Skill, Level> entry : skills.entrySet()) {
 			wage += 2.5 * entry.getValue().level;
@@ -210,6 +250,11 @@ public class Worker {
 		return new WorkerMenu(this);
 	}
 	
+	/**
+	 * 
+	 * @param drawEngine
+	 * @param position
+	 */
 	public void menuDisplay(DrawEngine drawEngine, PVector position) {
 		int xPos = (int) position.x;
 		int yPos = (int) position.y;
@@ -243,13 +288,16 @@ public class Worker {
 		}
 	}
 
-	
+	/**
+	 * Get properties of this worker.
+	 * @return - List of properties. 
+	 */
 	public ArrayList<String> getProperties() {
 		ArrayList<String> workerProperties = new ArrayList<String>();
 		workerProperties.add("Name: " + name);
 
-		workerProperties.add("Entreprenuer Level: " + moreMoney.level);
-		workerProperties.add("Fame Level: " + moreReputation.level);
+		workerProperties.add("Entreprenuer Level: " + entrepreneur.level);
+		workerProperties.add("Fame Level: " + fame.level);
 		workerProperties.add("Caffeine addiction: " + addictionLevel.toString());
 		workerProperties.add("Stress: " + stressPercent + "%");
 		workerProperties.add("Wage: " + wage);
@@ -257,6 +305,7 @@ public class Worker {
 		return workerProperties;
 	}
 
+	/* Reset this worker's activity */
 	public void resetActivity() {
 		currentActivity = null;
 		workTimer = 0;		

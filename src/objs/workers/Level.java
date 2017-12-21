@@ -1,9 +1,13 @@
 package objs.workers;
 
-public class Level implements Comparable {
 
-	//TODO max level?
-	
+/**
+ * Level for skills for workers. 
+ * Levels need experience to level up. 
+ *
+ */
+public class Level implements Comparable<Level> {
+
 	public int level, expToLevel, exp;
 	
 	public Level() {
@@ -12,29 +16,39 @@ public class Level implements Comparable {
 		this.exp = 0;
 	}
 	
+	/**
+	 * Constructor that starts at a given level.
+	 * @param level - level to start at
+	 */
 	public Level(int level) {
 		this();
 		
+		/* Level up to ensure exp and expToLevel are as expected */
 		for (int i = 0; i < level - 1; i++) levelUp();
 	}
 	
+	/**
+	 * Gain exp for this level.
+	 * Level up if there is enough exp. 
+	 * @param expGain
+	 */
 	public void gainExp(int expGain) {
 		exp += expGain;
 		if (exp >= expToLevel) {
-			exp = 0;
+			exp -= expToLevel;
 			levelUp();
 		}
 	}
 	
 	private void levelUp() {
 		level++;
-		expToLevel = expToLevel*level;
+		expToLevel = expToLevel*level; //TODO
 	}
 
 	@Override
-	public int compareTo(Object o) {
-		Level otherLevel = (Level) o;
+	public int compareTo(Level otherLevel) {
 		
+		/* Check if level is higher */
 		if (level > otherLevel.level) {
 			return 1;
 		} 
@@ -42,6 +56,8 @@ public class Level implements Comparable {
 			return -1;
 		}
 		else {
+		
+			/* If level was the same, check is exp is higher */
 			if (exp > otherLevel.exp) {
 				return 1;
 			}
@@ -49,6 +65,8 @@ public class Level implements Comparable {
 				return -1;
 			}
 			else {
+				
+				/* Levels are equivalent if level and exp are the same */
 				return 0;
 			}
 		}

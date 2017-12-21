@@ -21,7 +21,6 @@ public class GetCoffeeActivity extends Activity {
 	}
 	
 	@Override
-	
 	public Optional<GameState> finish(Worker worker, GameState currentState) {
 		currentState.context.studio.coffee += GameModifiers.coffeeAtCafe;
 		
@@ -29,7 +28,7 @@ public class GetCoffeeActivity extends Activity {
 	}
 
 	@Override
-	public String name() {
+	public String getName() {
 		return "Getting coffee...";
 	}
 

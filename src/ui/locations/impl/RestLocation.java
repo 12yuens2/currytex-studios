@@ -1,15 +1,8 @@
 package ui.locations.impl;
 
-import java.util.Optional;
-
-import game.DrawEngine;
-import game.GameContext;
 import game.GameTime;
-import game.states.GameState;
 import objs.activities.Activity;
 import objs.activities.impl.RestActivity;
-import processing.core.PConstants;
-import ui.locations.Location;
 import ui.locations.TownLocation;
 
 public class RestLocation extends TownLocation {

@@ -1,7 +1,6 @@
 package ui;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import app.CurryTeXStudios;
 import game.DrawEngine;
@@ -9,6 +8,11 @@ import game.DrawEngine;
 import processing.core.PConstants;
 import ui.menus.Menu;
 
+
+/**
+ * Menu to display tips and notes.
+ *
+ */
 public class Tooltip extends Menu {
 
 	public String tip;
@@ -25,12 +29,18 @@ public class Tooltip extends Menu {
 		drawFormattedText(drawEngine);
 	}
 	
+	/**
+	 * Format the text to fit in the menu width.
+	 * @param drawEngine
+	 */
 	private void drawFormattedText(DrawEngine drawEngine) {
 		ArrayList<String> lines = new ArrayList<>();
 		String[] words = tip.split(" ");
 		int maxLength = width;
 		int length = 0;
 		String line = "";
+		
+		/* Add words to the line until the line length is greater than the width of the menu */
 		for (String word : words) {
 			length += 10 + word.length() * 5;
 			

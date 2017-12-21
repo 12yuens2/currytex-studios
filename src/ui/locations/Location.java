@@ -2,20 +2,21 @@ package ui.locations;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import com.sun.xml.internal.bind.v2.runtime.output.Pcdata;
-
 import game.DrawEngine;
 import game.GameContext;
 import game.GameModifiers;
 import game.states.GameState;
 import objs.activities.Activity;
-import objs.activities.impl.ProjectActivity;
-import objs.workers.Skill;
 import objs.workers.Worker;
 import processing.core.PConstants;
 import processing.core.PImage;
 import ui.UIObject;
 
+
+/**
+ * A UI location that a worker can be dragged to.
+ *
+ */
 public abstract class Location extends UIObject {
 
 	public static final int LOCATION_SIZE = 75;
@@ -67,6 +68,7 @@ public abstract class Location extends UIObject {
 	
 	@Override
 	public void display(DrawEngine drawEngine) {
+		/* Display different image based on if a worker is hovering */
 		if (workerCollision) {
 			drawEngine.drawImage(PConstants.CENTER, hoverImage, position.x, position.y);
 		}
@@ -84,19 +86,10 @@ public abstract class Location extends UIObject {
 		
 		return Optional.empty();
 	}
-
-	@Override
-	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
-			GameState currentState) {
-		
-		return Optional.empty();
-	}
-
 	
 	protected void manualDecrement(float amount) {
 		for (Worker worker : workers) {
-			worker.work(amount);
-//			worker.workTimer = Math.max(0, worker.workTimer - amount);
+			worker.workTimer = Math.max(0, worker.workTimer - amount);
 		}
 	}
 

@@ -1,18 +1,16 @@
 package ui.menus.impl;
 
-import java.util.Map.Entry;
-import java.util.Optional;
 
 import app.CurryTeXStudios;
 import game.DrawEngine;
-import game.GameContext;
-import game.states.GameState;
-import objs.workers.Level;
-import objs.workers.Skill;
 import objs.workers.Worker;
-import processing.core.PApplet;
 import ui.menus.Menu;
 
+
+/**
+ * Menu to show worker details.
+ *
+ */
 public class WorkerMenu extends Menu {
 
 	public Worker worker;

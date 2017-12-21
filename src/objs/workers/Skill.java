@@ -3,6 +3,10 @@ package objs.workers;
 import game.DrawEngine;
 import processing.core.PImage;
 
+/**
+ * All types of skills a worker could have.
+ *
+ */
 public enum Skill {
 	RUBY, JAVA, C, HASKELL, PYTHON, JS, SQL;
 	

@@ -2,10 +2,8 @@ package app;
 
 import game.GameController;
 import game.GameInput;
-import game.GameTime;
 import game.GameInput.MouseAction;
 import processing.core.PApplet;
-import processing.core.PFont;
 import processing.core.PImage;
 
 public class CurryTeXStudios extends PApplet {

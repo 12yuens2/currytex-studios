@@ -1,14 +1,13 @@
 package game;
 
-import app.CurryTeXStudios;
 import game.states.GameState;
-import game.states.impl.InMenuState;
-import game.states.impl.PlayingState;
 import game.states.impl.StartState;
 import processing.core.PApplet;
-import ui.buttons.impl.MenuButton;
-import ui.menus.Menu;;
 
+/**
+ * Controller that updates the game state according to real time that has passed.
+ *
+ */
 public class GameController {
 
 	public PApplet parent;
@@ -31,9 +30,15 @@ public class GameController {
 		this.deltaTime = GameTime.DELTA_TIME;
 	}
 	
+	/**
+	 * Game update step called on every frame.
+	 * @param mouseX
+	 * @param mouseY
+	 */
 	public void step(float mouseX, float mouseY) {
 		timeAccumulator += getFrameTime();
 		
+		/* Update the game based on real time elapsed */
 		while (timeAccumulator >= deltaTime) {
 			state = state.update(mouseX, mouseY);
 			timeAccumulator -= deltaTime;
@@ -42,9 +47,14 @@ public class GameController {
 		state.display(drawEngine);
 	}
 	
+	/**
+	 * Handle input from Processing and pass to the game state.
+	 * @param input
+	 */
 	public void handleInput(GameInput input) {
 		state = state.handleInput(input);
 	}
+	
 	
 	private double getFrameTime() {
 		double newTime = System.currentTimeMillis();

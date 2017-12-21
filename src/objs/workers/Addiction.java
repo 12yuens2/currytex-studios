@@ -1,5 +1,9 @@
 package objs.workers;
 
+/**
+ * Enum representing coffee addiction level. 
+ *
+ */
 public enum Addiction {
 	NONE, SOMETIMES, FREQUENT, ADDICTED;
 	
@@ -14,6 +18,10 @@ public enum Addiction {
 		}
 	}
 	
+	/**
+	 * Chance to drink coffee. A higher number means less chance. 
+	 * @return
+	 */
 	public int drinkChance() {
 		switch(this) {
 			case NONE:		return -1;
@@ -24,6 +32,9 @@ public enum Addiction {
 		}
 	}
 	
+	/**
+	 * Chance to stop working if no more coffee. Higher number means less chance.
+	 */
 	public int stallChance() {
 		switch(this) {
 			case NONE:		return -1;

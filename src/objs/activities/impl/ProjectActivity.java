@@ -1,9 +1,6 @@
 package objs.activities.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Random;
 
@@ -14,11 +11,9 @@ import objs.Studio;
 import objs.activities.Activity;
 import objs.factories.ProjectFactory.Difficulty;
 import objs.factories.ProjectFactory.ProjectType;
-import objs.workers.Level;
 import objs.workers.Skill;
 import objs.workers.Worker;
 import processing.core.PConstants;
-import processing.core.PImage;
 import processing.core.PVector;
 import ui.menus.impl.ProjectMenu;
 
@@ -26,7 +21,7 @@ public class ProjectActivity extends Activity {
 	
 	/* 
 	 * Default time needed per work load.
-	 * Increases with difficulty and as game progresses?
+	 * Increases with difficulty and as game progresses.
 	 */
 	public static int HOURS_PER_WORK = 48;
 	
@@ -66,6 +61,8 @@ public class ProjectActivity extends Activity {
 	@Override
 	public Activity start(Worker worker) {
 		double timeNeeded = timePerWork;
+		
+		/* Reduce time needed based on worker's skills */
 		for (Skill s : worker.getSkills().keySet()) {
 			if (skillsRequired.contains(s)) {
 				timeNeeded -= (timeNeeded * LEVEL_MODIFIER * worker.skills.get(s).level);
@@ -77,8 +74,8 @@ public class ProjectActivity extends Activity {
 		
 		/* Increase project money/reputation based on worker stats */
 		Random random = new Random();
-		revenue += 3 * random.nextInt(worker.moreMoney.level) * random.nextInt(worker.moreMoney.level);
-		reputation += random.nextInt(worker.moreReputation.level) * random.nextInt(worker.moreReputation.level);
+		revenue += 3 * random.nextInt(worker.entrepreneur.level) * random.nextInt(worker.entrepreneur.level);
+		reputation += random.nextInt(worker.fame.level) * random.nextInt(worker.fame.level);
 		
 		return this;
 	}
@@ -154,11 +151,14 @@ public class ProjectActivity extends Activity {
 	}
 	
 	
-	
 	public ProjectMenu getMenu() {
 		return new ProjectMenu(this);
 	}
 	
+	/**
+	 * Get a list of string properties for this project. 
+	 * @return
+	 */
 	public ArrayList<String> getProperties() {
 		ArrayList<String> projectProperties = new ArrayList<String>();
 		projectProperties.add("Number of features: " + workRequired);
@@ -170,14 +170,11 @@ public class ProjectActivity extends Activity {
 	}
 	
 	
-
-	public void manualDecrement(int amount) {
-		for (Worker worker : activeWorkers) {
-			worker.work(amount);
-		}		
-	}
-	
-	
+	/**
+	 * Display this project at the given position. 
+	 * @param drawEngine
+	 * @param position
+	 */
 	public void menuDisplay(DrawEngine drawEngine, PVector position) {
 
 		int xPos = (int) position.x;
@@ -212,20 +209,8 @@ public class ProjectActivity extends Activity {
 
 
 	@Override
-	public String name() {
+	public String getName() {
 		return "Working on project...";
 	}
 
-
-	
-	
-//	/**
-//	 *  Create a random project 
-//	 */
-//	public static ProjectActivity randomProject() {
-//		Random random = new Random();
-//		Difficulty difficulty = Arrays.asList(Difficulty.values()).get(random.nextInt(Difficulty.values().length));
-//		
-//		return new ProjectActivity("Java 1", random.nextInt(10) + 1, random.nextInt(100) + 15, difficulty);
-//	}
 }

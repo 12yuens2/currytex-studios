@@ -2,24 +2,17 @@ package ui.locations.impl;
 
 import java.util.ArrayList;
 
-import game.DrawEngine;
 import game.GameTime;
 import objs.activities.Activity;
 import objs.activities.impl.RecruitActivity;
-import processing.core.PConstants;
-import processing.core.PImage;
-import ui.Animation;
 import ui.WorkerInfo;
-import ui.locations.Location;
 import ui.locations.TownLocation;
 
 public class RecruitLocation extends TownLocation {
 	
-	
 	public static final String IMAGE_PREFIX = "imgs/recruit";
 	
 	public ArrayList<WorkerInfo> workerInfos;
-	public Animation animation;
 	
 	public RecruitLocation(GameTime time, ArrayList<WorkerInfo> workerInfos) {
 		super(570, 200, IMAGE_PREFIX, time);

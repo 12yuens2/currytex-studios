@@ -16,7 +16,6 @@ public class MoreReputationStatActivity extends Activity {
 	@Override
 	public Activity start(Worker worker) {
 		worker.setWorkTimer(MORE_REP_STAT_TIME);
-		
 		return this;
 	}
 	
@@ -28,7 +27,7 @@ public class MoreReputationStatActivity extends Activity {
 	}
 
 	@Override
-	public String name() {
+	public String getName() {
 		return "Reputationing...";
 	}
 

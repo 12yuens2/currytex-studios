@@ -2,29 +2,24 @@ package game.states.impl;
 
 import java.util.ArrayList;
 
-import app.CurryTeXStudios;
-import game.DrawEngine;
 import game.GameContext;
 import game.GameInput;
 import game.GameUI;
 import game.states.GameState;
-import javafx.scene.shape.Arc;
-import objs.activities.impl.ProjectActivity;
-import processing.core.PApplet;
 import processing.core.PConstants;
-import processing.core.PVector;
 import ui.Tooltip;
 import ui.WorkerBox;
-import ui.buttons.Button;
-import ui.buttons.impl.MenuButton;
 import ui.locations.Location;
-import ui.locations.impl.GetCoffeeLocation;
 import ui.locations.impl.MoreMoneyStatLocation;
 import ui.locations.impl.MoreReputationStatLocation;
 import ui.locations.impl.RecruitLocation;
 import ui.locations.impl.RestLocation;
-import ui.menus.Menu;
 
+
+/**
+ * Main playing state of the game.
+ *
+ */
 public class PlayingState extends GameState {
 	
 	public boolean start, clickReveal, recruitReveal, restReveal, salaryReveal;
@@ -49,31 +44,31 @@ public class PlayingState extends GameState {
 		if (!start) {
 			return startReveal();
 		}
-//		
-//		if (context.gameTime.totalTime() > 0 && !clickReveal) {
-//			return clickReveal();
-//		}
-//		
-//		if (context.gameTime.totalTime() > 3 && !restReveal) {
-//			return restReveal();
-//		}
-//		
-//		if (context.gameTime.totalTime() > 5 && !recruitReveal) {
-//			return recruitReveal();
-//		}
-//		
-//		if (context.gameTime.totalTime() > 10 && !salaryReveal) {
-//			return salaryReveal();
-//		}
-//		
-//		if (context.gameTime.totalTime() > 15 && !context.moreMoneyReveal) {
-//			return moreMoneyReveal();
-//		}
-//		
-//		if (context.gameTime.totalTime() > 16 && !context.moreRepReveal) {
-//			return moreRepReveal();
-//		}
-//		
+		
+		if (context.gameTime.totalTime() > 0 && !clickReveal) {
+			return clickReveal();
+		}
+		
+		if (context.gameTime.totalTime() > 3 && !restReveal) {
+			return restReveal();
+		}
+		
+		if (context.gameTime.totalTime() > 5 && !recruitReveal) {
+			return recruitReveal();
+		}
+		
+		if (context.gameTime.totalTime() > 10 && !salaryReveal) {
+			return salaryReveal();
+		}
+		
+		if (context.gameTime.totalTime() > 15 && !context.moreMoneyReveal) {
+			return moreMoneyReveal();
+		}
+		
+		if (context.gameTime.totalTime() > 16 && !context.moreRepReveal) {
+			return moreRepReveal();
+		}
+		
 		if (!context.nextStates.isEmpty()){
 			return context.nextStates.poll();
 		}
@@ -83,10 +78,9 @@ public class PlayingState extends GameState {
 		}
 	
 		if (context.gameOver) {
-			GameContext newContext = new GameContext();
 			return new InMenuState(new Tooltip(
 					"You've lost! Close this menu to return to the starting screen. ", 
-					200, 200), new StartState(newContext, new GameUI(newContext)));
+					200, 200), new StartState(context, ui));
 		}
 		
 		return this;
@@ -161,8 +155,9 @@ public class PlayingState extends GameState {
 				"Workers have an entrepreneur stat. "
 				+ "This stat gives the worker a chance to increase the money earned when working on a project. "
 				+ "To increase this stat for a particular worker, "
-				+ "drag their box to the [Entrepreneurs 101] location.", 
-				200, 200), this);		
+				+ "drag their box to the [Entrepreneurs 101] location. "
+				+ "A worker has to visit the location twice to gain one stat level. ", 
+				220, 200), this);		
 	}
 
 	private GameState moreRepReveal() {
@@ -172,7 +167,7 @@ public class PlayingState extends GameState {
 		return new InMenuState(new Tooltip(
 				"In addition to the entrepreneur stat, workers have a fame stat. "
 				+ "Similar to entrepreneur level, this stat has a chace to increase the reputation when working on a project. "
-				+ "To increase this stat, drag the worker to the [Open Source] location", 
+				+ "To increase this stat, drag the worker to the [Open Source] location. ", 
 				200, 200), this);
 	}
 	
@@ -208,6 +203,7 @@ public class PlayingState extends GameState {
 			locations.addAll(ui.locations);
 			locations.addAll(ui.projectLocations);
 			
+			/* Check if any worker boxes can enter any locations */
 			b.enterIfPossible(locations);
 		}
 		return this;
@@ -222,9 +218,7 @@ public class PlayingState extends GameState {
 	
 	
 	private GameState handleLeftClick() {
-		GameState nextState = ui.handleLeftClick(this);
-		
-		return nextState;
+		return ui.handleLeftClick(this);
 	}
 	
 	private GameState handleRightClick() {

@@ -9,9 +9,16 @@ import game.states.impl.InMenuState;
 import ui.buttons.Button;
 import ui.menus.Menu;
 
+
+/**
+ * Button to create a menu.
+ *
+ */
 public class MenuButton extends Button{
 
 	public String name;
+	
+	/* Menu to be created when the button is pressed. */
 	public Menu menu;
 	
 	public MenuButton(String name, float xPos, float yPos, int width, int height, Menu menu) {

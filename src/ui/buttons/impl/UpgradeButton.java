@@ -18,11 +18,14 @@ public class UpgradeButton extends Button {
 
 	public static final int DEFAULT_COST = 200;
 	
-
 	public int cost, upgrades;
 	public final int maxUpgrades, baseCost;
 	public float costMultipler;
+	
+	/* Description of the upgrade as a lambda */
 	public Supplier<String> descriptionLambda;
+	
+	/* Affect of buying the upgrade */
 	public Function<GameState, Optional<GameState>> upgradeLambda;
 
 	

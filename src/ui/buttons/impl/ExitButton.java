@@ -8,6 +8,12 @@ import game.states.GameState;
 import processing.core.PConstants;
 import ui.buttons.Button;
 
+
+/**
+ * Exit button for menus.
+ * Returns to the previous state before the menu was opened. 
+ *
+ */
 public class ExitButton extends Button {
 
 	public GameState previousState;

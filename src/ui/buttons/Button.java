@@ -1,13 +1,14 @@
 package ui.buttons;
 
-import java.util.Optional;
-
 import game.DrawEngine;
-import game.states.GameState;
 import processing.core.PConstants;
-import processing.core.PVector;
 import ui.UIObject;
 
+
+/**
+ * Class that represents a button on the UI.
+ *
+ */
 public abstract class Button extends UIObject {
 		
 	public Button(float xPos, float yPos, int width, int height) {

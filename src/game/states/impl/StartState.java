@@ -1,7 +1,5 @@
 package game.states.impl;
 
-import java.util.Optional;
-
 import app.CurryTeXStudios;
 import game.DrawEngine;
 import game.GameContext;
@@ -23,20 +21,7 @@ public class StartState extends GameState {
 				super.display(drawEngine);
 				drawEngine.drawText(16, "Start Game", position.x, position.y, DrawEngine.BLACK);
 			}
-			
-			@Override
-			public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
-					GameState currentState) {
-				
-				return Optional.empty();
-			}
-			
-			@Override
-			public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context,
-					GameState currentState) {
-				
-				return Optional.empty();
-			}
+
 		};
 	}
 	

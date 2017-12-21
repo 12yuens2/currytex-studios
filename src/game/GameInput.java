@@ -1,5 +1,9 @@
 package game;
 
+/**
+ * Class that encapsulates all player input.
+ *
+ */
 public class GameInput {
 
 	public enum MouseAction {NONE, MOUSE_PRESS, MOUSE_DRAG, MOUSE_RELEASE};
