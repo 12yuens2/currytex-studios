@@ -148,18 +148,6 @@ public class DrawEngine {
 		drawText(PConstants.CENTER, PConstants.CENTER, textSize, text, posX, posY, col);
 	}
 	
-    /**
-     * Draw text with opacity
-     */
-//	public void drawText(int textSize, String text, float posX, float posY, int col, int opacity) {
-//		PFont font = parent.createFont("Arial", textSize, true);
-//		
-//		parent.textFont(font, textSize);
-//		parent.fill(col, opacity);
-//		parent.text(text, posX, posY);
-//		parent.textAlign(PConstants.CENTER, PConstants.CENTER);
-//	}
-	
 	/**
 	 * Draw an ellipse based on given parameters.
 	 * @param col - colour of the circle
