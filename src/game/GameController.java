@@ -1,6 +1,6 @@
 package game;
 
-import app.DevStudios;
+import app.CurryTeXStudios;
 import game.states.GameState;
 import game.states.impl.InMenuState;
 import game.states.impl.PlayingState;
@@ -23,8 +23,7 @@ public class GameController {
 		this.parent = parent;
 		this.drawEngine = new DrawEngine(parent);
 
-		GameContext context = new GameContext(parent);
-		
+		GameContext context = new GameContext();
 		this.state = new StartState(context, new GameUI(context));
 		
 		this.timeAccumulator = 0;

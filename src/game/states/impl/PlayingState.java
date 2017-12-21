@@ -2,7 +2,7 @@ package game.states.impl;
 
 import java.util.ArrayList;
 
-import app.DevStudios;
+import app.CurryTeXStudios;
 import game.DrawEngine;
 import game.GameContext;
 import game.GameInput;
@@ -45,38 +45,50 @@ public class PlayingState extends GameState {
 		super.update(mouseX, mouseY);
 		context.timeStep(this);
 		
+		/* Reveal tutorial tooltips */
 		if (!start) {
 			return startReveal();
 		}
-		
-		if (context.gameTime.totalTime() > 0 && !clickReveal) {
-			return clickReveal();
-		}
-		
-		if (context.gameTime.totalTime() > 3 && !restReveal) {
-			return restReveal();
-		}
-		
-		if (context.gameTime.totalTime() > 5 && !recruitReveal) {
-			return recruitReveal();
-		}
-		
-		if (context.gameTime.totalTime() > 10 && !salaryReveal) {
-			return salaryReveal();
-		}
-		
-		if (context.gameTime.totalTime() > 15 && !context.moreMoneyReveal) {
-			return moreMoneyReveal();
-		}
-		
-		if (context.gameTime.totalTime() > 16 && !context.moreRepReveal) {
-			return moreRepReveal();
-		}
-		
+//		
+//		if (context.gameTime.totalTime() > 0 && !clickReveal) {
+//			return clickReveal();
+//		}
+//		
+//		if (context.gameTime.totalTime() > 3 && !restReveal) {
+//			return restReveal();
+//		}
+//		
+//		if (context.gameTime.totalTime() > 5 && !recruitReveal) {
+//			return recruitReveal();
+//		}
+//		
+//		if (context.gameTime.totalTime() > 10 && !salaryReveal) {
+//			return salaryReveal();
+//		}
+//		
+//		if (context.gameTime.totalTime() > 15 && !context.moreMoneyReveal) {
+//			return moreMoneyReveal();
+//		}
+//		
+//		if (context.gameTime.totalTime() > 16 && !context.moreRepReveal) {
+//			return moreRepReveal();
+//		}
+//		
 		if (!context.nextStates.isEmpty()){
 			return context.nextStates.poll();
 		}
+		
+		if (context.reachedGoal) {
+			return goalReached();
+		}
 	
+		if (context.gameOver) {
+			GameContext newContext = new GameContext();
+			return new InMenuState(new Tooltip(
+					"You've lost! Close this menu to return to the starting screen. ", 
+					200, 200), new StartState(newContext, new GameUI(newContext)));
+		}
+		
 		return this;
 	}
 
@@ -85,10 +97,16 @@ public class PlayingState extends GameState {
 		start = true;
 		
 		return new InMenuState(new Tooltip(
-				"To get a new project, drag your worker to the [Get new project] location. "
-				+ "Projects require different skills and give different amounts of money and reputation. "
-				+ "Harder projects take longer, but are more rewarding. ",
-				200, 200), this);
+				"Welcome to CurryTeX Studios! You are the manager of this tech start-up! "
+				+ "Hire workers and work on projects to earn money and reputation. "
+				+ "The goal is to get this studio to " + context.studio.reputationGoal + " reputation by 1 year. "
+				+ "Good luck!", 
+				200, 200),	
+				new InMenuState(new Tooltip(
+					"To get a new project, drag your worker to the [Get new project] location. "
+					+ "Projects require different skills and give different amounts of money and reputation. "
+					+ "Harder projects take longer, but are more rewarding. ",
+					200, 200), this));
 	}
 	
 	private GameState clickReveal() {
@@ -126,7 +144,11 @@ public class PlayingState extends GameState {
 		return new InMenuState(new Tooltip(
 				"At the end of every month, the salaries of all your workers have to be paid. "
 				+ "Each worker can be paid what they have earned pre-emptively from the [Salaries] menu. ",
-				200, 200), this);
+				200, 200), 
+				
+				new InMenuState(new Tooltip(
+						"You can also right click on any worker or project to view further details about them. ", 
+						200, 200), this));
 		
 	}
 
@@ -139,7 +161,7 @@ public class PlayingState extends GameState {
 				"Workers have an entrepreneur stat. "
 				+ "This stat gives the worker a chance to increase the money earned when working on a project. "
 				+ "To increase this stat for a particular worker, "
-				+ "drag their box to the [Entrepreneur 101] location.", 
+				+ "drag their box to the [Entrepreneurs 101] location.", 
 				200, 200), this);		
 	}
 
@@ -152,6 +174,19 @@ public class PlayingState extends GameState {
 				+ "Similar to entrepreneur level, this stat has a chace to increase the reputation when working on a project. "
 				+ "To increase this stat, drag the worker to the [Open Source] location", 
 				200, 200), this);
+	}
+	
+	private GameState goalReached() {
+		context.reachedGoal = false;
+		
+		String message = "Congratulations! You have reached the reputation goal for this year! ";
+		if (context.firstYear) {
+			context.firstYear = false;
+			message += "You've won, but you can always keep playing. ";
+		}
+		message += "The goal gets exponentially harder, see how many more years you can last! ";
+		
+		return new InMenuState(new Tooltip(message,	200, 200), this);
 	}
 
 

@@ -2,7 +2,7 @@ package ui.menus.impl;
 
 import java.util.ArrayList;
 
-import app.DevStudios;
+import app.CurryTeXStudios;
 import game.DrawEngine;
 import game.states.GameState;
 import objs.activities.impl.ProjectActivity;
@@ -19,7 +19,7 @@ public class RecruitMenu extends Menu {
 	public ArrayList<Worker> newRecruits;
 	
 	public RecruitMenu(GameState previousState) {
-		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 500, 450);
+		super(CurryTeXStudios.SCREEN_X/2, CurryTeXStudios.SCREEN_Y/2, 500, 450);
 		
 		this.newRecruits = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {

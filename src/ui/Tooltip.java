@@ -3,7 +3,7 @@ package ui;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import app.DevStudios;
+import app.CurryTeXStudios;
 import game.DrawEngine;
 
 import processing.core.PConstants;
@@ -14,7 +14,7 @@ public class Tooltip extends Menu {
 	public String tip;
 	
 	public Tooltip(String tip, int width, int height) {
-		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, width, height);
+		super(CurryTeXStudios.SCREEN_X/2, CurryTeXStudios.SCREEN_Y/2, width, height);
 		
 		this.tip = tip;
 	}

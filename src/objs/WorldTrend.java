@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Map.Entry;
 import java.util.Queue;
 
+import game.DrawEngine;
 import game.GameTime;
 import objs.factories.ProjectCategory;
 import objs.workers.Skill;
@@ -18,13 +19,10 @@ public class WorldTrend {
 	public HashMap<ProjectCategory, Queue<Float>> categoryTrendHistory;
 	public HashMap<Skill, Float> skillTrends;
 	
-	public PApplet parent;
-	
-	public WorldTrend(PApplet parent) {
+	public WorldTrend() {
 		this.categoryTrends = new HashMap<>();
 		this.categoryTrendHistory = new HashMap<>();
 		this.skillTrends = new HashMap<>();
-		this.parent = parent;
 		
 		initCategoryTrends();
 		initHistory();
@@ -53,12 +51,12 @@ public class WorldTrend {
 		int y = 1;
 		
 		for (Entry<ProjectCategory, Float> entry : categoryTrends.entrySet()) {
-			categoryTrends.put(entry.getKey(), parent.noise(x,y));
+			categoryTrends.put(entry.getKey(), DrawEngine.parent.noise(x,y));
 			y++;
 		}
 		
 		for (Entry<Skill, Float> entry : skillTrends.entrySet()) {
-			skillTrends.put(entry.getKey(), parent.noise(x,y));
+			skillTrends.put(entry.getKey(), DrawEngine.parent.noise(x,y));
 			y++;
 		}
 		

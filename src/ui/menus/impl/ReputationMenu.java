@@ -3,7 +3,7 @@ package ui.menus.impl;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import app.DevStudios;
+import app.CurryTeXStudios;
 import game.DrawEngine;
 import objs.Studio;
 import objs.workers.Skill;
@@ -15,7 +15,7 @@ public class ReputationMenu extends Menu {
 	public HashMap<Skill, Integer> reputations;
 	
 	public ReputationMenu(Studio studio) {
-		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 200, 400);
+		super(CurryTeXStudios.SCREEN_X/2, CurryTeXStudios.SCREEN_Y/2, 200, 400);
 		
 		this.reputations = studio.reputation;
 	}

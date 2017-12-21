@@ -2,7 +2,7 @@ package ui.menus.impl;
 
 import java.util.ArrayList;
 
-import app.DevStudios;
+import app.CurryTeXStudios;
 import game.DrawEngine;
 import game.states.GameState;
 import objs.activities.impl.ProjectActivity;
@@ -19,7 +19,7 @@ public class ChooseNewProjectMenu extends Menu {
 	public ArrayList<ProjectActivity> newProjects;
 	
 	public ChooseNewProjectMenu(ProjectLocation location, GameState previousState) {
-		super((DevStudios.SCREEN_X/2) - 100, DevStudios.SCREEN_Y/2 - 25, 500, 375);
+		super((CurryTeXStudios.SCREEN_X/2) - 100, CurryTeXStudios.SCREEN_Y/2 - 25, 500, 375);
 
 		newProjects = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {

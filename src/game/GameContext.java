@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Queue;
 
-import app.DevStudios;
+import app.CurryTeXStudios;
 import game.states.GameState;
 import objs.Studio;
 import objs.WorldTrend;
@@ -15,6 +15,7 @@ import objs.workers.Level;
 import objs.workers.Skill;
 import objs.workers.Worker;
 import processing.core.PApplet;
+import ui.Tooltip;
 import ui.WorkerBox;
 import ui.buttons.Button;
 import ui.buttons.impl.MenuButton;
@@ -22,11 +23,14 @@ import ui.locations.Location;
 import ui.menus.Menu;
 
 public class GameContext {
+	 
 	
 	public GameTime gameTime;
 	public Studio studio;
 	public WorldTrend trends;
 
+
+	public boolean gameOver, firstYear, reachedGoal;
 	public boolean projectReveal, coffeeReveal, moreMoneyReveal, moreRepReveal, multipleReveal;
 
 	public LinkedList<GameState> nextStates;
@@ -34,11 +38,14 @@ public class GameContext {
 	public ArrayList<Worker> workers;
 	public ArrayList<ProjectActivity> activeProjects;
 	
-	public GameContext(PApplet parent) {
+	public GameContext() {
 		this.gameTime = new GameTime();
 		this.studio = new Studio();
-		this.trends = new WorldTrend(parent);
-		
+		this.trends = new WorldTrend();
+
+		this.firstYear = true;
+		this.gameOver = false;
+		this.reachedGoal = false;
 		this.projectReveal = false;
 		this.coffeeReveal = false;
 		this.moreMoneyReveal = false;
@@ -103,17 +110,26 @@ public class GameContext {
 		/* Make work more difficult as time progresses */
 		ProjectActivity.HOURS_PER_WORK += 5 + (studio.totalReputation/50);
 		
-		for (Worker worker : workers) {
-			worker.paySalary(studio);
+		if (studio.currency < 0) {
+			gameOver = true;
+		}
+		else {
+			for (Worker worker : workers) {
+				worker.paySalary(studio);
+			}
 		}
 		
-		if (studio.currency < 0) {
-			//TODO game over? or debt
-		}
+
 	}
 	
 	public void newYear() {
-		//TODO check yearly reputation goal.
+		if (studio.totalReputation >= studio.reputationGoal) {
+			studio.reputationGoal += studio.reputationGoal;
+			reachedGoal = true;
+		}
+		else {
+			gameOver = true;
+		}
 	}
 
 }

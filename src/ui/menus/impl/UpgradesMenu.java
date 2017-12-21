@@ -3,7 +3,7 @@ package ui.menus.impl;
 import java.util.Optional;
 import java.util.function.Function;
 
-import app.DevStudios;
+import app.CurryTeXStudios;
 import game.DrawEngine;
 import game.GameContext;
 import game.GameModifiers;
@@ -17,7 +17,7 @@ public class UpgradesMenu extends Menu {
 	public static final float MODIFIER_INCREASE = 0.15f;
 	
 	public UpgradesMenu() {
-		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 450, 400);
+		super(CurryTeXStudios.SCREEN_X/2, CurryTeXStudios.SCREEN_Y/2, 450, 400);
 		
 		initUpgradeButtons();
 	}

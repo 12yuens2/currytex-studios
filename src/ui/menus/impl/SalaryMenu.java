@@ -2,7 +2,7 @@ package ui.menus.impl;
 
 import java.util.ArrayList;
 
-import app.DevStudios;
+import app.CurryTeXStudios;
 import game.DrawEngine;
 import objs.workers.Worker;
 import processing.core.PConstants;
@@ -15,7 +15,7 @@ public class SalaryMenu extends Menu {
 	public ArrayList<WorkerInfo> workerInfos;
 	
 	public SalaryMenu(ArrayList<WorkerInfo> workerInfos) {
-		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 400, 375);
+		super(CurryTeXStudios.SCREEN_X/2, CurryTeXStudios.SCREEN_Y/2, 400, 375);
 		
 		this.workerInfos = workerInfos;
 		

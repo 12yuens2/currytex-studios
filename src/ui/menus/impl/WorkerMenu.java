@@ -3,7 +3,7 @@ package ui.menus.impl;
 import java.util.Map.Entry;
 import java.util.Optional;
 
-import app.DevStudios;
+import app.CurryTeXStudios;
 import game.DrawEngine;
 import game.GameContext;
 import game.states.GameState;
@@ -18,7 +18,7 @@ public class WorkerMenu extends Menu {
 	public Worker worker;
 	
 	public WorkerMenu(Worker worker) {
-		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 300, 300);
+		super(CurryTeXStudios.SCREEN_X/2, CurryTeXStudios.SCREEN_Y/2, 300, 300);
 		this.worker = worker;
 	}
 	

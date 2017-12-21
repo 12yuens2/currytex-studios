@@ -1,6 +1,6 @@
 package ui.menus.impl;
 
-import app.DevStudios;
+import app.CurryTeXStudios;
 import game.DrawEngine;
 import objs.activities.impl.ProjectActivity;
 import processing.core.PConstants;
@@ -11,7 +11,7 @@ public class ProjectMenu extends Menu {
 	public ProjectActivity project;
 	
 	public ProjectMenu(ProjectActivity project) {
-		super(DevStudios.SCREEN_X/2, DevStudios.SCREEN_Y/2, 300, 200);
+		super(CurryTeXStudios.SCREEN_X/2, CurryTeXStudios.SCREEN_Y/2, 300, 200);
 		this.project = project;
 	}
 	

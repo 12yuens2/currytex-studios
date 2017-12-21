@@ -8,7 +8,7 @@ import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
 
-public class DevStudios extends PApplet {
+public class CurryTeXStudios extends PApplet {
 
 	public static final int SCREEN_X = 1600;
 	public static final int SCREEN_Y = 900;
@@ -49,7 +49,7 @@ public class DevStudios extends PApplet {
 	
 	
 	public static void main(String[] args) {
-		PApplet.main("app.DevStudios", args);
+		PApplet.main("app.CurryTeXStudios", args);
 	}
 
 }

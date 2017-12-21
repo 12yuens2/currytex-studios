@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import app.DevStudios;
+import app.CurryTeXStudios;
 import game.states.GameState;
 import objs.activities.impl.MoreMoneyStatActivity;
 import objs.workers.Addiction;
@@ -76,7 +76,7 @@ public class GameUI {
 		int yCoord = 75;
 		int numWorkers = 8;
 		for (int i = 0; i < numWorkers; i++) {
-			boxes.add(new WorkerBox(DevStudios.SCREEN_X - 235, yCoord + (((DevStudios.SCREEN_Y - 40)/numWorkers) * i), 45));
+			boxes.add(new WorkerBox(CurryTeXStudios.SCREEN_X - 235, yCoord + (((CurryTeXStudios.SCREEN_Y - 40)/numWorkers) * i), 45));
 		}
 		boxes.get(0).worker = a;
 		
@@ -100,7 +100,7 @@ public class GameUI {
 		int xCoord = 100;
 		int numProjects = 4;
 		for (int i = 0; i < numProjects; i++) {
-			projectLocations.add(new ProjectLocation(xCoord + (((DevStudios.SCREEN_X - 525)/numProjects) * i), DevStudios.SCREEN_Y - 195, 100));
+			projectLocations.add(new ProjectLocation(xCoord + (((CurryTeXStudios.SCREEN_X - 525)/numProjects) * i), CurryTeXStudios.SCREEN_Y - 195, 100));
 		}
 		
 

@@ -8,13 +8,14 @@ import processing.core.PConstants;
 
 public class Studio {
 
-	public int currency, coffee, totalReputation;
+	public int currency, coffee, totalReputation, reputationGoal;
 	public HashMap<Skill, Integer> reputation;
 
 	public Studio() {
-		this.currency = 10000;
+		this.currency = 100000;
 		this.coffee = 2;
-		this.totalReputation = 0;
+		this.totalReputation = 3000;
+		this.reputationGoal = 1000;
 		this.reputation = new HashMap<>();
 	}
 	
@@ -27,11 +28,12 @@ public class Studio {
 	}
 	
 	public void display(DrawEngine drawEngine) {
-		drawEngine.drawImage(PConstants.CENTER, drawEngine.moneyIcon, 700, 25);
-		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ": "+currency, 725, 25, DrawEngine.BLACK);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.moneyIcon, 600, 25);
+		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ": "+currency, 625, 25, DrawEngine.BLACK);
 		
-		drawEngine.drawImage(PConstants.CENTER, drawEngine.reputationIcon, 900, 25);
-		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ": " + totalReputation, 925, 25, DrawEngine.BLACK);
+		drawEngine.drawImage(PConstants.CENTER, drawEngine.reputationIcon, 800, 25);
+		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ": " + totalReputation + " / " + reputationGoal, 
+				825, 25, DrawEngine.BLACK);
 		
 		drawEngine.drawImage(PConstants.CENTER, drawEngine.caffeineIcon, 1100, 25);
 		drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 16, ": " + coffee, 1125, 25, DrawEngine.BLACK);
