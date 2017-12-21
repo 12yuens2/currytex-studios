@@ -34,10 +34,5 @@ public class MenuButton extends Button{
 		
 		return Optional.empty();
 	}
-
-	@Override
-	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
-		return Optional.empty();
-	}
-
+	
 }

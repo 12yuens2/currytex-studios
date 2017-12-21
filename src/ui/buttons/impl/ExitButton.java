@@ -26,10 +26,4 @@ public class ExitButton extends Button {
 	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
 		return Optional.of(previousState);
 	}
-
-	@Override
-	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
-		return Optional.empty();
-	}
-
 }

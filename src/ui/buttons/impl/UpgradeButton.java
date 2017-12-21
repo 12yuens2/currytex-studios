@@ -10,44 +10,57 @@ import game.states.GameState;
 import objs.Studio;
 import ui.buttons.Button;
 
+/**
+ * 
+ *
+ */
 public class UpgradeButton extends Button {
 
-	public static final int DEFAULT_COST = 100;
+	public static final int DEFAULT_COST = 200;
 	
-	public int cost;
+
+	public int cost, upgrades;
+	public final int maxUpgrades, baseCost;
+	public float costMultipler;
 	public Supplier<String> descriptionLambda;
 	public Function<GameState, Optional<GameState>> upgradeLambda;
 
 	
-	public UpgradeButton(float xPos, float yPos, int initialCost, 
+	public UpgradeButton(float xPos, float yPos, int initialCost, int maxUpgrades, float costMultiplier,
 			Supplier<String> descriptionLamda, Function<GameState, Optional<GameState>> upgradeLambda) {
 		super(xPos, yPos, 75, 25);
 		
 		this.cost = initialCost;
+		this.baseCost = initialCost;
+		this.costMultipler = costMultiplier;
+		this.upgrades = 0;
+		this.maxUpgrades = maxUpgrades;
 		this.upgradeLambda = upgradeLambda;
 		this.descriptionLambda = descriptionLamda;
 	}
 	
-	public UpgradeButton(float xPos, float yPos, 
+	public UpgradeButton(float xPos, float yPos, int maxUpgrades, float costMultiplier,
 			Supplier<String> descriptionLambda, Function<GameState, Optional<GameState>> upgradeLambda) {
 		
-		this(xPos, yPos, DEFAULT_COST, descriptionLambda, upgradeLambda);
+		this(xPos, yPos, DEFAULT_COST, maxUpgrades, costMultiplier, descriptionLambda, upgradeLambda);
 	}
 	
-	public UpgradeButton(float xPos, float yPos, int initialCost, 
+	public UpgradeButton(float xPos, float yPos, int initialCost, int maxUpgrades, float costMultiplier,
 			String description, Function<GameState, Optional<GameState>> upgradeLamda) {
-		this(xPos, yPos, initialCost, () -> description, upgradeLamda);
+		this(xPos, yPos, initialCost, maxUpgrades, costMultiplier, () -> description, upgradeLamda);
 	}
 	
-	public UpgradeButton(float xPos, float yPos, String description, Function<GameState, Optional<GameState>> upgradeLambda) {
-		this(xPos, yPos, DEFAULT_COST, description, upgradeLambda);
+	public UpgradeButton(float xPos, float yPos, int maxUpgrades,  float costMultiplier, 
+			String description, Function<GameState, Optional<GameState>> upgradeLambda) {
+		this(xPos, yPos, DEFAULT_COST, maxUpgrades, costMultiplier, description, upgradeLambda);
 	}
 
 	
 	protected boolean buyUpgrade(Studio studio) {
-		if (studio.currency >= cost) {
+		if (studio.currency >= cost && !isMaxed()) {
+			upgrades++;
 			studio.currency -= cost;
-			cost += cost; //TODO balance formula
+			cost = (int) (baseCost * Math.pow(costMultipler, upgrades)); 
 			return true;
 		}
 		return false;
@@ -57,7 +70,16 @@ public class UpgradeButton extends Button {
 	@Override
 	public void display(DrawEngine drawEngine) {
 		super.display(drawEngine);
-		drawEngine.drawText(16, "Buy: " + cost, position.x, position.y, DrawEngine.BLACK);
+		
+		/* Draw text in button */
+		if (isMaxed()) {
+			drawEngine.drawText(16, "MAXED", position.x, position.y, DrawEngine.BLACK);
+		}
+		else {
+			drawEngine.drawText(16, "Buy: " + cost, position.x, position.y, DrawEngine.BLACK);
+		}
+		
+		/* Draw description */
 		drawEngine.drawText(14, descriptionLambda.get(), position.x, position.y - height - 15, DrawEngine.BLACK);
 	}
 	
@@ -70,12 +92,10 @@ public class UpgradeButton extends Button {
 		
 		return Optional.empty();
 	}
-
-	@Override
-	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
-		return Optional.empty();
-	}
 	
+	private boolean isMaxed() {
+		return upgrades >= maxUpgrades;
+	}
 	
 
 }

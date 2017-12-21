@@ -14,10 +14,9 @@ public abstract class Button extends UIObject {
 		super(xPos, yPos, width, height);
 	}
 	
+	@Override
 	public void display(DrawEngine drawEngine) {
-		
 		drawEngine.drawImage(PConstants.CENTER, drawEngine.resizedBox(width*2, height*2), position.x, position.y);
-//		drawEngine.drawRectangle(PConstants.RADIUS, col, position.x, position.y, width, height);		
 	}
 
 }

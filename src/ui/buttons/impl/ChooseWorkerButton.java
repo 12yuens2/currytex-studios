@@ -67,14 +67,6 @@ public class ChooseWorkerButton extends Button {
 		
 
 	}
-
-	@Override
-	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
-			GameState currentState) {
-
-		return Optional.empty();
-	}
-
 	
 	@Override
 	public void display(DrawEngine drawEngine) {

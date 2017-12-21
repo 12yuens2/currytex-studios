@@ -35,7 +35,7 @@ public class UpgradesMenu extends Menu {
 		
 		/* Manual click upgrade button */
 		
-		buttons.add(new UpgradeButton(xPos + 200, yPos, 500, "More power to manual clicks!",
+		buttons.add(new UpgradeButton(xPos + 200, yPos, 500, 5, 1.95f, "More power to manual clicks!",
 				(GameState state) -> {
 					GameModifiers.manualClickPower += 0.25f;
 					return Optional.empty();
@@ -43,8 +43,8 @@ public class UpgradesMenu extends Menu {
 		));
 		
 		/* More exp */
-		buttons.add(new UpgradeButton(xPos + 600, yPos, 
-				() -> "Workers earn " + (int) ((GameModifiers.expModifier - 1 + 0.2f) * 100) + "% more exp!",
+		buttons.add(new UpgradeButton(xPos + 600, yPos, 10, 1.51f,
+				() -> "Workers earn " + (int) ((GameModifiers.expModifier - 1) * 100) + "% more exp!",
 				(GameState state) -> {
 					GameModifiers.expModifier += 0.2f;
 					return Optional.empty();
@@ -52,8 +52,8 @@ public class UpgradesMenu extends Menu {
 		));
 		
 		/* More revenue */
-		buttons.add(new UpgradeButton(xPos + 200, yPos + 150, 
-				() -> "Projects earn " + (int) ((GameModifiers.revenueModifier - 1 + 0.1f) * 100) + "% more money!",
+		buttons.add(new UpgradeButton(xPos + 200, yPos + 150, 10, 1.51f,
+				() -> "Projects earn " + (int) ((GameModifiers.revenueModifier - 1) * 100) + "% more money!",
 				(GameState state) -> {
 					GameModifiers.revenueModifier += 0.1f;
 					return Optional.empty();
@@ -62,8 +62,8 @@ public class UpgradesMenu extends Menu {
 		
 		
 		/* More reputation */
-		buttons.add(new UpgradeButton(xPos + 600, yPos + 150, 
-				() -> "Projects earn " + (int) ((GameModifiers.reputationModifier - 1 + 0.25f) * 100) + "% more reputation!",
+		buttons.add(new UpgradeButton(xPos + 600, yPos + 150, 10, 1.51f,
+				() -> "Projects earn " + (int) ((GameModifiers.reputationModifier - 1) * 100) + "% more reputation!",
 				(GameState state) -> {
 					GameModifiers.reputationModifier += 0.25f;
 					return Optional.empty();
@@ -72,8 +72,8 @@ public class UpgradesMenu extends Menu {
 		
 		
 		/* More coffee */
-		buttons.add(new UpgradeButton(xPos + 200, yPos + 300,
-				() -> "Cafe gives " + GameModifiers.coffeeAtCafe + " coffee!",
+		buttons.add(new UpgradeButton(xPos + 200, yPos + 300, 8, 1.6f,
+				() -> "Cafe currently gives " + GameModifiers.coffeeAtCafe + " coffee!",
 				(GameState state) -> {
 					GameModifiers.coffeeAtCafe += 5;
 					return Optional.empty();
@@ -82,7 +82,7 @@ public class UpgradesMenu extends Menu {
 		
 		
 		/* More worker slots */
-		buttons.add(new UpgradeButton(xPos + 600, yPos + 300, 250, "Unlock more worker slots!",
+		buttons.add(new UpgradeButton(xPos + 600, yPos + 300, 250, 6, 1.75f, "Unlock more worker slots!",
 				(GameState state) -> {
 					for (WorkerInfo info : state.ui.workerInfos) {
 						if (info.locked) {
@@ -98,8 +98,8 @@ public class UpgradesMenu extends Menu {
 		
 		
 		/* More workers per building */
-		buttons.add(new UpgradeButton(xPos + 200, yPos + 450, 300,
-				() -> "Allow " + (GameModifiers.locationMaxWorkers + 1) + " workers in the same location!",
+		buttons.add(new UpgradeButton(xPos + 200, yPos + 450, 300, 6, 1.75f,
+				() -> GameModifiers.locationMaxWorkers + " workers are allowed in the same location!",
 				(GameState state) -> {
 					GameModifiers.locationMaxWorkers += 1;
 					return Optional.empty();

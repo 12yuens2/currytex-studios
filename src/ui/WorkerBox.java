@@ -103,15 +103,12 @@ public class WorkerBox extends UIObject {
 
 		return Optional.empty();
 	}
-
-	@Override
-	public Optional<GameState> handleRightClick(float mouseX, float mouseY, GameContext context,
-			GameState currentState) {
-		
-		return Optional.empty();
-	}
 	
-	
+	/**
+	 * Move the worker in this box to a location if possible. 
+	 * Checking this resets the worker box and enters the worker into any location possible. 
+	 * @param locations to try and enter. 
+	 */
 	public void enterIfPossible(ArrayList<? extends Location> locations) {
 		if (mouseLocked) {
 			mouseLocked = false;
@@ -126,11 +123,20 @@ public class WorkerBox extends UIObject {
 		}
 	}
 	
+	/**
+	 * A worker box is disabled if it does not contain a worker,
+	 * or the worker is currently working on an activity.
+	 * @return
+	 */
 	public boolean isDisabled() {
 		return (!hasWorker() || 
 				(worker != null && worker.currentActivity != null));
 	}
 	
+	/**
+	 * Check if this worker box contains a worker
+	 * @return
+	 */
 	public boolean hasWorker() {
 		return worker != null;
 	}
@@ -139,6 +145,9 @@ public class WorkerBox extends UIObject {
 		this.worker = worker;
 	}
 
+	/**
+	 * Reset the worker box back to its original position.
+	 */
 	public void reset() {
 		mouseLocked = false;
 		mouseOver = false;
@@ -146,6 +155,10 @@ public class WorkerBox extends UIObject {
 		
 	}
 
+	/**
+	 * Check overlap of this worker box with given locations. 
+	 * @param locations to check overlap with.
+	 */
 	public void checkCollision(ArrayList<Location> locations) {
 		for (Location location : locations) {
 			if (location.overlapsWith(this)) {

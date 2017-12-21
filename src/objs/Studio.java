@@ -12,7 +12,7 @@ public class Studio {
 	public HashMap<Skill, Integer> reputation;
 
 	public Studio() {
-		this.currency = 100000;
+		this.currency = 1000000;
 		this.coffee = 2;
 		this.totalReputation = 3000;
 		this.reputationGoal = 1000;
