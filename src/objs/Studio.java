@@ -15,7 +15,7 @@ public class Studio {
 		this.currency = 100;
 		this.coffee = 20;
 		this.totalReputation = 0;
-		this.reputationGoal = 1000;
+		this.reputationGoal = 2000;
 		this.reputation = new HashMap<>();
 	}
 	

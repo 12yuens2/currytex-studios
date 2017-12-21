@@ -27,11 +27,20 @@ public class RecruitLocation extends TownLocation {
 
 	@Override
 	public boolean canAddWorker() {
+		int sum = 0;
 		for (WorkerInfo info : workerInfos) {
 			if (super.canAddWorker() && !info.locked && !info.hasWorker()) {
-				return true;
+				sum++;
 			}
 		}
+
+		if (sum > 0) {
+			if (workers.size() == 0) {
+				return true;
+			}
+			return sum > workers.size();
+		}
+		
 		return false;
 	}
 

@@ -46,7 +46,7 @@ public class UpgradesMenu extends Menu {
 		));
 		
 		/* More exp */
-		buttons.add(new UpgradeButton(xPos + 600, yPos, 10, 1.51f,
+		buttons.add(new UpgradeButton(xPos + 600, yPos, 5, 1.8f,
 				() -> "Workers earn " + (int) ((GameModifiers.expModifier - 1) * 100) + "% more exp!",
 				(GameState state) -> {
 					GameModifiers.expModifier += 0.2f;
@@ -55,17 +55,17 @@ public class UpgradesMenu extends Menu {
 		));
 		
 		/* More revenue */
-		buttons.add(new UpgradeButton(xPos + 200, yPos + 150, 10, 1.51f,
+		buttons.add(new UpgradeButton(xPos + 200, yPos + 150, 10, 1.45f,
 				() -> "Projects earn " + (int) ((GameModifiers.revenueModifier - 1) * 100) + "% more money!",
 				(GameState state) -> {
-					GameModifiers.revenueModifier += 0.1f;
+					GameModifiers.revenueModifier += 0.2f;
 					return Optional.empty();
 				}				
 		));
 		
 		
 		/* More reputation */
-		buttons.add(new UpgradeButton(xPos + 600, yPos + 150, 10, 1.51f,
+		buttons.add(new UpgradeButton(xPos + 600, yPos + 150, 10, 1.45f,
 				() -> "Projects earn " + (int) ((GameModifiers.reputationModifier - 1) * 100) + "% more reputation!",
 				(GameState state) -> {
 					GameModifiers.reputationModifier += 0.25f;

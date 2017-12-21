@@ -233,7 +233,7 @@ public class Worker {
 						 + (fame.level * 2);
 		
 		for (Entry<Skill, Level> entry : skills.entrySet()) {
-			wage += 2.5 * entry.getValue().level;
+			wage += 2 * entry.getValue().level;
 		}
 	}
 	

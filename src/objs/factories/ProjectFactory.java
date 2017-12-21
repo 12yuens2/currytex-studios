@@ -96,8 +96,8 @@ public class ProjectFactory {
 		
 		ArrayList<Skill> skillsRequired = getSkillsRequired(category);
 		
-		/* Minimum modifier is 0.2 */
-		float categoryModifier = 0.3f + Math.min(0.2f, trend.categoryTrends.get(category));
+		/* Minimum modifier is 0.7 */
+		float categoryModifier = 0.3f + Math.min(0.4f, trend.categoryTrends.get(category));
 		
 		/* Base project properties */
 		int features = getNumFeatures(difficulty);
@@ -109,7 +109,7 @@ public class ProjectFactory {
 		/* Apply modifiers */
 		for (Skill s : skillsRequired) {
 			if (studioReputation.containsKey(s)) {
-				revenue += revenue * studioReputation.get(s)/250f;
+				revenue += revenue * studioReputation.get(s)/200f;
 			}
 		}
 		revenue *= GameModifiers.revenueModifier;
@@ -125,12 +125,12 @@ public class ProjectFactory {
 				
 			case FREE:
 				revenue = 0;
-				reputation += reputation * random.nextDouble();
+				reputation += reputation * (0.2f + Math.min(0.5, random.nextDouble()));
 				break;
 				
 			case NORMAL:
-				revenue = (int) (revenue * 0.7);
-				reputation = (int) (reputation * 0.7);
+				revenue = (int) (revenue * 0.8);
+				reputation = (int) (reputation * 0.8);
 				break;
 		}
 		
@@ -149,7 +149,7 @@ public class ProjectFactory {
 	 */
 	private static int getTimeLimit(int features, int timePerWork, Difficulty difficulty) {
 		int minTime = features * timePerWork;
-		int time = (int) (minTime + (minTime * Math.max(0.3f + random.nextDouble(), 0.5f)));
+		int time = (int) (minTime + (minTime * (0.3f + random.nextDouble())));
 		
 		int daysLimit = time/GameTime.HOURS_IN_DAY + 2;
 		
@@ -214,8 +214,8 @@ public class ProjectFactory {
 			case HARD: /* 125 to 175 */
 				return 125 + random.nextInt(50);
 				
-			case VERY_HARD: /* 125 to 200 */
-				return 125 + random.nextInt(75);
+			case VERY_HARD: /* 150 to 200 */
+				return 150 + random.nextInt(50);
 				
 			default:
 				throw new IllegalArgumentException();

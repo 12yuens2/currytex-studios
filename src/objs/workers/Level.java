@@ -42,7 +42,7 @@ public class Level implements Comparable<Level> {
 	
 	private void levelUp() {
 		level++;
-		expToLevel = expToLevel*level; //TODO
+		expToLevel = expToLevel*level;
 	}
 
 	@Override

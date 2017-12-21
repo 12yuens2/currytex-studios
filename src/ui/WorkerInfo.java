@@ -47,7 +47,7 @@ public class WorkerInfo extends UIObject {
 					workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y - 30, 
 					DrawEngine.BLACK);
 			
-			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 14, "Coffee need: " + worker.addictionLevel.level(),
+			drawEngine.drawText(PConstants.LEFT, PConstants.CENTER, 14, "Coffee rate: " + worker.addictionLevel.level(),
 					workerBox.originalPosition.x + workerBox.width + 10, workerBox.originalPosition.y - 10, 
 					DrawEngine.BLACK);
 			

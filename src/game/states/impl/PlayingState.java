@@ -107,7 +107,8 @@ public class PlayingState extends GameState {
 		clickReveal = true;
 		
 		return new InMenuState(new Tooltip(
-				"You can click on any location in the game to make all the workers there work faster.",
+				"You can click on any in-game [Location] such as the [Get new project] location or worker portraits "
+				+ "to make all the workers there work faster.",
 				200, 200), this);
 	}
 	

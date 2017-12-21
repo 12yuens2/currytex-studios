@@ -26,16 +26,7 @@ public class WorkerMenu extends Menu {
 		
 		drawEngine.drawText(30, "Worker " + worker.name, position.x, position.y - height + 50, DrawEngine.BLACK);
 		
-		worker.menuDisplay(drawEngine, position.copy().add(-width + 55, -height + 125));
-
-		
+		worker.menuDisplay(drawEngine, position.copy().add(-width + 55, -height + 125));	
 	}
-	
-// TODO fire
-//	@Override
-//	public Optional<GameState> handleLeftClick(float mouseX, float mouseY, GameContext context, GameState currentState) {
-//		
-//		return Optional.empty();
-//	}
 
 }

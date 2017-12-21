@@ -7,8 +7,8 @@ package game;
  */
 public class GameTime {
 	
-	public static final float DELTA_TIME = 0.02f;
-	public static final float HOURS_PER_TIMESTEP = 1.07f;
+	public static final float DELTA_TIME = 0.03f;
+	public static final float HOURS_PER_TIMESTEP = 0.07f;
 	public static final int HOURS_IN_DAY = 24;
 	public static final int DAYS_IN_MONTH = 30;
 	public static final int MONTHS_IN_YEAR = 12;

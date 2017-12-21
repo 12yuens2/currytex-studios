@@ -44,8 +44,10 @@ public class ChooseWorkerButton extends Button {
 					return Optional.of(new InMenuState(new Tooltip(
 							"Some workers may have levels of coffee addition. "
 							+ "These workers need to drink coffee when they work on projects. "
-							+ "If you have no coffee available, they become more stressed and have a chance to stop working altogether. "
-							+ "To get more coffee, send any worker to the [Cafe]. ",
+							+ "If you have no coffee available in the company, "
+							+ "they become more stressed and have a chance to stop working altogether. "
+							+ "To get more coffee for the company, send any worker to the [Cafe]. "
+							+ "This gets coffee for anyone who wants to drink it while working on a project.",
 							250, 200), previousState));
 				}
 				
