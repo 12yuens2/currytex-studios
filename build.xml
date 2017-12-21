@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<project name="CurryTeXStudios" basedir="." default="all">
+
+
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
+    <property name="game" location="./CurryTeXStudios" />
+
+    <path id="CurryTeXStudios.classpath">
+      <pathelement location="${src}"/>
+      <pathelement location="${build}$"/>
+      <pathelement location="lib/core.jar"/>
+    </path>
+    
+    <target name="all" depends="init, compile, dist">
+    </target>
+
+    <target name="init">
+      <mkdir dir="${build}"/>
+    </target>
+
+    <target name="compile" depends="init">
+      <javac srcdir="${src}" destdir="${build}" includeantruntime="false">
+	<src path="src"/>
+	<classpath refid="CurryTeXStudios.classpath"/>
+      </javac>
+    </target>
+
+    <target name="dist" depends="compile">
+      <jar jarfile="${game}" basedir="${build}">
+	<manifest>
+	  <attribute name="Main-Class" value="app.CurryTeXStudios" />
+	</manifest>
+      </jar>
+    </target>
+
+    <target name="game" depends="dist">
+      <java classname="app.CurryTeXStudios" failonerror="true" fork="true">
+	<classpath>
+	  <path refid="CurryTeXStudios.classpath" />
+	  <path location="${game}" />
+	</classpath>
+      </java>
+    </target>
+
+    <target name="clean">
+      <delete dir="${build}"/>
+      <delete file="${game}"/>
+    </target>
+</project>
+
